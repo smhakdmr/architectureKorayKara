@@ -231,7 +231,7 @@ export default function Home() {
               }}
             >
               <Image
-                // srcSet={`${item.img}`}
+                // asrcSet={`${item.img}`}
                 src={`${item.img}`}
                 alt={item.title}
                 loading="lazy"
