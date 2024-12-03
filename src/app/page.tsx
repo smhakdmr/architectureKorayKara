@@ -30,7 +30,6 @@ import Image from "next/image";
 import { useTheme } from '@mui/material/styles';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -165,7 +164,7 @@ export default function Home() {
                   color="inherit"
                   aria-label="menu"
                   onClick={() => { setOpen(true) }}
-                  sx={{ mr: 2 }}
+                  sx={{ mr: 0 }}
                 >
                   <MenuIcon />
                 </IconButton>
@@ -487,9 +486,8 @@ export default function Home() {
           onClose={() => { setOpen(false) }}
           anchor="right"
         >
-          <Box sx={{ width: "35vw" }} role="presentation" onClick={() => { setOpen(false) }}>
+          <Box sx={{ width: isSmallScreen ? "80vw" : "35vw" }} role="presentation" onClick={() => { setOpen(false) }}>
             <List>
-              {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => ( */}
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon>
@@ -498,7 +496,6 @@ export default function Home() {
                   <ListItemText primary={"LOGO"} />
                 </ListItemButton>
               </ListItem>
-              {/* ))} */}
             </List>
             <Divider />
             <List>
