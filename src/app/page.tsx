@@ -19,7 +19,8 @@ import {
   MobileStepper,
   Modal,
   Toolbar,
-  Typography
+  Typography,
+  useMediaQuery
 } from "@mui/material";
 import Grid from '@mui/material/Grid';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -106,6 +107,7 @@ export default function Home() {
   const [activeStep, setActiveStep] = useState(0);
   const maxSteps = steps.length;
   const theme = useTheme();
+  const isSmallScreen = useMediaQuery('(max-width:600px)');
 
   return (
     <div>
@@ -191,7 +193,7 @@ export default function Home() {
               sx={{
                 position: "absolute",
                 width: "50vw",
-                top: "40%",
+                top: "30%",
                 left: "10%",
                 color: "white",
                 fontWeight: 600
@@ -203,8 +205,8 @@ export default function Home() {
               variant="body1"
               sx={{
                 position: "absolute",
-                width: "45vw",
-                top: "50%",
+                width: isSmallScreen ? "80vw" : "45vw",
+                top: "40%",
                 left: "10%",
                 color: "white",
                 fontFamily: "'Poppins', sans-serif"
@@ -219,7 +221,7 @@ export default function Home() {
               sx={{
                 position: "fixed", // Sayfanın tamamında sabit kalmasını sağlar
                 color: "white",
-                width: "10vw",
+                width: "20vw",
                 bottom: "5vh", // Sayfanın altından 5vh yukarıda
                 left: "50%", // Yatayda ortalamak için
                 transform: "translateX(-50%)", // Ortalamayı tam yapmak için
@@ -239,7 +241,7 @@ export default function Home() {
               <Typography>
                 Projelerimiz için kaydırınız
               </Typography>
-              <ArrowDropDownIcon sx={{width: "2em", height: "2em"}} />
+              <ArrowDropDownIcon sx={{ width: "2em", height: "2em" }} />
             </Box>
           </Box>
           <Box sx={{ scrollSnapAlign: 'start', paddingTop: '10vh' }}>
@@ -255,7 +257,11 @@ export default function Home() {
             >
               Güncel Projeler
             </Typography>
-            <ImageList gap={10} cols={3} sx={{ justifySelf: "center" }}>
+            <ImageList
+              gap={3}
+              cols={isSmallScreen ? 2 : 3}
+              sx={{ justifySelf: "center", width: '95vw', height: '110vh' }}
+            >
               {itemData.map((item) => (
                 <ImageListItem
                   key={item.img}
@@ -275,21 +281,15 @@ export default function Home() {
                     },
                   }}
                 >
-                  <Image
+                  <img
                     // asrcSet={`${item.img}`}
-                    src={`${item.img}`}
+                    src={item.img}
                     alt={item.title}
                     loading="lazy"
-                    width={500}
-                    height={10}
                     style={{
-                      height: '30vh',
-                      width: "30vw",
-                      transition: "transform 0.3s ease, opacity 0.3s ease",
+                      transition: "transform 0.3s ease, opacity 0.3s ease"
                     }}
-                    onClick={() => {
-                      setIsModalOpen(true)
-                    }}
+                    onClick={() => setIsModalOpen(true)}
                   />
                   <Box
                     className="title-overlay"
@@ -311,21 +311,10 @@ export default function Home() {
                       textAlign: "center",
                       fontFamily: "monospace"
                     }}
-                    onClick={() => {
-                      setIsModalOpen(true)
-                    }}
+                    onClick={() => setIsModalOpen(true)}
                   >
                     {item.title}
                   </Box>
-                  <ImageListItemBar
-                    title={item.title}
-                    className="item-bar"
-                    sx={{
-                      fontFamily: "monospace",
-                      height: "7vh",
-                      transition: "opacity 0.3s ease, visibility 0.3s ease",
-                    }}
-                  />
                 </ImageListItem>
               ))}
             </ImageList>
