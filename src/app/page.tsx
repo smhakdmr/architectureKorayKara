@@ -31,6 +31,9 @@ import { useTheme } from '@mui/material/styles';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
+import CloseIcon from '@mui/icons-material/Close';
+
 
 const itemData = [
   {
@@ -135,6 +138,7 @@ export default function Home() {
                 >
                   Tasarım Mimarlık
                 </Typography>
+                <AccountBalanceIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                 <Typography
                   variant="h5"
                   noWrap
@@ -145,13 +149,13 @@ export default function Home() {
                     display: { xs: 'flex', md: 'none' },
                     flexGrow: 1,
                     fontFamily: 'monospace',
-                    fontWeight: 700,
-                    letterSpacing: '.3rem',
+                    fontWeight: 500,
+                    letterSpacing: '.1rem',
                     color: 'inherit',
                     textDecoration: 'none',
                   }}
                 >
-                  LOGO
+                  Tasarım Mimarlık
                 </Typography>
                 <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                 </Box>
@@ -189,11 +193,11 @@ export default function Home() {
             }}
           >
             <Typography
-              variant="h2"
+              variant={isSmallScreen ? "h3" : "h2"}
               sx={{
                 position: "absolute",
                 width: "50vw",
-                top: "30%",
+                top: isSmallScreen ? "20%" : "30%",
                 left: "10%",
                 color: "white",
                 fontWeight: 600
@@ -206,7 +210,7 @@ export default function Home() {
               sx={{
                 position: "absolute",
                 width: isSmallScreen ? "80vw" : "45vw",
-                top: "40%",
+                top: isSmallScreen ? "32%" : "40%",
                 left: "10%",
                 color: "white",
                 fontFamily: "'Poppins', sans-serif"
@@ -238,10 +242,7 @@ export default function Home() {
                 },
               }}
             >
-              <Typography>
-                Projelerimiz için kaydırınız
-              </Typography>
-              <ArrowDropDownIcon sx={{ width: "2em", height: "2em" }} />
+              <KeyboardDoubleArrowDownIcon sx={{ width: "2em", height: "2em" }} />
             </Box>
           </Box>
           <Box sx={{ scrollSnapAlign: 'start', paddingTop: '10vh' }}>
@@ -307,7 +308,7 @@ export default function Home() {
                       borderRadius: 0,
                       opacity: 0,
                       transition: "opacity 0.3s ease",
-                      fontSize: "xx-large",
+                      fontSize: isSmallScreen ? "x-large" : "xx-large",
                       textAlign: "center",
                       fontFamily: "monospace"
                     }}
@@ -329,17 +330,34 @@ export default function Home() {
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            width: '70vw',
-            height: '80vh',
+            width: isSmallScreen ? '95vw' : '70vw',
+            maxHeight: '90vh', // Taşma durumunda yüksekliği sınırlandırır
+            overflowY: 'auto', // Y ekseninde kaydırmayı etkinleştirir
             bgcolor: 'background.paper',
-            border: '2px solid #000',
-            boxShadow: 24,
-            p: 4,
+            boxShadow: 20,
+            p: isSmallScreen ? 2 : 4,
           }}>
+            <IconButton
+              onClick={() => setIsModalOpen(false)}
+              sx={{
+                position: 'absolute',
+                top: 8,
+                right: 8,
+                color: 'gray', // İsteğe bağlı renk
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
             <Grid container spacing={4}>
               <Grid item xs={12} md={8}>
                 <Box sx={{ flexGrow: 1 }}>
-                  <Box sx={{ height: '60vh', maxWidth: '60vw', width: '100%', p: 2 }}>
+                  <Box
+                    sx={{
+                      height: isSmallScreen ? '40vh' : '60vh',
+                      maxWidth: isSmallScreen ? '100vw' : '60vw',
+                      width: '100%',
+                    }}
+                  >
                     <img
                       src={itemData[activeStep].img}
                       style={{ width: "100%", height: "100%" }}
@@ -388,21 +406,23 @@ export default function Home() {
                 </Box>
               </Grid>
               {/* Sağ taraf (Detaylar) */}
-              <Grid item xs={12} md={4}>
-                <Typography variant="h4"
+              <Grid item xs={12} md={4} >
+                <Typography
+                  variant={isSmallScreen ? "h5" : "h4"}
                   sx={{
-                    marginBottom: '1vh'
+                    marginBottom: '1vh',
+                    marginTop: isSmallScreen ? '-30px' : '32px'
                   }}>
                   <strong>A.M.Ö. EVİ</strong>
                 </Typography>
-                <Typography variant="h5" sx={{
+                <Typography variant={isSmallScreen ? "h6" : "h5"} sx={{
                   color: '#999',
                   fontWeight: '400',
                   marginBottom: '3vh'
                 }}>
                   ŞİLE-İSTANBUL
                 </Typography>
-                <Typography variant="body1"
+                <Typography variant={isSmallScreen ? "body2" : "body1"}
                   sx={{
                     marginBottom: '1vh',
                     marginTop: '1vh'
@@ -411,7 +431,7 @@ export default function Home() {
                   <strong>Konum:</strong> <a style={{ float: "right" }}>Çavuş Mah.</a>
                 </Typography>
                 <Divider />
-                <Typography variant="body1"
+                <Typography variant={isSmallScreen ? "body2" : "body1"}
                   sx={{
                     marginBottom: '1vh',
                     marginTop: '1vh'
@@ -419,7 +439,7 @@ export default function Home() {
                   <strong>Tarih:</strong> <a style={{ float: "right" }}>2021</a>
                 </Typography>
                 <Divider />
-                <Typography variant="body1"
+                <Typography variant={isSmallScreen ? "body2" : "body1"}
                   sx={{
                     marginBottom: '1vh',
                     marginTop: '1vh'
@@ -427,7 +447,7 @@ export default function Home() {
                   <strong>Parsel Alanı:</strong> <a style={{ float: "right" }}>501.33 m²</a>
                 </Typography>
                 <Divider />
-                <Typography variant="body1"
+                <Typography variant={isSmallScreen ? "body2" : "body1"}
                   sx={{
                     marginBottom: '1vh',
                     marginTop: '1vh'
@@ -435,7 +455,7 @@ export default function Home() {
                   <strong>Yapı Alanı:</strong> <a style={{ float: "right" }}>226.84 m²</a>
                 </Typography>
                 <Divider />
-                <Typography variant="body1"
+                <Typography variant={isSmallScreen ? "body2" : "body1"}
                   sx={{
                     marginBottom: '1vh',
                     marginTop: '1vh'
@@ -443,7 +463,7 @@ export default function Home() {
                   <strong>Oda Sayısı:</strong> <a style={{ float: "right" }}>5+1</a>
                 </Typography>
                 <Divider />
-                <Typography variant="body1"
+                <Typography variant={isSmallScreen ? "body2" : "body1"}
                   sx={{
                     marginBottom: '1vh',
                     marginTop: '1vh'
@@ -451,7 +471,7 @@ export default function Home() {
                   <strong>Tip:</strong><a style={{ float: "right" }}> Dubleks Villa + Havuz</a>
                 </Typography>
                 <Divider />
-                <Typography variant="body1"
+                <Typography variant={isSmallScreen ? "body2" : "body1"}
                   sx={{
                     marginBottom: '1vh',
                     marginTop: '1vh'
