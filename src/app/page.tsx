@@ -105,6 +105,7 @@ export default function Home() {
 
   const [open, setOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalPhoto, setModalPhoto] = useState("");
   const [activeStep, setActiveStep] = useState(0);
   const maxSteps = steps.length;
   const theme = useTheme();
@@ -198,12 +199,6 @@ export default function Home() {
             </Container>
           </AppBar>
         </Box>
-
-        {/* <div style={{
-          height: "30vh",
-          background: "linear-gradient(to bottom, rgb(229, 213, 196) 0%, #6F6158 100%)"
-        }}></div> */}
-
         <Box
           sx={{
             background: `
@@ -222,7 +217,7 @@ export default function Home() {
               position: "absolute",
               width: "50vw",
               top: isSmallScreen ? "20%" : "30%",
-              left: "10%",
+              left: "15%",
               color: "white",
               fontWeight: 600
             }}
@@ -235,7 +230,7 @@ export default function Home() {
               position: "absolute",
               width: isSmallScreen ? "80vw" : "45vw",
               top: isSmallScreen ? "32%" : "50%",
-              left: "10%",
+              left: "15%",
               color: "white",
               fontFamily: "'Poppins', sans-serif",
               fontWeight: 400,
@@ -271,7 +266,6 @@ export default function Home() {
             <KeyboardDoubleArrowDownIcon sx={{ width: "2em", height: "2em" }} />
           </Box>
         </Box>
-
         <Box
           sx={{
             scrollSnapAlign: 'start',
@@ -327,7 +321,11 @@ export default function Home() {
                   style={{
                     transition: "transform 0.3s ease, opacity 0.3s ease",
                   }}
-                  onClick={() => setIsModalOpen(true)}
+                  onClick={(e) => {
+                    debugger
+                    setModalPhoto(item.img)
+                    setIsModalOpen(true)
+                  }}
                 />
                 <Box
                   className="title-overlay"
@@ -349,7 +347,10 @@ export default function Home() {
                     textAlign: "center",
                     fontFamily: "monospace"
                   }}
-                  onClick={() => setIsModalOpen(true)}
+                  onClick={() => {
+                    setModalPhoto(item.img)
+                    setIsModalOpen(true)
+                  }}
                 >
                   {item.title}
                 </Box>
@@ -357,7 +358,6 @@ export default function Home() {
             ))}
           </ImageList>
         </Box>
-
         <Modal
           open={isModalOpen}
           onClose={() => { setIsModalOpen(false) }}
@@ -396,7 +396,7 @@ export default function Home() {
                     }}
                   >
                     <img
-                      src={itemData[activeStep].img}
+                      src={modalPhoto}
                       style={{ width: "100%", height: "100%" }}
                     />
                   </Box>
