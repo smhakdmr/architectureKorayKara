@@ -26,13 +26,15 @@ import Grid from '@mui/material/Grid';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import { useState } from "react";
-import Image from "next/image";
-import { useTheme } from '@mui/material/styles';
+import { useTheme, styled } from '@mui/material/styles';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import CloseIcon from '@mui/icons-material/Close';
-
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const itemData = [
   {
@@ -77,8 +79,6 @@ const itemData = [
     title: 'Tomato basil',
   }
 ];
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const steps = [
   {
     label: 'Select campaign settings',
@@ -103,7 +103,6 @@ const steps = [
 
 export default function Home() {
 
-  const [anchorElNav, setAnchorElNav] = useState(null);
   const [open, setOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
@@ -111,12 +110,39 @@ export default function Home() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery('(max-width:600px)');
 
+  const GradientBox = styled(Box)(({ theme }) => ({
+    backgroundColor: "#CFBBB0",
+    padding: theme.spacing(6, 0),
+    position: "relative",
+    overflow: "hidden",
+  }));
+
+  const FooterSection = styled(Box)(({ theme }) => ({
+    padding: theme.spacing(2),
+    borderRadius: theme.spacing(2),
+    backdropFilter: "blur(10px)",
+    transition: "all 0.3s ease-in-out",
+    "&:hover": {
+      transform: "translateY(-5px)",
+      boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
+    },
+  }));
+
+  const SocialButton = styled(IconButton)(({ theme }) => ({
+    margin: theme.spacing(0, 1),
+    color: "#000",
+    transition: "all 0.3s ease-in-out",
+    "&:hover": {
+      transform: "scale(1.2)",
+      color: theme.palette.primary.main,
+    },
+  }));
+
   return (
     <div>
       <main>
-
         <Box sx={{ flexGrow: 1 }}>
-          <AppBar sx={{ background: "#000000bf" }}>
+          <AppBar sx={{ background: "#00000085" }}>
             <Container maxWidth="xl">
               <Toolbar disableGutters sx={{ height: "5vh" }}>
                 <AccountBalanceIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, height: 80, width: 40 }} />
@@ -172,154 +198,166 @@ export default function Home() {
             </Container>
           </AppBar>
         </Box>
+
+        {/* <div style={{
+          height: "30vh",
+          background: "linear-gradient(to bottom, rgb(229, 213, 196) 0%, #6F6158 100%)"
+        }}></div> */}
+
         <Box
           sx={{
+            background: `
+            linear-gradient(to bottom, rgb(0, 0, 0, 0) 60%, #3A3A3C 100%),
+            url('/homePage1.png')
+          `,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
             height: '100vh',
-            overflowY: 'scroll',
-            scrollSnapType: 'y mandatory', // Dikey eksende snap
-            scrollBehavior: 'smooth'
+            position: 'relative',
           }}
         >
-          <Box
+          <Typography
+            variant={isSmallScreen ? "h3" : "h2"}
             sx={{
-              height: '100vh',
-              backgroundImage: `url('/homePage1.png')`,
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover", // Görseli kutuya sığacak şekilde ölçekler.
-              backgroundPosition: "center", // Görseli merkeze hizalar.
-              // opacity: 0.8,
-              scrollSnapAlign: 'start',
+              position: "absolute",
+              width: "50vw",
+              top: isSmallScreen ? "20%" : "30%",
+              left: "10%",
+              color: "white",
+              fontWeight: 600
             }}
           >
-            <Typography
-              variant={isSmallScreen ? "h3" : "h2"}
-              sx={{
-                position: "absolute",
-                width: "50vw",
-                top: isSmallScreen ? "20%" : "30%",
-                left: "10%",
-                color: "white",
-                fontWeight: 600
-              }}
-            >
-              BAŞLIK
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                position: "absolute",
-                width: isSmallScreen ? "80vw" : "45vw",
-                top: isSmallScreen ? "32%" : "40%",
-                left: "10%",
-                color: "white",
-                fontFamily: "'Poppins', sans-serif"
-              }}
-            >
-              Açıklama açıklama açıklama açıklama açıklama açıklama açıklama açıklama açıklama açıklama
-              açıklama açıklama açıklama açıklama açıklama açıklama açıklama açıklama açıklama açıklama
-              açıklama açıklama açıklama açıklama açıklama açıklama açıklama açıklama açıklama açıklama
-              açıklama açıklama açıklama açıklama açıklama açıklama açıklama açıklama açıklama açıklama
-            </Typography>
-            <Box
-              sx={{
-                position: "fixed", // Sayfanın tamamında sabit kalmasını sağlar
-                color: "white",
-                width: "20vw",
-                bottom: "5vh", // Sayfanın altından 5vh yukarıda
-                left: "50%", // Yatayda ortalamak için
-                transform: "translateX(-50%)", // Ortalamayı tam yapmak için
-                textAlign: "center",
-                fontWeight: "bold",
-                animation: "bounce 2s infinite", // Animasyonu ekledik
-                "@keyframes bounce": {
-                  "0%, 100%": {
-                    transform: "translate(-50%, 0)", // Başlangıç ve bitiş pozisyonu
-                  },
-                  "50%": {
-                    transform: "translate(-50%, -10px)", // Yukarı çıkış pozisyonu
-                  },
+            BAŞLIK
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              position: "absolute",
+              width: isSmallScreen ? "80vw" : "45vw",
+              top: isSmallScreen ? "32%" : "50%",
+              left: "10%",
+              color: "white",
+              fontFamily: "'Poppins', sans-serif",
+              fontWeight: 400,
+              fontSize: "1rem"
+            }}
+          >
+            Açıklama açıklama açıklama açıklama açıklama açıklama açıklama açıklama açıklama açıklama
+            açıklama açıklama açıklama açıklama açıklama açıklama açıklama açıklama açıklama açıklama
+            açıklama açıklama açıklama açıklama açıklama açıklama açıklama açıklama açıklama açıklama
+            açıklama açıklama açıklama açıklama açıklama açıklama açıklama açıklama açıklama açıklama
+          </Typography>
+          <Box
+            sx={{
+              position: "absolute", // Sayfanın tamamında sabit kalmasını sağlar
+              color: "white",
+              width: "20vw",
+              bottom: "5vh", // Sayfanın altından 5vh yukarıda
+              left: "50%", // Yatayda ortalamak için
+              transform: "translateX(-50%)", // Ortalamayı tam yapmak için
+              textAlign: "center",
+              fontWeight: "bold",
+              animation: "bounce 2s infinite", // Animasyonu ekledik
+              "@keyframes bounce": {
+                "0%, 100%": {
+                  transform: "translate(-50%, 0)", // Başlangıç ve bitiş pozisyonu
                 },
-              }}
-            >
-              <KeyboardDoubleArrowDownIcon sx={{ width: "2em", height: "2em" }} />
-            </Box>
-          </Box>
-          <Box sx={{ scrollSnapAlign: 'start', paddingTop: '10vh' }}>
-            <Typography
-              variant="h2"
-              sx={{
-                fontFamily: "inherit",
-                fontWeight: 600,
-                fontSize: "2.5rem",
-                marginLeft: "5vw",
-                marginBottom: "2vh"
-              }}
-            >
-              Güncel Projeler
-            </Typography>
-            <ImageList
-              gap={3}
-              cols={isSmallScreen ? 2 : 3}
-              sx={{ justifySelf: "center", width: '95vw', height: '110vh' }}
-            >
-              {itemData.map((item) => (
-                <ImageListItem
-                  key={item.img}
-                  sx={{
-                    position: "relative",
-                    overflow: "hidden",
-                    "&:hover img": {
-                      transform: "scale(1.1)",
-                      opacity: 0.5,
-                    },
-                    "&:hover .title-overlay": {
-                      opacity: 1,
-                    },
-                    "&:hover .item-bar": {
-                      opacity: 0,
-                      visibility: "hidden",
-                    },
-                  }}
-                >
-                  <img
-                    // asrcSet={`${item.img}`}
-                    src={item.img}
-                    alt={item.title}
-                    loading="lazy"
-                    style={{
-                      transition: "transform 0.3s ease, opacity 0.3s ease"
-                    }}
-                    onClick={() => setIsModalOpen(true)}
-                  />
-                  <Box
-                    className="title-overlay"
-                    sx={{
-                      position: "absolute",
-                      top: "50%",
-                      left: "50%",
-                      transform: "translate(-50%, -50%)",
-                      color: "white",
-                      background: "rgba(0, 0, 0, 0.6)",
-                      padding: "5% 10%",
-                      alignContent: "center",
-                      height: "90%",
-                      width: "90%",
-                      borderRadius: 0,
-                      opacity: 0,
-                      transition: "opacity 0.3s ease",
-                      fontSize: isSmallScreen ? "x-large" : "xx-large",
-                      textAlign: "center",
-                      fontFamily: "monospace"
-                    }}
-                    onClick={() => setIsModalOpen(true)}
-                  >
-                    {item.title}
-                  </Box>
-                </ImageListItem>
-              ))}
-            </ImageList>
+                "50%": {
+                  transform: "translate(-50%, -10px)", // Yukarı çıkış pozisyonu
+                },
+              },
+            }}
+          >
+            <KeyboardDoubleArrowDownIcon sx={{ width: "2em", height: "2em" }} />
           </Box>
         </Box>
+
+        <Box
+          sx={{
+            scrollSnapAlign: 'start',
+            paddingTop: '10vh',
+            backgroundColor: "#3A3A3C",
+          }}
+        >
+          <Typography
+            variant="h1"
+            sx={{
+              fontFamily: "inherit",
+              fontWeight: 600,
+              fontSize: "3rem",
+              marginLeft: "5vw",
+              color: "white"
+            }}
+          >
+            Güncel Projelerimiz
+          </Typography>
+          <ImageList
+            gap={8}
+            cols={isSmallScreen ? 2 : 3}
+            sx={{
+              justifySelf: "center",
+              width: '95vw',
+              padding: 5
+            }}
+          >
+            {itemData.map((item) => (
+              <ImageListItem
+                key={item.img}
+                sx={{
+                  position: "relative",
+                  overflow: "hidden",
+                  "&:hover img": {
+                    transform: "scale(1.1)",
+                    opacity: 0.5,
+                  },
+                  "&:hover .title-overlay": {
+                    opacity: 1,
+                  },
+                  "&:hover .item-bar": {
+                    opacity: 0,
+                    visibility: "hidden",
+                  },
+                }}
+              >
+                <img
+                  // asrcSet={`${item.img}`}
+                  src={item.img}
+                  alt={item.title}
+                  loading="lazy"
+                  style={{
+                    transition: "transform 0.3s ease, opacity 0.3s ease",
+                  }}
+                  onClick={() => setIsModalOpen(true)}
+                />
+                <Box
+                  className="title-overlay"
+                  sx={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    color: "white",
+                    background: "rgba(0, 0, 0, 0.6)",
+                    padding: "5% 10%",
+                    alignContent: "center",
+                    height: "90%",
+                    width: "90%",
+                    borderRadius: 0,
+                    opacity: 0,
+                    transition: "opacity 0.3s ease",
+                    fontSize: isSmallScreen ? "x-large" : "xx-large",
+                    textAlign: "center",
+                    fontFamily: "monospace"
+                  }}
+                  onClick={() => setIsModalOpen(true)}
+                >
+                  {item.title}
+                </Box>
+              </ImageListItem>
+            ))}
+          </ImageList>
+        </Box>
+
         <Modal
           open={isModalOpen}
           onClose={() => { setIsModalOpen(false) }}
@@ -515,8 +553,135 @@ export default function Home() {
           </Box>
         </Drawer>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
+      <footer>
+        <GradientBox>
+          <Container maxWidth="lg">
+            <Grid container spacing={4}>
+              <Grid item xs={12} sm={6} md={3}>
+                <FooterSection>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      color: "#000",
+                      mb: 2,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    About Us
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{ color: "#000", opacity: 0.7 }}
+                  >
+                    We are dedicated to providing innovative solutions and exceptional
+                    service to our customers worldwide.
+                  </Typography>
+                </FooterSection>
+              </Grid>
 
+              <Grid item xs={12} sm={6} md={3}>
+                <FooterSection >
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      color: "#000",
+                      mb: 2,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Contact
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{ color: "#000", opacity: 0.7 }}
+                  >
+                    Email: info@example.com
+                    <br />
+                    Phone: +1 234 567 890
+                    <br />
+                    Address: 123 Innovation Street
+                  </Typography>
+                </FooterSection>
+              </Grid>
+
+              <Grid item xs={12} sm={6} md={3}>
+                <FooterSection >
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      color: "#000",
+                      mb: 2,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Quick Links
+                  </Typography>
+                  <Typography
+                    component="div"
+                    sx={{ color: "#000", opacity: 0.7 }}
+                  >
+                    <Box component="span" sx={{ display: "block", mb: 1, cursor: "pointer" }}>
+                      Privacy Policy
+                    </Box>
+                    <Box component="span" sx={{ display: "block", mb: 1, cursor: "pointer" }}>
+                      Terms of Service
+                    </Box>
+                    <Box component="span" sx={{ display: "block", cursor: "pointer" }}>
+                      FAQ
+                    </Box>
+                  </Typography>
+                </FooterSection>
+              </Grid>
+
+              <Grid item xs={12} sm={6} md={3}>
+                <FooterSection >
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      color: "#000",
+                      mb: 2,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Follow Us
+                  </Typography>
+                  <Box sx={{ display: "flex", justifyContent: "center" }}>
+                    <SocialButton aria-label="facebook">
+                      <FacebookIcon />
+                    </SocialButton>
+                    <SocialButton aria-label="twitter">
+                      <TwitterIcon />
+                    </SocialButton>
+                    <SocialButton aria-label="instagram">
+                      <InstagramIcon />
+                    </SocialButton>
+                    <SocialButton aria-label="linkedin">
+                      <LinkedInIcon />
+                    </SocialButton>
+                  </Box>
+                </FooterSection>
+              </Grid>
+            </Grid>
+
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                mt: 4,
+                pt: 2,
+                borderTop: "1px solid rgba(0,0,0,0.1)",
+              }}
+            >
+              <Typography
+                variant="body2"
+                sx={{ color: "#000", opacity: 0.7 }}
+              >
+                © 2024 Your Company. All rights reserved.
+              </Typography>
+            </Box>
+          </Container>
+        </GradientBox>
       </footer>
     </div>
   );
