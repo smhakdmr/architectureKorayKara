@@ -38,7 +38,7 @@ const Header = () => {
                                 variant="h6"
                                 noWrap
                                 component="a"
-                                href="#app-bar-with-responsive-menu"
+                                href="/"
                                 sx={{
                                     mr: 2,
                                     display: { xs: 'none', md: 'flex' },
@@ -56,7 +56,7 @@ const Header = () => {
                                 variant="h5"
                                 noWrap
                                 component="a"
-                                href="#app-bar-with-responsive-menu"
+                                href="/"
                                 sx={{
                                     mr: 2,
                                     display: { xs: 'flex', md: 'none' },
@@ -98,24 +98,46 @@ const Header = () => {
                                 <ListItemIcon>
                                     <AccountBalanceIcon />
                                 </ListItemIcon>
-                                <ListItemText primary={"LOGO"} />
+                                <ListItemText primary={"Tasarım Mimarlık"} />
                             </ListItemButton>
                         </ListItem>
                     </List>
                     <Divider />
                     <List>
-                        {['Anasayfa', 'Projelerimiz', 'İletişim'].map((text, index) => (
-                            <ListItem key={text}>
+                        {/* {['Anasayfa', 'Projelerimiz', 'İletişim'].map((text, index) => ( */}
+                            <ListItem>
                                 <ListItemButton
                                     sx={{ py: 0, minHeight: 32, color: 'gray' }}
+                                    href="/"
                                 >
                                     <ListItemText
-                                        primary={text}
+                                        primary={"Anasayfa"}
                                         primaryTypographyProps={{ fontSize: 40, fontWeight: 'medium' }}
                                     />
                                 </ListItemButton>
                             </ListItem>
-                        ))}
+                             <ListItem>
+                             <ListItemButton
+                                 sx={{ py: 0, minHeight: 32, color: 'gray' }}
+                                 href="/projects"
+                             >
+                                 <ListItemText
+                                     primary={"Projelerimiz"}
+                                     primaryTypographyProps={{ fontSize: 40, fontWeight: 'medium' }}
+                                 />
+                             </ListItemButton>
+                         </ListItem>
+                          <ListItem>
+                          <ListItemButton
+                              sx={{ py: 0, minHeight: 32, color: 'gray' }}
+                          >
+                              <ListItemText
+                                  primary={"İletişim"}
+                                  primaryTypographyProps={{ fontSize: 40, fontWeight: 'medium' }}
+                              />
+                          </ListItemButton>
+                      </ListItem>
+                        {/* ))} */}
                     </List>
                 </Box>
             </Drawer>
