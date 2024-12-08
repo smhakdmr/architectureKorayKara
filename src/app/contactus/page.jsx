@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from 'react';
-import { TextField, Button, Box, Typography, Container, Alert, AlertTitle, useMediaQuery } from '@mui/material';
+import { TextField, Button, Box, Typography, Container, Alert, AlertTitle, useMediaQuery, Snackbar } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import PersonIcon from '@mui/icons-material/Person';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -46,6 +46,14 @@ const ContactUs = () => {
         }
     };
 
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setSubmitSuccess(false);
+    };
+
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitSuccess, setSubmitSuccess] = useState(false);
     const isSmallScreen = useMediaQuery('(max-width:600px)');
@@ -58,7 +66,7 @@ const ContactUs = () => {
                     url('/contactUs4.png')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    height: isSmallScreen ? '100vh' : '70vh',
+                    height: isSmallScreen ? '80vh' : '70vh',
                     position: 'relative',
                     scrollSnapAlign: 'start',
                     paddingTop: '5vh',
@@ -109,7 +117,7 @@ const ContactUs = () => {
                                                     <PersonIcon sx={{ color: 'white' }} />
                                                 </InputAdornment>
                                             ),
-                                            style: { color: 'white', backgroundColor: '#00000042' }
+                                            style: { color: 'white', backgroundColor: '#00000042', height: '5vh' }
                                         },
                                         inputLabel: {
                                             style: { color: 'white' },
@@ -146,7 +154,7 @@ const ContactUs = () => {
                                                     <EmailIcon sx={{ color: 'white' }} />
                                                 </InputAdornment>
                                             ),
-                                            style: { color: 'white', backgroundColor: '#00000042' }
+                                            style: { color: 'white', backgroundColor: '#00000042', height: '5vh' }
                                         },
                                         inputLabel: {
                                             style: { color: 'white' },
@@ -183,7 +191,7 @@ const ContactUs = () => {
                                                     <LocalPhoneIcon sx={{ color: 'white' }} />
                                                 </InputAdornment>
                                             ),
-                                            style: { color: 'white', backgroundColor: '#00000042' }
+                                            style: { color: 'white', backgroundColor: '#00000042', height: '5vh' }
                                         },
                                         inputLabel: {
                                             style: { color: 'white' },
@@ -258,21 +266,25 @@ const ContactUs = () => {
                             </Button>
                         </form>
 
-                        {submitSuccess && (
-                            <Box mt={2} role="alert" aria-live="polite">
-                                <Alert
-                                    icon={<CheckCircleIcon fontSize="small" />}
-                                    severity="success"
-                                    sx={{
-                                        backgroundColor: 'green.50',
-                                        color: 'green.800',
-                                    }}
-                                >
-                                    <AlertTitle>Başarılı</AlertTitle>
-                                    Mesajınız başarıyla iletildi. En kısa sürede sizinle iletişime geçeceğiz.
-                                </Alert>
-                            </Box>
-                        )}
+
+
+
+                        <Snackbar
+                            open={submitSuccess}
+                            autoHideDuration={3000}
+                            onClose={handleClose}
+                        >
+                            <Alert
+                                icon={<CheckCircleIcon fontSize="small" />}
+                                severity="success"
+                                variant="filled"
+
+                            >
+                                <AlertTitle>Başarılı</AlertTitle>
+                                Mesajınız başarıyla iletildi. En kısa sürede sizinle iletişime geçeceğiz.
+                            </Alert>
+                        </Snackbar>
+
                     </Box>
                 </Container>
             </Box>
