@@ -5,14 +5,7 @@ import {
     Typography,
     useMediaQuery
 } from "@mui/material";
-import { Poppins } from 'next/font/google';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
-
-// Poppins fontunu burada tanımlıyoruz
-const poppins = Poppins({
-    subsets: ['latin'],
-    weight: ['400', '600'], // Kullanmak istediğiniz ağırlıkları ekleyin
-});
 
 const Welcome = () => {
 

@@ -55,7 +55,7 @@ const ContactUs = () => {
             <Box
                 sx={{
                     background: `linear-gradient(to bottom, #181818 7%, rgba(0, 0, 0, 0) 50%, #181818 93%),
-                    url('/contactUs.png')`,
+                    url('/contactUs4.png')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     height: isSmallScreen ? '100vh' : '70vh',
@@ -74,7 +74,7 @@ const ContactUs = () => {
                             sx={{
                                 fontFamily: "inherit",
                                 fontWeight: 500,
-                                fontSize: "3rem",
+                                fontSize: isSmallScreen ? "2rem" : "3rem",
                                 color: "white",
                                 marginTop: isSmallScreen ? 5 : 5,
                             }}
@@ -82,11 +82,10 @@ const ContactUs = () => {
                             Bize Ulaşın
                         </Typography>
                         <Typography
-                            className='mt-4 text-lg'
+                            className='text-lg'
                             align="center"
                             gutterBottom
                             sx={{
-                                fontFamily: "inherit",
                                 color: "white",
                                 margin: isSmallScreen ? 1 : 5,
                                 marginBottom: isSmallScreen ? 4 : 5
@@ -110,7 +109,7 @@ const ContactUs = () => {
                                                     <PersonIcon sx={{ color: 'white' }} />
                                                 </InputAdornment>
                                             ),
-                                            style: { color: 'white' }
+                                            style: { color: 'white', backgroundColor: '#00000042' }
                                         },
                                         inputLabel: {
                                             style: { color: 'white' },
@@ -147,7 +146,7 @@ const ContactUs = () => {
                                                     <EmailIcon sx={{ color: 'white' }} />
                                                 </InputAdornment>
                                             ),
-                                            style: { color: 'white' }
+                                            style: { color: 'white', backgroundColor: '#00000042' }
                                         },
                                         inputLabel: {
                                             style: { color: 'white' },
@@ -184,7 +183,7 @@ const ContactUs = () => {
                                                     <LocalPhoneIcon sx={{ color: 'white' }} />
                                                 </InputAdornment>
                                             ),
-                                            style: { color: 'white' }
+                                            style: { color: 'white', backgroundColor: '#00000042' }
                                         },
                                         inputLabel: {
                                             style: { color: 'white' },
@@ -222,7 +221,7 @@ const ContactUs = () => {
                                                     <MessageIcon sx={{ color: 'white' }} />
                                                 </InputAdornment>
                                             ),
-                                            style: { color: 'white' }
+                                            style: { color: 'white', backgroundColor: '#00000042' }
                                         },
                                         inputLabel: {
                                             style: { color: 'white' },

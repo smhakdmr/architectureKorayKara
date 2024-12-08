@@ -99,12 +99,31 @@ const Projects = () => {
             >
                 <Typography
                     variant="h1"
+                    align="center"
+                    gutterBottom
                     sx={{
                         fontFamily: "inherit",
-                        fontWeight: 600,
-                        fontSize: "3rem",
-                        marginLeft: "5vw",
-                        color: "white"
+                        fontSize: isSmallScreen ? "1.7rem" : "3rem",
+                        color: "white",
+                        textAlign: "center",
+                        marginTop: 20,
+                        marginLeft: isSmallScreen ? 2 : 20,
+                        marginRight: isSmallScreen ? 2 : 20,
+                        marginBottom: 20
+                    }}
+                >
+                    Size muhteşem yaşam alanları tasarlamak için <span style={{ color: "#CFBBB0" }}>buradayız!</span>
+                </Typography>
+                <Typography
+                    variant="h1"
+                    align="center"
+                    gutterBottom
+                    sx={{
+                        fontFamily: "inherit",
+                        fontWeight: 500,
+                        fontSize: isSmallScreen ? "2rem" : "3rem",
+                        color: "white",
+                        marginTop: isSmallScreen ? 5 : 5,
                     }}
                 >
                     Güncel Projelerimiz
@@ -146,7 +165,6 @@ const Projects = () => {
                                     transition: "transform 0.3s ease, opacity 0.3s ease",
                                 }}
                                 onClick={(e) => {
-                                    debugger
                                     setModalPhoto(item.img)
                                     setIsModalOpen(true)
                                 }}
