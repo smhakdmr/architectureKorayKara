@@ -2,6 +2,7 @@
 
 import Projects from './projects/page'
 import Welcome from './welcome/page'
+import ContactUs from './contactus/page'
 
 export default function Home() {
 
@@ -11,6 +12,8 @@ export default function Home() {
         <Welcome />
 
         <Projects />
+
+        <ContactUs />
       </main>
     </div>
   );

@@ -59,10 +59,6 @@ const Projects = () => {
         {
             img: '/images/villa9.png',
             title: 'Mushrooms',
-        },
-        {
-            img: '/images/villa10.png',
-            title: 'Tomato basil',
         }
     ];
     const steps = [
