@@ -1,5 +1,7 @@
 import React from "react";
 import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
+import Image from 'next/image';
+
 
 const Services = () => {
 
@@ -87,12 +89,12 @@ const Services = () => {
                                 },
                             }}
                         >
-                            <img
+                            <Image
                                 src={item.image}
                                 alt={item.title}
+                                layout="fill"
+                                objectFit="cover"
                                 style={{
-                                    width: "100%",
-                                    height: "100%",
                                     transition: "transform 0.3s ease",
                                 }}
                             />
