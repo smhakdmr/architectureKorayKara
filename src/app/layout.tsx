@@ -3,7 +3,14 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "../app/components/Header"
 import Footer from "../app/components/Footer"
+import { Old_Standard_TT } from 'next/font/google';
 
+const oldStandart = Old_Standard_TT({
+    subsets: ['latin'], // Desteklenen karakter kümesi
+    weight: ['400', '700'], // Kullanılacak font ağırlıkları
+    style: ['normal', 'italic'], // Normal veya italik stiller
+    display: 'swap', // Daha iyi yükleme için "swap" kullanılır
+});
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -28,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={oldStandart.className}
       >
         <Header />
         {children}

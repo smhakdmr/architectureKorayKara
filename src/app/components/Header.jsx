@@ -1,9 +1,12 @@
 "use client"
 
-import * as React from 'react';
-import { AppBar, Toolbar, Typography, Box, IconButton, Button } from '@mui/material';
-import Image from 'next/image';
 import { Old_Standard_TT } from 'next/font/google';
+import { AppBar, Toolbar, Box, Typography, Button, IconButton, Drawer, List, ListItem, ListItemText, Divider } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import { useState } from 'react';
+import Image from 'next/image';
+import { useMediaQuery } from '@mui/material';
+import Link from 'next/link';
 
 const oldStandart = Old_Standard_TT({
     subsets: ['latin'], // Desteklenen karakter kümesi
@@ -13,6 +16,13 @@ const oldStandart = Old_Standard_TT({
 });
 
 export default function DrawerAppBar() {
+
+    const [drawerOpen, setDrawerOpen] = useState(false);
+    const isMobile = useMediaQuery('(max-width:600px)'); // Mobil ekran boyutu
+
+    const handleDrawerToggle = () => {
+        setDrawerOpen((prev) => !prev);
+    };
 
     const DividerLine = () => (
         <Box
@@ -33,8 +43,8 @@ export default function DrawerAppBar() {
                     backgroundColor: 'white',
                     boxShadow: 'none'
                 }}>
-                {/* Logo ve Menü */}
-                <Toolbar sx={{ flexDirection: 'column' }}>
+                {/* Navbar İçeriği */}
+                <Toolbar sx={{ flexDirection: 'column', alignItems: 'center' }}>
                     {/* Logo */}
                     <Box
                         sx={{
@@ -44,6 +54,7 @@ export default function DrawerAppBar() {
                     >
                         <Image src="/logo.png" alt='Tasarım Mimarlık' width={150} height={50} />
                     </Box>
+                    {/* Marka İsmi */}
                     <Typography
                         variant={"h4"}
                         sx={{
@@ -55,18 +66,56 @@ export default function DrawerAppBar() {
                     >
                         Tasarım Mimarlık
                     </Typography>
-                    {/* Menü Linkleri */}
-                    <Box sx={{ display: 'flex', gap: 4 }}>
-                        <Button href="#" sx={{ color: 'black', fontFamily: 'inherit' }}>ANA SAYFA</Button>
-                        <DividerLine />
-                        <Button href="#" sx={{ color: 'black', fontFamily: 'inherit' }}>HAKKINDA</Button>
-                        <DividerLine />
-                        <Button href="#" sx={{ color: 'black', fontFamily: 'inherit' }}>PROJELER</Button>
-                        <DividerLine />
-                        <Button href="#" sx={{ color: 'black', fontFamily: 'inherit' }}>İLETİŞİM</Button>
-                    </Box>
+                    {/* Menü */}
+                    {isMobile ? (
+                        // Mobil Menü
+                        <>
+                            <IconButton onClick={handleDrawerToggle} sx={{ color: 'black' }}>
+                                <MenuIcon />
+                            </IconButton>
+                            <Drawer
+                                anchor="top"
+                                open={drawerOpen}
+                                onClose={() => setDrawerOpen(false)}
+                            >
+                                <List>
+                                    <ListItem onClick={() => setDrawerOpen(false)}>
+                                        <Link href="/" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Ana Sayfa</Link>
+                                    </ListItem>
+                                    <Divider />
+                                    <ListItem onClick={() => setDrawerOpen(false)}>
+                                        <Link href="/projects" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Hakkımızda</Link>
+                                    </ListItem>
+                                    <Divider />
+                                    <ListItem onClick={() => setDrawerOpen(false)}>
+                                        <Link href="/projects" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Projeler</Link>
+                                    </ListItem>
+                                    <Divider />
+                                    <ListItem onClick={() => setDrawerOpen(false)}>
+                                        <Link href="/contactus" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>İletişim</Link>
+                                    </ListItem>
+                                </List>
+                            </Drawer>
+                        </>
+                    ) : (
+                        // Masaüstü Menü
+                        <Box sx={{ display: 'flex', gap: 4 }}>
+                            <Link href="/" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Ana Sayfa</Link>
+                            <DividerLine />
+                            <Link href="/projects" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Hakkımızda</Link>
+                            <DividerLine />
+                            <Link href="/projects" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Projeler</Link>
+                            <DividerLine />
+                            <Link href="/contactus" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>İletişim</Link>
+                            {/* <Button href="/" sx={{ color: 'black', fontFamily: 'inherit' }}>ANA SAYFA</Button> */}
+                            {/* <Button href="/projects" sx={{ color: 'black', fontFamily: 'inherit' }}>HAKKINDA</Button> */}
+                            {/* <Button href="/projects" sx={{ color: 'black', fontFamily: 'inherit' }}>PROJELER</Button> */}
+                            {/* <Button href="/contactus" sx={{ color: 'black', fontFamily: 'inherit' }}>İLETİŞİM</Button> */}
+                        </Box>
+                    )}
                 </Toolbar>
             </AppBar>
+            <Divider />
         </div>
     );
 }

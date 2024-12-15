@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from 'react';
-import { TextField, Button, Box, Typography, Container, Alert, AlertTitle, useMediaQuery, Snackbar } from '@mui/material';
+import { TextField, Button, Box, Typography, Container, Alert, AlertTitle, useMediaQuery, Snackbar, Grid } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import PersonIcon from '@mui/icons-material/Person';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -11,6 +11,10 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import SendIcon from '@mui/icons-material/Send';
 
 const ContactUs = () => {
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitSuccess, setSubmitSuccess] = useState(false);
+    const isSmallScreen = useMediaQuery('(max-width:600px)');
 
     const [formData, setFormData] = useState({
         fullName: "",
@@ -38,7 +42,7 @@ const ContactUs = () => {
         if (response.ok) {
             setSubmitSuccess(true);
             setIsSubmitting(false);
-            setFormData({ name: '', email: '', message: '', phone: '' });
+            setFormData({ fullName: "", email: "", message: "", phone: "" });
         } else {
             const errorData = await response.json();
             alert(`Hata: ${errorData.error || 'Mesaj gönderilirken bir hata oluştu.'}`);
@@ -54,26 +58,88 @@ const ContactUs = () => {
         setSubmitSuccess(false);
     };
 
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitSuccess, setSubmitSuccess] = useState(false);
-    const isSmallScreen = useMediaQuery('(max-width:600px)');
+    const textFieldStyles = {
+        '& label': { color: 'black' },
+        '& .MuiOutlinedInput-root': {
+            '& fieldset': { borderColor: 'black' },
+            '&:hover fieldset': { borderColor: 'black' },
+            '&.Mui-focused fieldset': { borderColor: 'black' },
+        }
+    };
+
+    const DividerLine = () => (
+        <Box
+            sx={{
+                width: '1px',
+                height: '100px',
+                backgroundColor: '#ccc',
+                marginTop: '5px'
+            }}
+        />
+    )
 
     return (
         <>
             <Box
                 sx={{
-                   
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    height: isSmallScreen ? '80vh' : '70vh',
+                    // height: isSmallScreen ? '80vh' : '60vh',
                     position: 'relative',
                     scrollSnapAlign: 'start',
-                    paddingBottom: '5vh',
-                    marginBottom: '5vh'
                 }}
             >
                 <Container maxWidth="lg" sx={{ margin: 'auto' }}>
+
                     <Box sx={{ padding: { xs: 2, sm: 4 } }}>
+                        <Grid
+                            container
+                            spacing={2}
+                            alignItems="flex-start"
+                            mt={4}
+                            sx={{
+                                textAlignLast: 'center',
+                                justifyContent: 'center'
+                            }}
+                        >
+                            <Grid item xs={12} md={3}>
+                                <Typography variant="h6" fontWeight="bold" sx={{ fontFamily: 'inherit' }}>
+                                    BİZE YAZIN
+                                </Typography>
+                                <Box mt={1}>
+                                    <Typography color="text.secondary" sx={{ fontFamily: 'inherit' }}>
+                                        info@tasarimmimarlik.com
+                                    </Typography>
+                                </Box>
+                            </Grid>
+                            {!isSmallScreen && <DividerLine />}
+                            <Grid item xs={12} md={3}>
+                                <Typography variant="h6" fontWeight="bold" gutterBottom sx={{ fontFamily: 'inherit' }}>
+                                    BİZİ ARAYIN
+                                </Typography>
+                                <Box mt={1}>
+                                    <Typography fontWeight="bold" sx={{ fontFamily: 'inherit' }}>
+                                        Koray Kara
+                                    </Typography>
+                                    <Typography color="text.secondary" sx={{ fontFamily: 'inherit' }}>
+                                        +90 (555) 555 5555
+                                    </Typography>
+                                </Box>
+                            </Grid>
+                            {!isSmallScreen && <DividerLine />}
+                            <Grid item xs={12} md={3}>
+                                <Typography variant="h6" fontWeight="bold" gutterBottom sx={{ fontFamily: 'inherit' }}>
+                                    ZİYARET EDİN
+                                </Typography>
+                                <Box mt={1}>
+                                    <Typography color="text.secondary" sx={{ fontFamily: 'inherit' }}>
+                                        Kavacık Mah. Yeni Sokak Vip Plaza
+                                        <br />
+                                        No:5 D:6 Kavacık-Beykoz / İstanbul
+                                    </Typography>
+                                </Box>
+                            </Grid>
+                        </Grid>
                         <Typography
                             variant="h1"
                             align="center"
@@ -122,22 +188,7 @@ const ContactUs = () => {
                                             style: { color: 'black' },
                                         }
                                     }}
-                                    sx={{
-                                        '& label': {
-                                            color: 'black', // Label rengi
-                                        },
-                                        '& .MuiOutlinedInput-root': {
-                                            '& fieldset': {
-                                                borderColor: 'black', // Varsayılan border rengi
-                                            },
-                                            '&:hover fieldset': {
-                                                borderColor: 'black', // Hover border rengi
-                                            },
-                                            '&.Mui-focused fieldset': {
-                                                borderColor: 'black', // Focus border rengi
-                                            },
-                                        },
-                                    }}
+                                    sx={textFieldStyles}
                                 />
                                 <TextField
                                     label="E-posta"
@@ -159,22 +210,7 @@ const ContactUs = () => {
                                             style: { color: 'black' },
                                         }
                                     }}
-                                    sx={{
-                                        '& label': {
-                                            color: 'black', // Label rengi
-                                        },
-                                        '& .MuiOutlinedInput-root': {
-                                            '& fieldset': {
-                                                borderColor: 'black', // Varsayılan border rengi
-                                            },
-                                            '&:hover fieldset': {
-                                                borderColor: 'black', // Hover border rengi
-                                            },
-                                            '&.Mui-focused fieldset': {
-                                                borderColor: 'black', // Focus border rengi
-                                            },
-                                        },
-                                    }}
+                                    sx={textFieldStyles}
                                 />
                                 <TextField
                                     label="Telefon"
@@ -196,22 +232,7 @@ const ContactUs = () => {
                                             style: { color: 'black' },
                                         }
                                     }}
-                                    sx={{
-                                        '& label': {
-                                            color: 'black', // Label rengi
-                                        },
-                                        '& .MuiOutlinedInput-root': {
-                                            '& fieldset': {
-                                                borderColor: 'black', // Varsayılan border rengi
-                                            },
-                                            '&:hover fieldset': {
-                                                borderColor: 'black', // Hover border rengi
-                                            },
-                                            '&.Mui-focused fieldset': {
-                                                borderColor: 'black', // Focus border rengi
-                                            },
-                                        },
-                                    }}
+                                    sx={textFieldStyles}
                                 />
                                 <TextField
                                     label="Mesaj"
@@ -234,22 +255,7 @@ const ContactUs = () => {
                                             style: { color: 'black' },
                                         }
                                     }}
-                                    sx={{
-                                        '& label': {
-                                            color: 'black', // Label rengi
-                                        },
-                                        '& .MuiOutlinedInput-root': {
-                                            '& fieldset': {
-                                                borderColor: 'black', // Varsayılan border rengi
-                                            },
-                                            '&:hover fieldset': {
-                                                borderColor: 'black', // Hover border rengi
-                                            },
-                                            '&.Mui-focused fieldset': {
-                                                borderColor: 'black', // Focus border rengi
-                                            },
-                                        },
-                                    }}
+                                    sx={textFieldStyles}
                                 />
                             </div>
 
@@ -267,9 +273,6 @@ const ContactUs = () => {
                             </Button>
                         </form>
 
-
-
-
                         <Snackbar
                             open={submitSuccess}
                             autoHideDuration={3000}
@@ -279,7 +282,6 @@ const ContactUs = () => {
                                 icon={<CheckCircleIcon fontSize="small" />}
                                 severity="success"
                                 variant="filled"
-
                             >
                                 <AlertTitle>Başarılı</AlertTitle>
                                 Mesajınız başarıyla iletildi. En kısa sürede sizinle iletişime geçeceğiz.

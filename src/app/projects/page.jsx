@@ -93,17 +93,16 @@ const Projects = () => {
         <>
             <Box
                 sx={{
-                    marginTop: '10vh',
-                    paddingBottom: '5vh'
+                    marginTop: '5vh',
                 }}
             >
                 <ImageList
                     variant="masonry"
-                    cols={3}
-                    gap={8}
+                    cols={isSmallScreen ? 1 : 3}
+                    gap={15}
                     sx={{
                         justifySelf: "center",
-                        width: '90vw',
+                        width: isSmallScreen ? '80vw' : '90vw',
                     }}
                 >
                     {itemData.map((item) => (
@@ -179,8 +178,8 @@ const Projects = () => {
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
                     width: isSmallScreen ? '95vw' : '70vw',
-                    maxHeight: '90vh', // Taşma durumunda yüksekliği sınırlandırır
-                    overflowY: 'auto', // Y ekseninde kaydırmayı etkinleştirir
+                    maxHeight: '90vh',
+                    overflowY: 'auto',
                     bgcolor: 'background.paper',
                     boxShadow: 20,
                     p: isSmallScreen ? 2 : 4,
@@ -201,7 +200,7 @@ const Projects = () => {
                             <Box sx={{ flexGrow: 1 }}>
                                 <Box
                                     sx={{
-                                        height: isSmallScreen ? '40vh' : '60vh',
+                                        height: isSmallScreen ? '37vh' : '60vh',
                                         maxWidth: isSmallScreen ? '100vw' : '60vw',
                                         width: '100%',
                                     }}
