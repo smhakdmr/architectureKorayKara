@@ -30,7 +30,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 const Footer = () => {
 
     const GradientBox = styled(Box)(({ theme }) => ({
-        backgroundColor: "#CFBBB0",
+        backgroundColor: "rgba(0, 0, 0, 0.87)",
         padding: theme.spacing(2, 0),
         position: "relative",
         overflow: "hidden",
@@ -49,7 +49,7 @@ const Footer = () => {
 
     const SocialButton = styled(IconButton)(({ theme }) => ({
         margin: theme.spacing(0, 1),
-        color: "#000",
+        color: "white",
         transition: "all 0.3s ease-in-out",
         "&:hover": {
             transform: "scale(1.2)",
@@ -67,7 +67,7 @@ const Footer = () => {
                                 <Typography
                                     variant="h6"
                                     sx={{
-                                        color: "#000",
+                                        color: "white",
                                         mb: 2,
                                         fontWeight: "bold",
                                     }}
@@ -76,7 +76,7 @@ const Footer = () => {
                                 </Typography>
                                 <Typography
                                     variant="body2"
-                                    sx={{ color: "#000", opacity: 0.7 }}
+                                    sx={{ color: "white", opacity: 0.7 }}
                                 >
                                     We are dedicated to providing innovative solutions and exceptional
                                     service to our customers worldwide.
@@ -89,7 +89,7 @@ const Footer = () => {
                                 <Typography
                                     variant="h6"
                                     sx={{
-                                        color: "#000",
+                                        color: "white",
                                         mb: 2,
                                         fontWeight: "bold",
                                     }}
@@ -98,7 +98,7 @@ const Footer = () => {
                                 </Typography>
                                 <Typography
                                     variant="body2"
-                                    sx={{ color: "#000", opacity: 0.7 }}
+                                    sx={{ color: "white", opacity: 0.7 }}
                                 >
                                     Email: info@example.com
                                     <br />
@@ -114,7 +114,7 @@ const Footer = () => {
                                 <Typography
                                     variant="h6"
                                     sx={{
-                                        color: "#000",
+                                        color: "white",
                                         mb: 2,
                                         fontWeight: "bold",
                                     }}
@@ -123,7 +123,7 @@ const Footer = () => {
                                 </Typography>
                                 <Typography
                                     component="div"
-                                    sx={{ color: "#000", opacity: 0.7 }}
+                                    sx={{ color: "white", opacity: 0.7 }}
                                 >
                                     <Box component="span" sx={{ display: "block", mb: 1, cursor: "pointer" }}>
                                         Privacy Policy
@@ -143,7 +143,7 @@ const Footer = () => {
                                 <Typography
                                     variant="h6"
                                     sx={{
-                                        color: "#000",
+                                        color: "white",
                                         mb: 2,
                                         fontWeight: "bold",
                                     }}
@@ -180,7 +180,7 @@ const Footer = () => {
                     >
                         <Typography
                             variant="body2"
-                            sx={{ color: "#000", opacity: 0.7 }}
+                            sx={{ color: "white", opacity: 0.7 }}
                         >
                             © 2024 Akdemir Software. All rights reserved.
                         </Typography>

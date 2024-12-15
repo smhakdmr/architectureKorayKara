@@ -24,17 +24,17 @@ const Services = () => {
                     fontSize: isSmallScreen ? "1.7rem" : "3rem",
                     color: "white",
                     textAlign: "center",
-                    marginTop: isSmallScreen ? 20 : 5,
+                    marginTop: isSmallScreen ? 20 : 10,
                     marginLeft: isSmallScreen ? 2 : 20,
                     marginRight: isSmallScreen ? 2 : 20,
-                    marginBottom: isSmallScreen ? 20 : 20
+                    marginBottom: isSmallScreen ? 15 : 15
                 }}
             >
                 <span style={{ color: "#CFBBB0" }}>Tasarım Mimarlık</span>  olarak hem Türkiye'de hem de dünyanın diğer
                 ülkelerinde mimari ve iç mimari çalışmalara hayat veriyoruz.
             </Typography>
             {/* "Neler Yapıyoruz?" Başlığı */}
-            <Typography
+            {/* <Typography
                 variant="h1"
                 align="center"
                 gutterBottom
@@ -48,7 +48,7 @@ const Services = () => {
                 }}
             >
                 Hizmetlerimiz
-            </Typography>
+            </Typography> */}
 
             {/* Kartlar */}
             <Grid
@@ -72,11 +72,7 @@ const Services = () => {
                     {
                         image: '/services3.png', // Görsel URL'si
                         title: "Mimari Animasyon",
-                    },
-                    {
-                        image: '/services4.png', // Görsel URL'si
-                        title: "360 Sanal Tur",
-                    },
+                    }
                 ].map((item, index) => (
                     <Grid item xs={12} sm={3} md={3} key={index}>
                         <Box
@@ -115,7 +111,10 @@ const Services = () => {
                                     width: "80%",
                                 }}
                             >
-                                <Typography>
+                                <Typography sx={{
+                                    fontFamily: "inherit",
+                                    fontSize: "larger"
+                                }}>
                                     {item.title}
                                 </Typography>
                             </Box>

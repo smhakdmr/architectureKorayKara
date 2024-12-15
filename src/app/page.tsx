@@ -18,9 +18,9 @@ export default function Home() {
   return (
     <div>
       <main className={oldStandart.className}>
-        <Welcome />
+        {/* <Welcome /> */}
 
-        <Services />
+        {/* <Services /> */}
 
         <Projects />
 

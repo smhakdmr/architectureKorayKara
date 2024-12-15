@@ -62,15 +62,14 @@ const ContactUs = () => {
         <>
             <Box
                 sx={{
-                    background: `linear-gradient(to bottom, #181818 7%, rgba(0, 0, 0, 0) 50%, #181818 93%),
-                    url('/contactUs4.png')`,
+                   
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     height: isSmallScreen ? '80vh' : '70vh',
                     position: 'relative',
                     scrollSnapAlign: 'start',
-                    paddingTop: '5vh',
                     paddingBottom: '5vh',
+                    marginBottom: '5vh'
                 }}
             >
                 <Container maxWidth="lg" sx={{ margin: 'auto' }}>
@@ -83,7 +82,7 @@ const ContactUs = () => {
                                 fontFamily: "inherit",
                                 fontWeight: 500,
                                 fontSize: isSmallScreen ? "2rem" : "3rem",
-                                color: "white",
+                                color: "black",
                                 marginTop: isSmallScreen ? 5 : 5,
                             }}
                         >
@@ -94,9 +93,9 @@ const ContactUs = () => {
                             align="center"
                             gutterBottom
                             sx={{
-                                color: "white",
-                                margin: isSmallScreen ? 1 : 5,
-                                marginBottom: isSmallScreen ? 4 : 5
+                                color: "black",
+                                marginBottom: isSmallScreen ? 4 : 5,
+                                fontFamily: 'inherit'
                             }}
                         >
                             Projelerinizde Tasarım Mimarlık farkıyla yaratıcılık, inovasyon ve işlevsel tasarımlar görmek için bize ulaşın!
@@ -114,28 +113,28 @@ const ContactUs = () => {
                                         input: {
                                             startAdornment: (
                                                 <InputAdornment position="start">
-                                                    <PersonIcon sx={{ color: 'white' }} />
+                                                    <PersonIcon sx={{ color: 'black' }} />
                                                 </InputAdornment>
                                             ),
-                                            style: { color: 'white', backgroundColor: '#00000042', height: '5vh' }
+                                            style: { color: 'black', backgroundColor: 'rgb(0 0 0 / 10%)', height: '5vh' }
                                         },
                                         inputLabel: {
-                                            style: { color: 'white' },
+                                            style: { color: 'black' },
                                         }
                                     }}
                                     sx={{
                                         '& label': {
-                                            color: 'white', // Label rengi
+                                            color: 'black', // Label rengi
                                         },
                                         '& .MuiOutlinedInput-root': {
                                             '& fieldset': {
-                                                borderColor: 'white', // Varsayılan border rengi
+                                                borderColor: 'black', // Varsayılan border rengi
                                             },
                                             '&:hover fieldset': {
-                                                borderColor: 'white', // Hover border rengi
+                                                borderColor: 'black', // Hover border rengi
                                             },
                                             '&.Mui-focused fieldset': {
-                                                borderColor: 'white', // Focus border rengi
+                                                borderColor: 'black', // Focus border rengi
                                             },
                                         },
                                     }}
@@ -151,28 +150,28 @@ const ContactUs = () => {
                                         input: {
                                             startAdornment: (
                                                 <InputAdornment position="start">
-                                                    <EmailIcon sx={{ color: 'white' }} />
+                                                    <EmailIcon sx={{ color: 'black' }} />
                                                 </InputAdornment>
                                             ),
-                                            style: { color: 'white', backgroundColor: '#00000042', height: '5vh' }
+                                            style: { color: 'black', backgroundColor: 'rgb(0 0 0 / 10%)', height: '5vh' }
                                         },
                                         inputLabel: {
-                                            style: { color: 'white' },
+                                            style: { color: 'black' },
                                         }
                                     }}
                                     sx={{
                                         '& label': {
-                                            color: 'white', // Label rengi
+                                            color: 'black', // Label rengi
                                         },
                                         '& .MuiOutlinedInput-root': {
                                             '& fieldset': {
-                                                borderColor: 'white', // Varsayılan border rengi
+                                                borderColor: 'black', // Varsayılan border rengi
                                             },
                                             '&:hover fieldset': {
-                                                borderColor: 'white', // Hover border rengi
+                                                borderColor: 'black', // Hover border rengi
                                             },
                                             '&.Mui-focused fieldset': {
-                                                borderColor: 'white', // Focus border rengi
+                                                borderColor: 'black', // Focus border rengi
                                             },
                                         },
                                     }}
@@ -188,28 +187,28 @@ const ContactUs = () => {
                                         input: {
                                             startAdornment: (
                                                 <InputAdornment position="start">
-                                                    <LocalPhoneIcon sx={{ color: 'white' }} />
+                                                    <LocalPhoneIcon sx={{ color: 'black' }} />
                                                 </InputAdornment>
                                             ),
-                                            style: { color: 'white', backgroundColor: '#00000042', height: '5vh' }
+                                            style: { color: 'black', backgroundColor: 'rgb(0 0 0 / 10%)', height: '5vh' }
                                         },
                                         inputLabel: {
-                                            style: { color: 'white' },
+                                            style: { color: 'black' },
                                         }
                                     }}
                                     sx={{
                                         '& label': {
-                                            color: 'white', // Label rengi
+                                            color: 'black', // Label rengi
                                         },
                                         '& .MuiOutlinedInput-root': {
                                             '& fieldset': {
-                                                borderColor: 'white', // Varsayılan border rengi
+                                                borderColor: 'black', // Varsayılan border rengi
                                             },
                                             '&:hover fieldset': {
-                                                borderColor: 'white', // Hover border rengi
+                                                borderColor: 'black', // Hover border rengi
                                             },
                                             '&.Mui-focused fieldset': {
-                                                borderColor: 'white', // Focus border rengi
+                                                borderColor: 'black', // Focus border rengi
                                             },
                                         },
                                     }}
@@ -226,28 +225,28 @@ const ContactUs = () => {
                                         input: {
                                             startAdornment: (
                                                 <InputAdornment position="start">
-                                                    <MessageIcon sx={{ color: 'white' }} />
+                                                    <MessageIcon sx={{ color: 'black' }} />
                                                 </InputAdornment>
                                             ),
-                                            style: { color: 'white', backgroundColor: '#00000042' }
+                                            style: { color: 'black', backgroundColor: 'rgb(0 0 0 / 10%)' }
                                         },
                                         inputLabel: {
-                                            style: { color: 'white' },
+                                            style: { color: 'black' },
                                         }
                                     }}
                                     sx={{
                                         '& label': {
-                                            color: 'white', // Label rengi
+                                            color: 'black', // Label rengi
                                         },
                                         '& .MuiOutlinedInput-root': {
                                             '& fieldset': {
-                                                borderColor: 'white', // Varsayılan border rengi
+                                                borderColor: 'black', // Varsayılan border rengi
                                             },
                                             '&:hover fieldset': {
-                                                borderColor: 'white', // Hover border rengi
+                                                borderColor: 'black', // Hover border rengi
                                             },
                                             '&.Mui-focused fieldset': {
-                                                borderColor: 'white', // Focus border rengi
+                                                borderColor: 'black', // Focus border rengi
                                             },
                                         },
                                     }}
@@ -257,10 +256,12 @@ const ContactUs = () => {
                             <Button
                                 type="submit"
                                 variant="contained"
-                                color="primary"
                                 fullWidth
                                 endIcon={<SendIcon />}
                                 disabled={isSubmitting}
+                                sx={{
+                                    backgroundColor: 'silver'
+                                }}
                             >
                                 {isSubmitting ? "Gönderiliyor..." : "Gönder"}
                             </Button>

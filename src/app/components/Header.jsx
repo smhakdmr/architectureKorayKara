@@ -1,148 +1,72 @@
-"use client";
+"use client"
 
-import React from "react";
-import { useState } from "react";
-import {
-    AppBar,
-    Box,
-    Container,
-    Divider,
-    Drawer,
-    IconButton,
-    List,
-    ListItem,
-    ListItemButton,
-    ListItemIcon,
-    ListItemText,
-    Toolbar,
-    Typography,
-    useMediaQuery
-  } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import * as React from 'react';
+import { AppBar, Toolbar, Typography, Box, IconButton, Button } from '@mui/material';
+import Image from 'next/image';
+import { Old_Standard_TT } from 'next/font/google';
 
-const Header = () => {
+const oldStandart = Old_Standard_TT({
+    subsets: ['latin'], // Desteklenen karakter kümesi
+    weight: ['400', '700'], // Kullanılacak font ağırlıkları
+    style: ['normal', 'italic'], // Normal veya italik stiller
+    display: 'swap', // Daha iyi yükleme için "swap" kullanılır
+});
 
-    const [open, setOpen] = useState(false);
-    const isSmallScreen = useMediaQuery('(max-width:600px)');
+export default function DrawerAppBar() {
 
+    const DividerLine = () => (
+        <Box
+            sx={{
+                width: '1px',
+                height: '20px',
+                backgroundColor: '#ccc',
+                marginTop: '5px'
+            }}
+        />
+    )
 
     return (
-        <>
-            <Box sx={{ flexGrow: 1 }}>
-                <AppBar sx={{ background: "#00000085" }}>
-                    <Container maxWidth="xl">
-                        <Toolbar disableGutters sx={{ height: "5vh" }}>
-                            <AccountBalanceIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, height: 80, width: 40 }} />
-                            <Typography
-                                variant="h6"
-                                noWrap
-                                component="a"
-                                href="/"
-                                sx={{
-                                    mr: 2,
-                                    display: { xs: 'none', md: 'flex' },
-                                    fontFamily: 'monospace',
-                                    fontWeight: 700,
-                                    letterSpacing: '.3rem',
-                                    color: 'inherit',
-                                    textDecoration: 'none',
-                                }}
-                            >
-                                Tasarım Mimarlık
-                            </Typography>
-                            <AccountBalanceIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-                            <Typography
-                                variant="h5"
-                                noWrap
-                                component="a"
-                                href="/"
-                                sx={{
-                                    mr: 2,
-                                    display: { xs: 'flex', md: 'none' },
-                                    flexGrow: 1,
-                                    fontFamily: 'monospace',
-                                    fontWeight: 500,
-                                    letterSpacing: '.1rem',
-                                    color: 'inherit',
-                                    textDecoration: 'none',
-                                }}
-                            >
-                                Tasarım Mimarlık
-                            </Typography>
-                            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                            </Box>
-                            <IconButton
-                                size="large"
-                                edge="start"
-                                color="inherit"
-                                aria-label="menu"
-                                onClick={() => { setOpen(true) }}
-                                sx={{ mr: 0 }}
-                            >
-                                <MenuIcon />
-                            </IconButton>
-                        </Toolbar>
-                    </Container>
-                </AppBar>
-            </Box>
-            <Drawer
-                open={open}
-                onClose={() => { setOpen(false) }}
-                anchor="right"
-            >
-                <Box sx={{ width: isSmallScreen ? "80vw" : "35vw" }} role="presentation" onClick={() => { setOpen(false) }}>
-                    <List>
-                        <ListItem disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    <AccountBalanceIcon />
-                                </ListItemIcon>
-                                <ListItemText primary={"Tasarım Mimarlık"} />
-                            </ListItemButton>
-                        </ListItem>
-                    </List>
-                    <Divider />
-                    <List>
-                        {/* {['Anasayfa', 'Projelerimiz', 'İletişim'].map((text, index) => ( */}
-                            <ListItem>
-                                <ListItemButton
-                                    sx={{ py: 0, minHeight: 32, color: 'gray' }}
-                                    href="/"
-                                >
-                                    <ListItemText
-                                        primary={"Anasayfa"}
-                                        primaryTypographyProps={{ fontSize: 40, fontWeight: 'medium' }}
-                                    />
-                                </ListItemButton>
-                            </ListItem>
-                             <ListItem>
-                             <ListItemButton
-                                 sx={{ py: 0, minHeight: 32, color: 'gray' }}
-                                 href="/projects"
-                             >
-                                 <ListItemText
-                                     primary={"Projelerimiz"}
-                                     primaryTypographyProps={{ fontSize: 40, fontWeight: 'medium' }}
-                                 />
-                             </ListItemButton>
-                         </ListItem>
-                          <ListItem>
-                          <ListItemButton
-                              sx={{ py: 0, minHeight: 32, color: 'gray' }}
-                          >
-                              <ListItemText
-                                  primary={"İletişim"}
-                                  primaryTypographyProps={{ fontSize: 40, fontWeight: 'medium' }}
-                              />
-                          </ListItemButton>
-                      </ListItem>
-                        {/* ))} */}
-                    </List>
-                </Box>
-            </Drawer>
-        </>
+        <div className={oldStandart.className}>
+            <AppBar
+                position="static"
+                sx={{
+                    backgroundColor: 'white',
+                    boxShadow: 'none'
+                }}>
+                {/* Logo ve Menü */}
+                <Toolbar sx={{ flexDirection: 'column' }}>
+                    {/* Logo */}
+                    <Box
+                        sx={{
+                            mb: 2,
+                            marginTop: 3
+                        }}
+                    >
+                        <Image src="/logo.png" alt='Tasarım Mimarlık' width={150} height={50} />
+                    </Box>
+                    <Typography
+                        variant={"h4"}
+                        sx={{
+                            color: "black",
+                            fontWeight: 400,
+                            fontFamily: "inherit",
+                            marginBottom: 1
+                        }}
+                    >
+                        Tasarım Mimarlık
+                    </Typography>
+                    {/* Menü Linkleri */}
+                    <Box sx={{ display: 'flex', gap: 4 }}>
+                        <Button href="#" sx={{ color: 'black', fontFamily: 'inherit' }}>ANA SAYFA</Button>
+                        <DividerLine />
+                        <Button href="#" sx={{ color: 'black', fontFamily: 'inherit' }}>HAKKINDA</Button>
+                        <DividerLine />
+                        <Button href="#" sx={{ color: 'black', fontFamily: 'inherit' }}>PROJELER</Button>
+                        <DividerLine />
+                        <Button href="#" sx={{ color: 'black', fontFamily: 'inherit' }}>İLETİŞİM</Button>
+                    </Box>
+                </Toolbar>
+            </AppBar>
+        </div>
     );
-};
-
-export default Header;
+}

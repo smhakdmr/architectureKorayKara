@@ -34,7 +34,8 @@ const Welcome = () => {
                         top: isSmallScreen ? "20%" : "30%",
                         left: isSmallScreen ? "5%" : "15%",
                         color: "white",
-                        fontWeight: 600
+                        fontWeight: 600,
+                        fontFamily: "inherit"
                     }}
                 >
                     BAŞLIK
@@ -43,13 +44,13 @@ const Welcome = () => {
                     variant="body1"
                     sx={{
                         position: "absolute",
-                        width: isSmallScreen ? "90vw" : "45vw",
+                        width: isSmallScreen ? "90vw" : "50vw",
                         top: isSmallScreen ? "32%" : "50%",
                         left: isSmallScreen ? "5%" : "15%",
                         color: "white",
-                        fontFamily: "'Poppins', sans-serif",
+                        fontFamily: "inherit",
                         fontWeight: 400,
-                        fontSize: "1rem"
+                        fontSize: "1.2rem"
                     }}
                 >
                     Açıklama açıklama açıklama açıklama açıklama açıklama açıklama açıklama açıklama açıklama

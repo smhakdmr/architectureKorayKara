@@ -93,48 +93,17 @@ const Projects = () => {
         <>
             <Box
                 sx={{
-                    paddingTop: '5vh',
-                    backgroundColor: "#181818",
+                    marginTop: '10vh',
+                    paddingBottom: '5vh'
                 }}
             >
-                <Typography
-                    variant="h1"
-                    align="center"
-                    gutterBottom
-                    sx={{
-                        fontFamily: "inherit",
-                        fontSize: isSmallScreen ? "1.7rem" : "3rem",
-                        color: "white",
-                        textAlign: "center",
-                        marginTop: 20,
-                        marginLeft: isSmallScreen ? 2 : 20,
-                        marginRight: isSmallScreen ? 2 : 20,
-                        marginBottom: 20
-                    }}
-                >
-                    Size muhteşem yaşam alanları tasarlamak için <span style={{ color: "#CFBBB0" }}>buradayız!</span>
-                </Typography>
-                <Typography
-                    variant="h1"
-                    align="center"
-                    gutterBottom
-                    sx={{
-                        fontFamily: "inherit",
-                        fontWeight: 500,
-                        fontSize: isSmallScreen ? "2rem" : "3rem",
-                        color: "white",
-                        marginTop: isSmallScreen ? 5 : 5,
-                    }}
-                >
-                    Güncel Projelerimiz
-                </Typography>
                 <ImageList
+                    variant="masonry"
+                    cols={3}
                     gap={8}
-                    cols={isSmallScreen ? 2 : 3}
                     sx={{
                         justifySelf: "center",
-                        width: '95vw',
-                        padding: isSmallScreen ? 1 : 5
+                        width: '90vw',
                     }}
                 >
                     {itemData.map((item) => (
@@ -157,8 +126,8 @@ const Projects = () => {
                             }}
                         >
                             <img
-                                // asrcSet={`${item.img}`}
-                                src={item.img}
+                                srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                                src={`${item.img}?w=248&fit=crop&auto=format`}
                                 alt={item.title}
                                 loading="lazy"
                                 style={{
@@ -177,17 +146,17 @@ const Projects = () => {
                                     left: "50%",
                                     transform: "translate(-50%, -50%)",
                                     color: "white",
-                                    background: "rgba(0, 0, 0, 0.6)",
+                                    background: "rgb(0 0 0 / 17%)",
                                     padding: "5% 10%",
                                     alignContent: "center",
-                                    height: "90%",
-                                    width: "90%",
+                                    height: "100%",
+                                    width: "100%",
                                     borderRadius: 0,
                                     opacity: 0,
                                     transition: "opacity 0.3s ease",
                                     fontSize: isSmallScreen ? "x-large" : "xx-large",
                                     textAlign: "center",
-                                    fontFamily: "monospace"
+                                    fontFamily: "inherit"
                                 }}
                                 onClick={() => {
                                     setModalPhoto(item.img)
