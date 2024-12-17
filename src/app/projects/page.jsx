@@ -22,6 +22,19 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 
 const Projects = () => {
 
+    const DividerLine = () => (
+        <Box
+            sx={{
+                width: '1px',
+                height: '20px',
+                backgroundColor: 'black',
+                marginTop: '10px',
+                marginLeft: '1vw',
+                marginRight: '1vw'
+            }}
+        />
+    )
+
     const itemData = [
         {
             img: '/images/villa1.png',
@@ -91,6 +104,18 @@ const Projects = () => {
 
     return (
         <>
+        <Box
+          sx={{
+            background: `url('/mimarlik4.png')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            width: '90vw',
+            height: '60vh',
+            justifySelf: "center",
+            marginTop: '5vh'
+        }}>
+
+        </Box>
             <Box
                 sx={{
                     marginTop: '5vh',
@@ -162,7 +187,7 @@ const Projects = () => {
                                     setIsModalOpen(true)
                                 }}
                             >
-                                {item.title}
+                                {/* {item.title} */}
                             </Box>
                         </ImageListItem>
                     ))}
@@ -177,7 +202,8 @@ const Projects = () => {
                     top: '50%',
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
-                    width: isSmallScreen ? '95vw' : '70vw',
+                    width: isSmallScreen ? '95vw' : '65vw',
+                    height: '85vh',
                     maxHeight: '90vh',
                     overflowY: 'auto',
                     bgcolor: 'background.paper',
@@ -196,7 +222,7 @@ const Projects = () => {
                         <CloseIcon />
                     </IconButton>
                     <Grid container spacing={4}>
-                        <Grid item xs={12} md={8}>
+                        <Grid item xs={12} md={12}>
                             <Box sx={{ flexGrow: 1 }}>
                                 <Box
                                     sx={{
@@ -252,80 +278,78 @@ const Projects = () => {
                                 />
                             </Box>
                         </Grid>
-                        {/* Sağ taraf (Detaylar) */}
-                        <Grid item xs={12} md={4} >
-                            <Typography
-                                variant={isSmallScreen ? "h5" : "h4"}
+                        <Grid container md={12} sx={{ justifyContent: "center" }}>
+                            <Grid item>
+                                <Typography variant={isSmallScreen ? "body2" : "body1"}
+                                    sx={{
+                                        marginBottom: '1vh',
+                                        marginTop: '1vh',
+                                        fontFamily: "inherit",
+                                        marginLeft: "2vw"
+                                    }}
+                                >
+                                    <strong>Konum:</strong> <a >İstanbul - Şile - Ağva</a>
+                                </Typography>
+                            </Grid>
+                            <DividerLine />
+                            <Grid item >
+                                <Typography variant={isSmallScreen ? "body2" : "body1"}
+                                    sx={{
+                                        marginBottom: '1vh',
+                                        marginTop: '1vh',
+                                        fontFamily: "inherit",
+                                    }}>
+                                    <strong>Tarih:</strong> <a >2021</a>
+                                </Typography>
+                            </Grid>
+                            <DividerLine />
+                            <Grid item>
+                                <Typography variant={isSmallScreen ? "body2" : "body1"}
+                                    sx={{
+                                        marginBottom: '1vh',
+                                        marginTop: '1vh',
+                                        fontFamily: "inherit",
+                                    }}>
+                                    <strong>Yapı Türü:</strong><a > Apartman</a>
+                                </Typography>
+                            </Grid>
+                            <DividerLine />
+                            <Grid item>
+                                <Typography variant={isSmallScreen ? "body2" : "body1"}
+                                    sx={{
+                                        marginBottom: '1vh',
+                                        marginTop: '1vh',
+                                        fontFamily: "inherit",
+                                    }}>
+                                    <strong>Parsel Alanı:</strong> <a >501.33 m²</a>
+                                </Typography>
+                            </Grid>
+                            <DividerLine />
+                            <Grid item>
+                                <Typography variant={isSmallScreen ? "body2" : "body1"}
+                                    sx={{
+                                        marginBottom: '1vh',
+                                        marginTop: '1vh',
+                                        fontFamily: "inherit",
+                                    }}>
+                                    <strong>Yapı Alanı:</strong> <a >226.84 m²</a>
+                                </Typography>
+                                {/* <Divider /> */}
+                                {/* <Typography variant={isSmallScreen ? "body2" : "body1"}
                                 sx={{
                                     marginBottom: '1vh',
-                                    marginTop: isSmallScreen ? '-30px' : '32px'
+                                    marginTop: '1vh',
+                                    fontFamily: "inherit"
                                 }}>
-                                <strong>A.M.Ö. EVİ</strong>
-                            </Typography>
-                            <Typography variant={isSmallScreen ? "h6" : "h5"} sx={{
-                                color: '#999',
-                                fontWeight: '400',
-                                marginBottom: '3vh'
-                            }}>
-                                ŞİLE-İSTANBUL
-                            </Typography>
-                            <Typography variant={isSmallScreen ? "body2" : "body1"}
-                                sx={{
-                                    marginBottom: '1vh',
-                                    marginTop: '1vh'
-                                }}
-                            >
-                                <strong>Konum:</strong> <a style={{ float: "right" }}>Çavuş Mah.</a>
-                            </Typography>
-                            <Divider />
-                            <Typography variant={isSmallScreen ? "body2" : "body1"}
-                                sx={{
-                                    marginBottom: '1vh',
-                                    marginTop: '1vh'
-                                }}>
-                                <strong>Tarih:</strong> <a style={{ float: "right" }}>2021</a>
-                            </Typography>
-                            <Divider />
-                            <Typography variant={isSmallScreen ? "body2" : "body1"}
-                                sx={{
-                                    marginBottom: '1vh',
-                                    marginTop: '1vh'
-                                }}>
-                                <strong>Parsel Alanı:</strong> <a style={{ float: "right" }}>501.33 m²</a>
-                            </Typography>
-                            <Divider />
-                            <Typography variant={isSmallScreen ? "body2" : "body1"}
-                                sx={{
-                                    marginBottom: '1vh',
-                                    marginTop: '1vh'
-                                }}>
-                                <strong>Yapı Alanı:</strong> <a style={{ float: "right" }}>226.84 m²</a>
-                            </Typography>
-                            <Divider />
-                            <Typography variant={isSmallScreen ? "body2" : "body1"}
-                                sx={{
-                                    marginBottom: '1vh',
-                                    marginTop: '1vh'
-                                }}>
-                                <strong>Oda Sayısı:</strong> <a style={{ float: "right" }}>5+1</a>
-                            </Typography>
-                            <Divider />
-                            <Typography variant={isSmallScreen ? "body2" : "body1"}
-                                sx={{
-                                    marginBottom: '1vh',
-                                    marginTop: '1vh'
-                                }}>
-                                <strong>Tip:</strong><a style={{ float: "right" }}> Dubleks Villa + Havuz</a>
-                            </Typography>
-                            <Divider />
-                            <Typography variant={isSmallScreen ? "body2" : "body1"}
-                                sx={{
-                                    marginBottom: '1vh',
-                                    marginTop: '1vh'
-                                }}>
-                                <strong>Durum:</strong> <a style={{ float: "right" }}>Tamamlanmış</a>
-                            </Typography>
+                                <strong>Oda Sayısı:</strong> <a >5+1</a>
+                            </Typography>  */}
+                                {/* <DividerLine /> */}
+                            </Grid>
                         </Grid>
+                        {/* </Grid> */}
+
+
+                        {/* Sağ taraf (Detaylar) */}
                     </Grid>
                 </Box>
             </Modal>

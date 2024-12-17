@@ -1,12 +1,16 @@
 "use client"
 
 import { Old_Standard_TT } from 'next/font/google';
+import { Oswald } from 'next/font/google';
 import { AppBar, Toolbar, Box, Typography, Button, IconButton, Drawer, List, ListItem, ListItemText, Divider } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
 import Image from 'next/image';
 import { useMediaQuery } from '@mui/material';
 import Link from 'next/link';
+import { Roboto_Condensed } from 'next/font/google';
+import { PT_Sans_Narrow } from 'next/font/google';
+import { Roboto } from 'next/font/google';
 
 const oldStandart = Old_Standard_TT({
     subsets: ['latin'], // Desteklenen karakter kümesi
@@ -14,6 +18,34 @@ const oldStandart = Old_Standard_TT({
     style: ['normal', 'italic'], // Normal veya italik stiller
     display: 'swap', // Daha iyi yükleme için "swap" kullanılır
 });
+
+const oswald = Oswald({
+    subsets: ['latin'], // Desteklenen karakter kümesi
+    weight: ['400', '700'], // Kullanılacak font ağırlıkları
+    style: ['normal'], // Normal veya italik stiller
+    display: 'swap', // Daha iyi yükleme için "swap" kullanılır
+})
+
+const robotoCondensed = Roboto_Condensed({
+    subsets: ['latin'], // Desteklenen karakter kümesi
+    weight: ['400', '700'], // Kullanılacak font ağırlıkları
+    style: ['normal'], // Normal veya italik stiller
+    display: 'swap', // Daha iyi yükleme için "swap" kullanılır
+})
+
+const sansNarrow = PT_Sans_Narrow({
+    subsets: ['latin'], // Desteklenen karakter kümesi
+    weight: ['400', '700'], // Kullanılacak font ağırlıkları
+    style: ['normal'], // Normal veya italik stiller
+    display: 'swap', // Daha iyi yükleme için "swap" kullanılır
+})
+
+const roboto = Roboto({
+    subsets: ['latin'], // Desteklenen karakter kümesi
+    weight: ['100', '400', '500', '700'], // Kullanılacak font ağırlıkları
+    style: ['normal'], // Normal veya italik stiller
+    display: 'swap', // Daha iyi yükleme için "swap" kullanılır
+})
 
 export default function DrawerAppBar() {
 
@@ -36,7 +68,7 @@ export default function DrawerAppBar() {
     )
 
     return (
-        <div className={oldStandart.className}>
+        <div className={roboto.className}>
             <AppBar
                 position="static"
                 sx={{
@@ -49,22 +81,36 @@ export default function DrawerAppBar() {
                     <Box
                         sx={{
                             mb: 2,
-                            marginTop: 3
+                            marginTop: 3,
+                            backgroundColor: 'white'
                         }}
                     >
-                        <Image src="/logo.png" alt='Tasarım Mimarlık' width={150} height={50} />
+                        <Image src="/logo.png" alt='Tasarım Mimarlık' width={120} height={40} style={{backgroundColor:'white'}} />
                     </Box>
                     {/* Marka İsmi */}
                     <Typography
                         variant={"h4"}
                         sx={{
                             color: "black",
-                            fontWeight: 400,
+                            fontWeight: 500,
                             fontFamily: "inherit",
-                            marginBottom: 1
+                            // marginBottom: 1
                         }}
                     >
-                        Tasarım Mimarlık
+                        TASARIM MİMARLIK
+                    </Typography>
+                    <Typography
+                        variant={"h7"}
+                        sx={{
+                            color: "black",
+                            fontWeight: 400,
+                            fontFamily: "inherit",
+                            marginBottom: 3,
+                            marginTop: '-4px'
+
+                        }}
+                    >
+                        PLAN - PROJE - İNŞAAT - TAAHHÜT - TADİLAT
                     </Typography>
                     {/* Menü */}
                     {isMobile ? (

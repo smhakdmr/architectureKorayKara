@@ -61,8 +61,8 @@ const Footer = () => {
         <footer>
             <GradientBox>
                 <Container maxWidth="lg">
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} sm={6} md={3}>
+                    {/* <Grid container spacing={2}> */}
+                        {/* <Grid item xs={12} sm={6} md={6}>
                             <FooterSection>
                                 <Typography
                                     variant="h6"
@@ -82,9 +82,9 @@ const Footer = () => {
                                     service to our customers worldwide.
                                 </Typography>
                             </FooterSection>
-                        </Grid>
-
-                        <Grid item xs={12} sm={6} md={3}>
+                        </Grid> */}
+{/* 
+                        <Grid item xs={12} sm={6} md={6}>
                             <FooterSection >
                                 <Typography
                                     variant="h6"
@@ -107,9 +107,9 @@ const Footer = () => {
                                     Address: 123 Innovation Street
                                 </Typography>
                             </FooterSection>
-                        </Grid>
+                        </Grid> */}
 
-                        <Grid item xs={12} sm={6} md={3}>
+                        {/* <Grid item xs={12} sm={6} md={3}>
                             <FooterSection >
                                 <Typography
                                     variant="h6"
@@ -136,9 +136,9 @@ const Footer = () => {
                                     </Box>
                                 </Typography>
                             </FooterSection>
-                        </Grid>
+                        </Grid> */}
 
-                        <Grid item xs={12} sm={6} md={3}>
+                        {/* <Grid item xs={12} sm={6} md={3}>
                             <FooterSection >
                                 <Typography
                                     variant="h6"
@@ -165,16 +165,14 @@ const Footer = () => {
                                     </SocialButton>
                                 </Box>
                             </FooterSection>
-                        </Grid>
-                    </Grid>
+                        </Grid> */}
+                    {/* </Grid> */}
 
                     <Box
                         sx={{
                             display: "flex",
                             justifyContent: "center",
                             alignItems: "center",
-                            mt: 2,
-                            pt: 1,
                             borderTop: "1px solid rgba(0,0,0,0.1)",
                         }}
                     >

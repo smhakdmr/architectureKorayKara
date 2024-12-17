@@ -104,7 +104,7 @@ const ContactUs = () => {
                         >
                             <Grid item xs={12} md={3}>
                                 <Typography variant="h6" fontWeight="bold" sx={{ fontFamily: 'inherit' }}>
-                                    BİZE YAZIN
+                                    E-MAİL
                                 </Typography>
                                 <Box mt={1}>
                                     <Typography color="text.secondary" sx={{ fontFamily: 'inherit' }}>
@@ -115,7 +115,7 @@ const ContactUs = () => {
                             {!isSmallScreen && <DividerLine />}
                             <Grid item xs={12} md={3}>
                                 <Typography variant="h6" fontWeight="bold" gutterBottom sx={{ fontFamily: 'inherit' }}>
-                                    BİZİ ARAYIN
+                                    TELEFON
                                 </Typography>
                                 <Box mt={1}>
                                     <Typography fontWeight="bold" sx={{ fontFamily: 'inherit' }}>
@@ -129,7 +129,7 @@ const ContactUs = () => {
                             {!isSmallScreen && <DividerLine />}
                             <Grid item xs={12} md={3}>
                                 <Typography variant="h6" fontWeight="bold" gutterBottom sx={{ fontFamily: 'inherit' }}>
-                                    ZİYARET EDİN
+                                    ADRES
                                 </Typography>
                                 <Box mt={1}>
                                     <Typography color="text.secondary" sx={{ fontFamily: 'inherit' }}>

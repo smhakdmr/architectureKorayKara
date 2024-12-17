@@ -4,6 +4,8 @@ import "./globals.css";
 import Header from "../app/components/Header"
 import Footer from "../app/components/Footer"
 import { Old_Standard_TT } from 'next/font/google';
+import { Oswald } from "next/font/google";
+import { Roboto } from "next/font/google";
 
 const oldStandart = Old_Standard_TT({
     subsets: ['latin'], // Desteklenen karakter kümesi
@@ -11,6 +13,14 @@ const oldStandart = Old_Standard_TT({
     style: ['normal', 'italic'], // Normal veya italik stiller
     display: 'swap', // Daha iyi yükleme için "swap" kullanılır
 });
+
+const oswald = Oswald({
+  subsets: ['latin'], // Desteklenen karakter kümesi
+  weight: ['400', '700'], // Kullanılacak font ağırlıkları
+  style: ['normal'], // Normal veya italik stiller
+  display: 'swap', // Daha iyi yükleme için "swap" kullanılır
+})
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -21,6 +31,13 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
+
+const roboto = Roboto({
+  subsets: ['latin'], // Desteklenen karakter kümesi
+  weight: ['100', '400', '500', '700'], // Kullanılacak font ağırlıkları
+  style: ['normal'], // Normal veya italik stiller
+  display: 'swap', // Daha iyi yükleme için "swap" kullanılır
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -35,7 +52,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={oldStandart.className}
+        className={roboto.className}
       >
         <Header />
         {children}
