@@ -85,7 +85,7 @@ export default function DrawerAppBar() {
                             backgroundColor: 'white'
                         }}
                     >
-                        <Image src="/logo.png" alt='Tasarım Mimarlık' width={120} height={40} style={{backgroundColor:'white'}} />
+                        <Image src="/logo.png" alt='Tasarım Mimarlık' width={120} height={40} style={{ backgroundColor: 'white' }} />
                     </Box>
                     {/* Marka İsmi */}
                     <Typography
@@ -138,6 +138,10 @@ export default function DrawerAppBar() {
                                     </ListItem>
                                     <Divider />
                                     <ListItem onClick={() => setDrawerOpen(false)}>
+                                        <Link href="/contactus" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Bitmiş Projeler</Link>
+                                    </ListItem>
+                                    <Divider />
+                                    <ListItem onClick={() => setDrawerOpen(false)}>
                                         <Link href="/contactus" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>İletişim</Link>
                                     </ListItem>
                                 </List>
@@ -151,6 +155,8 @@ export default function DrawerAppBar() {
                             <Link href="/projects" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Hakkımızda</Link>
                             <DividerLine />
                             <Link href="/projects" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Projeler</Link>
+                            <DividerLine />
+                            <Link href="/projects" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Tamamlanmış Projeler</Link>
                             <DividerLine />
                             <Link href="/contactus" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>İletişim</Link>
                             {/* <Button href="/" sx={{ color: 'black', fontFamily: 'inherit' }}>ANA SAYFA</Button> */}
