@@ -160,7 +160,7 @@ const Projects = () => {
                                 "&:hover img": {
                                     transform: "scale(1.1)",
                                     filter: "grayscale(0%) !important", // Siyah-beyaz filtresini kaldır
-                                    opacity: 1,
+                                    opacity: 1
                                 },
                                 "&:hover .title-overlay": {
                                     opacity: 1,
@@ -177,7 +177,7 @@ const Projects = () => {
                                 alt={item.title}
                                 loading="lazy"
                                 style={{
-                                    filter: "grayscale(100%)", // Başlangıçta siyah-beyaz
+                                    filter: "grayscale(0%)", // Başlangıçta siyah-beyaz
                                     transition: "transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease",
                                 }}
                                 onClick={(e) => {
