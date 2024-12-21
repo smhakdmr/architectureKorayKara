@@ -84,7 +84,6 @@ const ContactUs = () => {
                 sx={{
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    // height: isSmallScreen ? '80vh' : '60vh',
                     position: 'relative',
                     scrollSnapAlign: 'start',
                 }}

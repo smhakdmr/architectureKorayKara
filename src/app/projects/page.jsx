@@ -104,21 +104,42 @@ const Projects = () => {
 
     return (
         <>
-        <Box
-          sx={{
-            background: `url('/mimarlik4.png')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            width: '90vw',
-            height: '60vh',
-            justifySelf: "center",
-            marginTop: '5vh'
-        }}>
-
-        </Box>
+            <Box
+                sx={{
+                    position: "relative",
+                    background: `url('/mimarlik4.png')`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    width: '80vw',
+                    height: '60vh',
+                    justifySelf: "center",
+                    marginTop: '5vh'
+                }}>
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        bottom: isSmallScreen ? '15px' : '50px',
+                        left: isSmallScreen ? '15px' : '50px',
+                        backgroundColor: 'white',
+                        padding: '40px',
+                        boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+                        width: isSmallScreen ? '300px' : '20vw',
+                        height: isSmallScreen ? '30vh' : '35vh'
+                    }}
+                >
+                    <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '10px', fontFamily: "inherit" }}>
+                        Tasarım Mimarlık
+                    </Typography>
+                    <Typography variant="body2" sx={{ fontFamily: "inherit" }}>
+                        Tasarım Mimarlık, kentsel tasarım kollarında yenilikçi ve ilerici bir düşünce ve zihniyet anlayışını işbirlikçi
+                        tasarım uygulamalarıyla yakalama arayışı içinde 2013 yılında kurulmuştur.
+                    </Typography>
+                </Box>
+            </Box>
             <Box
                 sx={{
                     marginTop: '5vh',
+                    marginBottom: '5vh'
                 }}
             >
                 <ImageList
@@ -127,7 +148,7 @@ const Projects = () => {
                     gap={15}
                     sx={{
                         justifySelf: "center",
-                        width: isSmallScreen ? '80vw' : '90vw',
+                        width: '80vw',
                     }}
                 >
                     {itemData.map((item) => (
@@ -138,7 +159,8 @@ const Projects = () => {
                                 overflow: "hidden",
                                 "&:hover img": {
                                     transform: "scale(1.1)",
-                                    opacity: 0.5,
+                                    filter: "grayscale(0%) !important", // Siyah-beyaz filtresini kaldır
+                                    opacity: 1,
                                 },
                                 "&:hover .title-overlay": {
                                     opacity: 1,
@@ -155,7 +177,8 @@ const Projects = () => {
                                 alt={item.title}
                                 loading="lazy"
                                 style={{
-                                    transition: "transform 0.3s ease, opacity 0.3s ease",
+                                    filter: "grayscale(100%)", // Başlangıçta siyah-beyaz
+                                    transition: "transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease",
                                 }}
                                 onClick={(e) => {
                                     setModalPhoto(item.img)
@@ -192,6 +215,8 @@ const Projects = () => {
                         </ImageListItem>
                     ))}
                 </ImageList>
+
+
             </Box>
             <Modal
                 open={isModalOpen}
