@@ -37,7 +37,7 @@ const WelcomeBox = () => {
                 <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '10px', fontFamily: "inherit" }}>
                     Tasarım Mimarlık
                 </Typography>
-                <Typography variant="body3" sx={{ fontFamily: "inherit" }}>
+                <Typography variant={isSmallScreen ? "body2" : "body3"} sx={{ fontFamily: "inherit" }}>
                     Tasarım Mimarlık, kentsel tasarım kollarında yenilikçi ve ilerici bir düşünce ve zihniyet anlayışını işbirlikçi
                     tasarım uygulamalarıyla yakalama arayışı içinde 2013 yılında kurulmuştur.
                 </Typography>
