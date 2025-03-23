@@ -33,14 +33,12 @@ const roboto = Roboto({
 export default function Home() {
 
   return (
-    <div>
-      <main className={roboto.className}>
-        <WelcomeBox />
+    <main className={roboto.className}>
+      <WelcomeBox />
 
-        <Projects />
+      <Projects />
 
-        <ContactUs />
-      </main>
-    </div>
+      <ContactUs />
+    </main>
   );
 }

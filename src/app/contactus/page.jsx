@@ -80,16 +80,7 @@ const ContactUs = () => {
 
     return (
         <>
-            <Box
-                sx={{
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    position: 'relative',
-                    scrollSnapAlign: 'start',
-                }}
-            >
                 <Container maxWidth="lg" sx={{ margin: 'auto' }}>
-
                     <Box sx={{ padding: { xs: 2, sm: 4 } }}>
                         <Grid
                             container
@@ -286,10 +277,9 @@ const ContactUs = () => {
                                 Mesajınız başarıyla iletildi. En kısa sürede sizinle iletişime geçeceğiz.
                             </Alert>
                         </Snackbar>
-
                     </Box>
                 </Container>
-            </Box>
+       
         </>
     );
 };
