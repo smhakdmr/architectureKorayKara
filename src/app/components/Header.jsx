@@ -38,11 +38,10 @@ export default function DrawerAppBar() {
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 200) {
+            if (window.scrollY > 200)
                 setScrolled(true);
-            } else {
+            else
                 setScrolled(false);
-            }
         };
         window.addEventListener('scroll', handleScroll);
         return () => {
@@ -150,7 +149,62 @@ export default function DrawerAppBar() {
                     </AppBar>
                 </>
             ) : (
-                <>
+                !isMobile ? (
+                    <>
+                        <AppBar
+                            position="fixed"
+                            sx={{
+                                backgroundColor: 'white',
+                                boxShadow: scrolled ? '0px 4px 10px rgba(0, 0, 0, 0.1)' : 'none',
+                                transition: 'all 0.3s ease',
+                                padding: '10px 0px'
+                            }}>
+                            <Toolbar sx={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between' }}>
+                                {/* Logo ve Başlık */}
+                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                                    <Image src="/logo.png" alt='Tasarım Mimarlık' width={60} height={30} />
+                                    <Box>
+                                        <Typography
+                                            variant="h4"
+                                            sx={{
+                                                color: "black",
+                                                fontWeight: 500,
+                                                fontFamily: "inherit",
+                                            }}
+                                        >
+                                            TASARIM MİMARLIK
+                                        </Typography>
+                                        <Typography
+                                            variant="h7"
+                                            sx={{
+                                                color: "black",
+                                                fontWeight: 400,
+                                                fontFamily: "inherit",
+                                                marginBottom: 3,
+                                                marginTop: '-4px'
+
+                                            }}
+                                        >
+                                            PLAN - PROJE - İNŞAAT - TAAHHÜT - TADİLAT
+                                        </Typography>
+                                    </Box>
+                                </Box>
+                                {/* Menü */}
+                                <Box sx={{ display: 'flex', gap: 4, marginTop: '1vh' }}>
+                                    <Link href="/" style={{ color: 'black', fontFamily: 'inherit' }}>Ana Sayfa</Link>
+                                    <DividerLine />
+                                    <Link href="/about" style={{ color: 'black', fontFamily: 'inherit' }}>Hakkımızda</Link>
+                                    <DividerLine />
+                                    <Link href="/projects" style={{ color: 'black', fontFamily: 'inherit' }}>Projeler</Link>
+                                    <DividerLine />
+                                    <Link href="/completed-projects" style={{ color: 'black', fontFamily: 'inherit' }}>Tamamlanmış Projeler</Link>
+                                    <DividerLine />
+                                    <Link href="/contact" style={{ color: 'black', fontFamily: 'inherit' }}>İletişim</Link>
+                                </Box>
+                            </Toolbar>
+                        </AppBar>
+                    </>
+                ) : (
                     <AppBar
                         position="fixed"
                         sx={{
@@ -162,10 +216,10 @@ export default function DrawerAppBar() {
                         <Toolbar sx={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between' }}>
                             {/* Logo ve Başlık */}
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                                <Image src="/logo.png" alt='Tasarım Mimarlık' width={60} height={30} />
+                                <Image src="/logo.png" alt='Tasarım Mimarlık' width={50} height={30} />
                                 <Box>
                                     <Typography
-                                        variant="h4"
+                                        variant="h5"
                                         sx={{
                                             color: "black",
                                             fontWeight: 500,
@@ -175,37 +229,59 @@ export default function DrawerAppBar() {
                                         TASARIM MİMARLIK
                                     </Typography>
                                     <Typography
-                                        variant="h7"
+                                        // variant="h7"
                                         sx={{
                                             color: "black",
                                             fontWeight: 400,
                                             fontFamily: "inherit",
-                                            marginBottom: 3,
-                                            marginTop: '-4px'
+                                            marginTop: '-4px',
+                                            fontSize: 13
 
                                         }}
                                     >
                                         PLAN - PROJE - İNŞAAT - TAAHHÜT - TADİLAT
                                     </Typography>
+                                
                                 </Box>
                             </Box>
                             {/* Menü */}
-                            <Box sx={{ display: 'flex', gap: 4, marginTop: '1vh' }}>
-                                <Link href="/" style={{ color: 'black', fontFamily: 'inherit' }}>Ana Sayfa</Link>
-                                <DividerLine />
-                                <Link href="/about" style={{ color: 'black', fontFamily: 'inherit' }}>Hakkımızda</Link>
-                                <DividerLine />
-                                <Link href="/projects" style={{ color: 'black', fontFamily: 'inherit' }}>Projeler</Link>
-                                <DividerLine />
-                                <Link href="/completed-projects" style={{ color: 'black', fontFamily: 'inherit' }}>Tamamlanmış Projeler</Link>
-                                <DividerLine />
-                                <Link href="/contact" style={{ color: 'black', fontFamily: 'inherit'}}>İletişim</Link>
-                            </Box>
+                            <IconButton onClick={handleDrawerToggle} sx={{ color: 'black' }}>
+                                <MenuIcon />
+                            </IconButton>
+                            <Drawer
+                                anchor="top"
+                                open={drawerOpen}
+                                onClose={() => setDrawerOpen(false)}
+                            >
+                                <List>
+                                    <ListItem onClick={() => setDrawerOpen(false)}>
+                                        <Link href="/" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Ana Sayfa</Link>
+                                    </ListItem>
+                                    <Divider />
+                                    <ListItem onClick={() => setDrawerOpen(false)}>
+                                        <Link href="/projects" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Hakkımızda</Link>
+                                    </ListItem>
+                                    <Divider />
+                                    <ListItem onClick={() => setDrawerOpen(false)}>
+                                        <Link href="/projects" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Projeler</Link>
+                                    </ListItem>
+                                    <Divider />
+                                    <ListItem onClick={() => setDrawerOpen(false)}>
+                                        <Link href="/contactus" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Bitmiş Projeler</Link>
+                                    </ListItem>
+                                    <Divider />
+                                    <ListItem onClick={() => setDrawerOpen(false)}>
+                                        <Link href="/contactus" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>İletişim</Link>
+                                    </ListItem>
+                                </List>
+                            </Drawer>
                         </Toolbar>
                     </AppBar>
-                </>
-            )}
+                )
+
+            )
+            }
             <Divider />
-        </div>
+        </div >
     );
 }
