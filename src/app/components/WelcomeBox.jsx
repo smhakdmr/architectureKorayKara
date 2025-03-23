@@ -5,11 +5,26 @@ import {
     Typography,
     useMediaQuery
 } from "@mui/material";
+import { useState, useEffect } from 'react';
 
 const WelcomeBox = () => {
-    
+
     const isSmallScreen = useMediaQuery('(max-width:600px)');
-    
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 200)
+                setScrolled(true);
+            else
+                setScrolled(false);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     return (
         <Box
             sx={{
@@ -20,7 +35,7 @@ const WelcomeBox = () => {
                 width: '80vw',
                 height: '60vh',
                 justifySelf: "center",
-                marginTop: '3vh'
+                marginTop: scrolled ? '30vh' : '3vh'
             }}>
             <Box
                 sx={{
