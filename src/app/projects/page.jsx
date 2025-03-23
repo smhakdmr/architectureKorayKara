@@ -236,50 +236,50 @@ const Projects = () => {
                                 src={modalPhoto}
                                 style={{ width: "100%", height: "100%" }}
                             />
+                            <MobileStepper
+                                variant="dots"
+                                steps={maxSteps}
+                                position="static"
+                                activeStep={activeStep}
+                                sx={{
+                                    maxWidth: '50vw',
+                                    justifySelf: "center"
+                                }}
+                                nextButton={
+                                    <Button
+                                        size="large"
+                                        onClick={() => {
+                                            setActiveStep((prevActiveStep) => prevActiveStep + 1)
+                                        }}
+                                        disabled={activeStep === maxSteps - 1}
+                                    >
+                                        {theme.direction === 'rtl' ? (
+                                            <KeyboardArrowLeft />
+                                        ) : (
+                                            <KeyboardArrowRight />
+                                        )}
+                                    </Button>
+                                }
+                                backButton={
+                                    <Button
+                                        size="large"
+                                        onClick={() => {
+                                            setActiveStep((prevActiveStep) => prevActiveStep - 1);
+                                        }}
+                                        disabled={activeStep === 0}
+                                    >
+                                        {theme.direction === 'rtl' ? (
+                                            <KeyboardArrowRight />
+                                        ) : (
+                                            <KeyboardArrowLeft />
+                                        )}
+                                    </Button>
+                                }
+                            />
                         </Box>
-                        <MobileStepper
-                            variant="dots"
-                            steps={maxSteps}
-                            position="static"
-                            activeStep={activeStep}
-                            sx={{
-                                maxWidth: '50vw',
-                                justifySelf: "center"
-                            }}
-                            nextButton={
-                                <Button
-                                    size="large"
-                                    onClick={() => {
-                                        setActiveStep((prevActiveStep) => prevActiveStep + 1)
-                                    }}
-                                    disabled={activeStep === maxSteps - 1}
-                                >
-                                    {theme.direction === 'rtl' ? (
-                                        <KeyboardArrowLeft />
-                                    ) : (
-                                        <KeyboardArrowRight />
-                                    )}
-                                </Button>
-                            }
-                            backButton={
-                                <Button
-                                    size="large"
-                                    onClick={() => {
-                                        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-                                    }}
-                                    disabled={activeStep === 0}
-                                >
-                                    {theme.direction === 'rtl' ? (
-                                        <KeyboardArrowRight />
-                                    ) : (
-                                        <KeyboardArrowLeft />
-                                    )}
-                                </Button>
-                            }
-                        />
                         {!isSmallScreen ? (
                             <>
-                                <Grid container md={12} sx={{ justifyContent: "center" }}>
+                                <Grid container md={12} sx={{ justifyContent: "center", marginTop: '5vh' }}>
                                     <Grid item>
                                         <Typography variant={isSmallScreen ? "body2" : "body1"}
                                             sx={{
@@ -339,7 +339,7 @@ const Projects = () => {
                             </>
                         ) : (
                             <>
-                                <Grid2 container md={12} sx={{ justifyContent: "center" }}>
+                                <Grid2 container md={12} sx={{ justifyContent: "center", marginTop: '6vh' }}>
                                     <Grid2 size={12}>
                                         <Typography variant={isSmallScreen ? "body2" : "body1"}
                                             sx={{
