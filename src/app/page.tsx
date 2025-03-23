@@ -1,12 +1,11 @@
 "use client";
 
 import Projects from './projects/page'
-import Welcome from './welcome/page'
 import ContactUs from './contactus/page'
-import Services from './services/page'
 import { Old_Standard_TT } from 'next/font/google';
 import { Oswald } from 'next/font/google';
 import { Roboto } from 'next/font/google';
+import WelcomeBox from "../app/components/WelcomeBox";
 
 const oldStandart = Old_Standard_TT({
   subsets: ['latin'], // Desteklenen karakter kümesi
@@ -36,9 +35,7 @@ export default function Home() {
   return (
     <div>
       <main className={roboto.className}>
-        {/* <Welcome /> */}
-
-        {/* <Services /> */}
+        <WelcomeBox />
 
         <Projects />
 

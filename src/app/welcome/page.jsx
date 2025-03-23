@@ -23,7 +23,7 @@ const Welcome = () => {
                     backgroundPosition: 'center',
                     height: '100vh',
                     position: 'relative',
-                    scrollSnapAlign: 'start',
+                    scrollSnapAlign: 'start'
                 }}
             >
                 <Typography
