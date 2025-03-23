@@ -126,11 +126,6 @@ const Projects = () => {
                         variant="masonry"
                         cols={isSmallScreen ? 1 : 3}
                         gap={15}
-                        sx={{
-                            justifySelf: "center",
-                            textAlignLast: 'center',
-                            width: '80vw',
-                        }}
                     >
                         {itemData.map((item) => (
                             <ImageListItem
@@ -196,212 +191,213 @@ const Projects = () => {
                     </ImageList>
 
                 </Box>
-                <Modal
-                    open={isModalOpen}
-                    onClose={() => { setIsModalOpen(false) }}
-                >
-                    <Box sx={{
-                        position: 'absolute',
-                        top: '50%',
-                        left: '50%',
-                        transform: 'translate(-50%, -50%)',
-                        width: isSmallScreen ? '90vw' : '65vw',
-                        height: isSmallScreen ? '75vh' : '85vh',
-                        maxHeight: '90vh',
-                        overflowY: 'auto',
-                        bgcolor: 'background.paper',
-                        boxShadow: 20,
-                        p: isSmallScreen ? 2 : 4,
-                    }}>
-                        <IconButton
-                            onClick={() => {
-                                setIsModalOpen(false)
-                                setActiveStep(0)
-                            }}
+            </Container>
+            <Modal
+                open={isModalOpen}
+                onClose={() => { setIsModalOpen(false) }}
+            >
+                <Box sx={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: isSmallScreen ? '90vw' : '65vw',
+                    height: isSmallScreen ? '75vh' : '85vh',
+                    maxHeight: '90vh',
+                    overflowY: 'auto',
+                    bgcolor: 'background.paper',
+                    boxShadow: 20,
+                    p: isSmallScreen ? 2 : 4,
+                }}>
+                    <IconButton
+                        onClick={() => {
+                            setIsModalOpen(false)
+                            setActiveStep(0)
+                        }}
+                        sx={{
+                            position: 'absolute',
+                            top: 8,
+                            right: 8,
+                            color: 'gray', // İsteğe bağlı renk
+                        }}
+                    >
+                        <CloseIcon />
+                    </IconButton>
+                    <Grid2>
+                        <Box
                             sx={{
-                                position: 'absolute',
-                                top: 8,
-                                right: 8,
-                                color: 'gray', // İsteğe bağlı renk
+                                height: isSmallScreen ? '37vh' : '60vh',
+                                maxWidth: isSmallScreen ? '100vw' : '60vw',
+                                width: '100%',
+                                justifySelf: "center"
                             }}
                         >
-                            <CloseIcon />
-                        </IconButton>
-                        <Grid2>
-                            <Box
-                                sx={{
-                                    height: isSmallScreen ? '37vh' : '60vh',
-                                    maxWidth: isSmallScreen ? '100vw' : '60vw',
-                                    width: '100%',
-                                    justifySelf: "center"
-                                }}
-                            >
-                                <img
-                                    src={modalPhoto}
-                                    style={{ width: "100%", height: "100%" }}
-                                />
-                            </Box>
-                            <MobileStepper
-                                variant="dots"
-                                steps={maxSteps}
-                                position="static"
-                                activeStep={activeStep}
-                                sx={{
-                                    maxWidth: '50vw',
-                                    justifySelf: "center"
-                                }}
-                                nextButton={
-                                    <Button
-                                        size="large"
-                                        onClick={() => {
-                                            setActiveStep((prevActiveStep) => prevActiveStep + 1)
-                                        }}
-                                        disabled={activeStep === maxSteps - 1}
-                                    >
-                                        {theme.direction === 'rtl' ? (
-                                            <KeyboardArrowLeft />
-                                        ) : (
-                                            <KeyboardArrowRight />
-                                        )}
-                                    </Button>
-                                }
-                                backButton={
-                                    <Button
-                                        size="large"
-                                        onClick={() => {
-                                            setActiveStep((prevActiveStep) => prevActiveStep - 1);
-                                        }}
-                                        disabled={activeStep === 0}
-                                    >
-                                        {theme.direction === 'rtl' ? (
-                                            <KeyboardArrowRight />
-                                        ) : (
-                                            <KeyboardArrowLeft />
-                                        )}
-                                    </Button>
-                                }
+                            <img
+                                src={modalPhoto}
+                                style={{ width: "100%", height: "100%" }}
                             />
-                            {!isSmallScreen ? (
-                                <>
-                                    <Grid container md={12} sx={{ justifyContent: "center" }}>
-                                        <Grid item>
-                                            <Typography variant={isSmallScreen ? "body2" : "body1"}
-                                                sx={{
-                                                    marginBottom: '1vh',
-                                                    marginTop: '1vh',
-                                                    fontFamily: "inherit"
-                                                }}
-                                            >
-                                                <strong>Konum:</strong> <a >İstanbul - Şile - Ağva</a>
-                                            </Typography>
-                                        </Grid>
-                                        <DividerLine />
-                                        <Grid item >
-                                            <Typography variant={isSmallScreen ? "body2" : "body1"}
-                                                sx={{
-                                                    marginBottom: '1vh',
-                                                    marginTop: '1vh',
-                                                    fontFamily: "inherit",
-                                                }}>
-                                                <strong>Tarih:</strong> <a >2021</a>
-                                            </Typography>
-                                        </Grid>
-                                        <DividerLine />
-                                        <Grid item>
-                                            <Typography variant={isSmallScreen ? "body2" : "body1"}
-                                                sx={{
-                                                    marginBottom: '1vh',
-                                                    marginTop: '1vh',
-                                                    fontFamily: "inherit",
-                                                }}>
-                                                <strong>Yapı Türü:</strong><a > Apartman</a>
-                                            </Typography>
-                                        </Grid>
-                                        <DividerLine />
-                                        <Grid item>
-                                            <Typography variant={isSmallScreen ? "body2" : "body1"}
-                                                sx={{
-                                                    marginBottom: '1vh',
-                                                    marginTop: '1vh',
-                                                    fontFamily: "inherit",
-                                                }}>
-                                                <strong>Parsel Alanı:</strong> <a >501.33 m²</a>
-                                            </Typography>
-                                        </Grid>
-                                        <DividerLine />
-                                        <Grid item>
-                                            <Typography variant={isSmallScreen ? "body2" : "body1"}
-                                                sx={{
-                                                    marginBottom: '1vh',
-                                                    marginTop: '1vh',
-                                                    fontFamily: "inherit",
-                                                }}>
-                                                <strong>Yapı Alanı:</strong> <a >226.84 m²</a>
-                                            </Typography>
-                                        </Grid>
+                        </Box>
+                        <MobileStepper
+                            variant="dots"
+                            steps={maxSteps}
+                            position="static"
+                            activeStep={activeStep}
+                            sx={{
+                                maxWidth: '50vw',
+                                justifySelf: "center"
+                            }}
+                            nextButton={
+                                <Button
+                                    size="large"
+                                    onClick={() => {
+                                        setActiveStep((prevActiveStep) => prevActiveStep + 1)
+                                    }}
+                                    disabled={activeStep === maxSteps - 1}
+                                >
+                                    {theme.direction === 'rtl' ? (
+                                        <KeyboardArrowLeft />
+                                    ) : (
+                                        <KeyboardArrowRight />
+                                    )}
+                                </Button>
+                            }
+                            backButton={
+                                <Button
+                                    size="large"
+                                    onClick={() => {
+                                        setActiveStep((prevActiveStep) => prevActiveStep - 1);
+                                    }}
+                                    disabled={activeStep === 0}
+                                >
+                                    {theme.direction === 'rtl' ? (
+                                        <KeyboardArrowRight />
+                                    ) : (
+                                        <KeyboardArrowLeft />
+                                    )}
+                                </Button>
+                            }
+                        />
+                        {!isSmallScreen ? (
+                            <>
+                                <Grid container md={12} sx={{ justifyContent: "center" }}>
+                                    <Grid item>
+                                        <Typography variant={isSmallScreen ? "body2" : "body1"}
+                                            sx={{
+                                                marginBottom: '1vh',
+                                                marginTop: '1vh',
+                                                fontFamily: "inherit"
+                                            }}
+                                        >
+                                            <strong>Konum:</strong> <a >İstanbul - Şile - Ağva</a>
+                                        </Typography>
                                     </Grid>
-                                </>
-                            ) : (
-                                <>
-                                    <Grid2 container md={12} sx={{ justifyContent: "center" }}>
-                                        <Grid2 size={12}>
-                                            <Typography variant={isSmallScreen ? "body2" : "body1"}
-                                                sx={{
-                                                    marginBottom: '1vh',
-                                                    marginTop: '1vh',
-                                                    fontFamily: "inherit"
-                                                }}
-                                            >
-                                                <strong>Konum:</strong> <a >İstanbul - Şile - Ağva</a>
-                                            </Typography>
-                                        </Grid2>
-                                        <Grid2 size={12}>
-                                            <Typography variant={isSmallScreen ? "body2" : "body1"}
-                                                sx={{
-                                                    marginBottom: '1vh',
-                                                    marginTop: '1vh',
-                                                    fontFamily: "inherit",
-                                                }}>
-                                                <strong>Tarih:</strong> <a >2021</a>
-                                            </Typography>
-                                        </Grid2>
-                                        <Grid2 size={12}>
-                                            <Typography variant={isSmallScreen ? "body2" : "body1"}
-                                                sx={{
-                                                    marginBottom: '1vh',
-                                                    marginTop: '1vh',
-                                                    fontFamily: "inherit",
-                                                }}>
-                                                <strong>Yapı Türü:</strong><a > Apartman</a>
-                                            </Typography>
-                                        </Grid2>
-                                        <Grid2 size={12}>
-                                            <Typography variant={isSmallScreen ? "body2" : "body1"}
-                                                sx={{
-                                                    marginBottom: '1vh',
-                                                    marginTop: '1vh',
-                                                    fontFamily: "inherit",
-                                                }}>
-                                                <strong>Parsel Alanı:</strong> <a >501.33 m²</a>
-                                            </Typography>
-                                        </Grid2>
-                                        <Grid2 size={12}>
-                                            <Typography variant={isSmallScreen ? "body2" : "body1"}
-                                                sx={{
-                                                    marginBottom: '1vh',
-                                                    marginTop: '1vh',
-                                                    fontFamily: "inherit",
-                                                }}>
-                                                <strong>Yapı Alanı:</strong> <a >226.84 m²</a>
-                                            </Typography>
-                                        </Grid2>
+                                    <DividerLine />
+                                    <Grid item >
+                                        <Typography variant={isSmallScreen ? "body2" : "body1"}
+                                            sx={{
+                                                marginBottom: '1vh',
+                                                marginTop: '1vh',
+                                                fontFamily: "inherit",
+                                            }}>
+                                            <strong>Tarih:</strong> <a >2021</a>
+                                        </Typography>
+                                    </Grid>
+                                    <DividerLine />
+                                    <Grid item>
+                                        <Typography variant={isSmallScreen ? "body2" : "body1"}
+                                            sx={{
+                                                marginBottom: '1vh',
+                                                marginTop: '1vh',
+                                                fontFamily: "inherit",
+                                            }}>
+                                            <strong>Yapı Türü:</strong><a > Apartman</a>
+                                        </Typography>
+                                    </Grid>
+                                    <DividerLine />
+                                    <Grid item>
+                                        <Typography variant={isSmallScreen ? "body2" : "body1"}
+                                            sx={{
+                                                marginBottom: '1vh',
+                                                marginTop: '1vh',
+                                                fontFamily: "inherit",
+                                            }}>
+                                            <strong>Parsel Alanı:</strong> <a >501.33 m²</a>
+                                        </Typography>
+                                    </Grid>
+                                    <DividerLine />
+                                    <Grid item>
+                                        <Typography variant={isSmallScreen ? "body2" : "body1"}
+                                            sx={{
+                                                marginBottom: '1vh',
+                                                marginTop: '1vh',
+                                                fontFamily: "inherit",
+                                            }}>
+                                            <strong>Yapı Alanı:</strong> <a >226.84 m²</a>
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
+                            </>
+                        ) : (
+                            <>
+                                <Grid2 container md={12} sx={{ justifyContent: "center" }}>
+                                    <Grid2 size={12}>
+                                        <Typography variant={isSmallScreen ? "body2" : "body1"}
+                                            sx={{
+                                                marginBottom: '1vh',
+                                                marginTop: '1vh',
+                                                fontFamily: "inherit"
+                                            }}
+                                        >
+                                            <strong>Konum:</strong> <a >İstanbul - Şile - Ağva</a>
+                                        </Typography>
                                     </Grid2>
-                                </>
-                            )}
-                        </Grid2>
-                    </Box>
-                </Modal>
-            </Container>
+                                    <Grid2 size={12}>
+                                        <Typography variant={isSmallScreen ? "body2" : "body1"}
+                                            sx={{
+                                                marginBottom: '1vh',
+                                                marginTop: '1vh',
+                                                fontFamily: "inherit",
+                                            }}>
+                                            <strong>Tarih:</strong> <a >2021</a>
+                                        </Typography>
+                                    </Grid2>
+                                    <Grid2 size={12}>
+                                        <Typography variant={isSmallScreen ? "body2" : "body1"}
+                                            sx={{
+                                                marginBottom: '1vh',
+                                                marginTop: '1vh',
+                                                fontFamily: "inherit",
+                                            }}>
+                                            <strong>Yapı Türü:</strong><a > Apartman</a>
+                                        </Typography>
+                                    </Grid2>
+                                    <Grid2 size={12}>
+                                        <Typography variant={isSmallScreen ? "body2" : "body1"}
+                                            sx={{
+                                                marginBottom: '1vh',
+                                                marginTop: '1vh',
+                                                fontFamily: "inherit",
+                                            }}>
+                                            <strong>Parsel Alanı:</strong> <a >501.33 m²</a>
+                                        </Typography>
+                                    </Grid2>
+                                    <Grid2 size={12}>
+                                        <Typography variant={isSmallScreen ? "body2" : "body1"}
+                                            sx={{
+                                                marginBottom: '1vh',
+                                                marginTop: '1vh',
+                                                fontFamily: "inherit",
+                                            }}>
+                                            <strong>Yapı Alanı:</strong> <a >226.84 m²</a>
+                                        </Typography>
+                                    </Grid2>
+                                </Grid2>
+                            </>
+                        )}
+                    </Grid2>
+                </Box>
+            </Modal>
+
         </>
     );
 };
