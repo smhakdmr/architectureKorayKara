@@ -191,7 +191,6 @@ const Projects = () => {
                         ))}
                     </ImageList>
 
-
                 </Box>
                 <Modal
                     open={isModalOpen}
