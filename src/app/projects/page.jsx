@@ -15,6 +15,7 @@ import {
     useMediaQuery
 } from "@mui/material";
 import Grid from '@mui/material/Grid';
+import Grid2 from '@mui/material/Grid2';
 import { useTheme } from '@mui/material/styles';
 import { useState } from "react";
 import CloseIcon from '@mui/icons-material/Close';
@@ -204,8 +205,8 @@ const Projects = () => {
                         top: '50%',
                         left: '50%',
                         transform: 'translate(-50%, -50%)',
-                        width: isSmallScreen ? '95vw' : '65vw',
-                        height: '85vh',
+                        width: isSmallScreen ? '90vw' : '65vw',
+                        height: isSmallScreen ? '75vh' : '85vh',
                         maxHeight: '90vh',
                         overflowY: 'auto',
                         bgcolor: 'background.paper',
@@ -223,8 +224,8 @@ const Projects = () => {
                         >
                             <CloseIcon />
                         </IconButton>
-                        <Grid container spacing={4}>
-                            <Grid item xs={12} md={12}>
+                        <Grid2>
+                            <Grid2 item xs={12} md={12}>
                                 <Box sx={{ flexGrow: 1 }}>
                                     <Box
                                         sx={{
@@ -279,80 +280,131 @@ const Projects = () => {
                                         }
                                     />
                                 </Box>
-                            </Grid>
-                            <Grid container md={12} sx={{ justifyContent: "center" }}>
-                                <Grid item>
-                                    <Typography variant={isSmallScreen ? "body2" : "body1"}
-                                        sx={{
-                                            marginBottom: '1vh',
-                                            marginTop: '1vh',
-                                            fontFamily: "inherit",
-                                            marginLeft: "2vw"
-                                        }}
-                                    >
-                                        <strong>Konum:</strong> <a >İstanbul - Şile - Ağva</a>
-                                    </Typography>
-                                </Grid>
-                                <DividerLine />
-                                <Grid item >
-                                    <Typography variant={isSmallScreen ? "body2" : "body1"}
-                                        sx={{
-                                            marginBottom: '1vh',
-                                            marginTop: '1vh',
-                                            fontFamily: "inherit",
-                                        }}>
-                                        <strong>Tarih:</strong> <a >2021</a>
-                                    </Typography>
-                                </Grid>
-                                <DividerLine />
-                                <Grid item>
-                                    <Typography variant={isSmallScreen ? "body2" : "body1"}
-                                        sx={{
-                                            marginBottom: '1vh',
-                                            marginTop: '1vh',
-                                            fontFamily: "inherit",
-                                        }}>
-                                        <strong>Yapı Türü:</strong><a > Apartman</a>
-                                    </Typography>
-                                </Grid>
-                                <DividerLine />
-                                <Grid item>
-                                    <Typography variant={isSmallScreen ? "body2" : "body1"}
-                                        sx={{
-                                            marginBottom: '1vh',
-                                            marginTop: '1vh',
-                                            fontFamily: "inherit",
-                                        }}>
-                                        <strong>Parsel Alanı:</strong> <a >501.33 m²</a>
-                                    </Typography>
-                                </Grid>
-                                <DividerLine />
-                                <Grid item>
-                                    <Typography variant={isSmallScreen ? "body2" : "body1"}
-                                        sx={{
-                                            marginBottom: '1vh',
-                                            marginTop: '1vh',
-                                            fontFamily: "inherit",
-                                        }}>
-                                        <strong>Yapı Alanı:</strong> <a >226.84 m²</a>
-                                    </Typography>
-                                    {/* <Divider /> */}
-                                    {/* <Typography variant={isSmallScreen ? "body2" : "body1"}
-                                sx={{
-                                    marginBottom: '1vh',
-                                    marginTop: '1vh',
-                                    fontFamily: "inherit"
-                                }}>
-                                <strong>Oda Sayısı:</strong> <a >5+1</a>
-                            </Typography>  */}
-                                    {/* <DividerLine /> */}
-                                </Grid>
-                            </Grid>
+                            </Grid2>
+                            {!isSmallScreen ? (
+                                <>
+                                    <Grid container md={12} sx={{ justifyContent: "center" }}>
+                                        <Grid item>
+                                            <Typography variant={isSmallScreen ? "body2" : "body1"}
+                                                sx={{
+                                                    marginBottom: '1vh',
+                                                    marginTop: '1vh',
+                                                    fontFamily: "inherit",
+                                                    marginLeft: "2vw"
+                                                }}
+                                            >
+                                                <strong>Konum:</strong> <a >İstanbul - Şile - Ağva</a>
+                                            </Typography>
+                                        </Grid>
+                                        <DividerLine />
+                                        <Grid item >
+                                            <Typography variant={isSmallScreen ? "body2" : "body1"}
+                                                sx={{
+                                                    marginBottom: '1vh',
+                                                    marginTop: '1vh',
+                                                    fontFamily: "inherit",
+                                                }}>
+                                                <strong>Tarih:</strong> <a >2021</a>
+                                            </Typography>
+                                        </Grid>
+                                        <DividerLine />
+                                        <Grid item>
+                                            <Typography variant={isSmallScreen ? "body2" : "body1"}
+                                                sx={{
+                                                    marginBottom: '1vh',
+                                                    marginTop: '1vh',
+                                                    fontFamily: "inherit",
+                                                }}>
+                                                <strong>Yapı Türü:</strong><a > Apartman</a>
+                                            </Typography>
+                                        </Grid>
+                                        <DividerLine />
+                                        <Grid item>
+                                            <Typography variant={isSmallScreen ? "body2" : "body1"}
+                                                sx={{
+                                                    marginBottom: '1vh',
+                                                    marginTop: '1vh',
+                                                    fontFamily: "inherit",
+                                                }}>
+                                                <strong>Parsel Alanı:</strong> <a >501.33 m²</a>
+                                            </Typography>
+                                        </Grid>
+                                        <DividerLine />
+                                        <Grid item>
+                                            <Typography variant={isSmallScreen ? "body2" : "body1"}
+                                                sx={{
+                                                    marginBottom: '1vh',
+                                                    marginTop: '1vh',
+                                                    fontFamily: "inherit",
+                                                }}>
+                                                <strong>Yapı Alanı:</strong> <a >226.84 m²</a>
+                                            </Typography>
+                                        </Grid>
+                                    </Grid>
+                                </>
+                            ) : (
+                                <>
+                                    <Grid2 container md={12} sx={{ justifyContent: "center" }}>
+                                        <Grid2 size={12}>
+                                            <Typography variant={isSmallScreen ? "body2" : "body1"}
+                                                sx={{
+                                                    marginBottom: '1vh',
+                                                    marginTop: '1vh',
+                                                    fontFamily: "inherit"
+                                                }}
+                                            >
+                                                <strong>Konum:</strong> <a >İstanbul - Şile - Ağva</a>
+                                            </Typography>
+                                        </Grid2>
+                                        <Grid2 size={12}>
+                                            <Typography variant={isSmallScreen ? "body2" : "body1"}
+                                                sx={{
+                                                    marginBottom: '1vh',
+                                                    marginTop: '1vh',
+                                                    fontFamily: "inherit",
+                                                }}>
+                                                <strong>Tarih:</strong> <a >2021</a>
+                                            </Typography>
+                                        </Grid2>
+                                        <Grid2 size={12}>
+                                            <Typography variant={isSmallScreen ? "body2" : "body1"}
+                                                sx={{
+                                                    marginBottom: '1vh',
+                                                    marginTop: '1vh',
+                                                    fontFamily: "inherit",
+                                                }}>
+                                                <strong>Yapı Türü:</strong><a > Apartman</a>
+                                            </Typography>
+                                        </Grid2>
+                                        <Grid2 size={12}>
+                                            <Typography variant={isSmallScreen ? "body2" : "body1"}
+                                                sx={{
+                                                    marginBottom: '1vh',
+                                                    marginTop: '1vh',
+                                                    fontFamily: "inherit",
+                                                }}>
+                                                <strong>Parsel Alanı:</strong> <a >501.33 m²</a>
+                                            </Typography>
+                                        </Grid2>
+                                        <Grid2 size={12}>
+                                            <Typography variant={isSmallScreen ? "body2" : "body1"}
+                                                sx={{
+                                                    marginBottom: '1vh',
+                                                    marginTop: '1vh',
+                                                    fontFamily: "inherit",
+                                                }}>
+                                                <strong>Yapı Alanı:</strong> <a >226.84 m²</a>
+                                            </Typography>
+                                        </Grid2>
+                                    </Grid2>
+                                </>
+                            )}
+
                             {/* </Grid> */}
 
 
                             {/* Sağ taraf (Detaylar) */}
-                        </Grid>
+                        </Grid2>
                     </Box>
                 </Modal>
             </Container>
