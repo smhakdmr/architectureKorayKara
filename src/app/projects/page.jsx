@@ -117,7 +117,8 @@ const Projects = () => {
                 <Box
                     sx={{
                         marginTop: '5vh',
-                        marginBottom: '5vh'
+                        marginBottom: '5vh',
+                        padding: { xs: 2, sm: 4 }
                     }}
                 >
                     <ImageList
@@ -126,6 +127,7 @@ const Projects = () => {
                         gap={15}
                         sx={{
                             justifySelf: "center",
+                            textAlignLast: 'center',
                             width: '80vw',
                         }}
                     >
