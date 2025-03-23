@@ -214,7 +214,10 @@ const Projects = () => {
                         p: isSmallScreen ? 2 : 4,
                     }}>
                         <IconButton
-                            onClick={() => setIsModalOpen(false)}
+                            onClick={() => {
+                                setIsModalOpen(false)
+                                setActiveStep(0)
+                            }}
                             sx={{
                                 position: 'absolute',
                                 top: 8,
@@ -225,62 +228,59 @@ const Projects = () => {
                             <CloseIcon />
                         </IconButton>
                         <Grid2>
-                            <Grid2 item xs={12} md={12}>
-                                <Box sx={{ flexGrow: 1 }}>
-                                    <Box
-                                        sx={{
-                                            height: isSmallScreen ? '37vh' : '60vh',
-                                            maxWidth: isSmallScreen ? '100vw' : '60vw',
-                                            width: '100%',
+                            <Box
+                                sx={{
+                                    height: isSmallScreen ? '37vh' : '60vh',
+                                    maxWidth: isSmallScreen ? '100vw' : '60vw',
+                                    width: '100%',
+                                    justifySelf: "center"
+                                }}
+                            >
+                                <img
+                                    src={modalPhoto}
+                                    style={{ width: "100%", height: "100%" }}
+                                />
+                            </Box>
+                            <MobileStepper
+                                variant="dots"
+                                steps={maxSteps}
+                                position="static"
+                                activeStep={activeStep}
+                                sx={{
+                                    maxWidth: '50vw',
+                                    justifySelf: "center"
+                                }}
+                                nextButton={
+                                    <Button
+                                        size="large"
+                                        onClick={() => {
+                                            setActiveStep((prevActiveStep) => prevActiveStep + 1)
                                         }}
+                                        disabled={activeStep === maxSteps - 1}
                                     >
-                                        <img
-                                            src={modalPhoto}
-                                            style={{ width: "100%", height: "100%" }}
-                                        />
-                                    </Box>
-                                    <MobileStepper
-                                        sx={{
-                                            width: '50%',
-                                            justifySelf: "center"
+                                        {theme.direction === 'rtl' ? (
+                                            <KeyboardArrowLeft />
+                                        ) : (
+                                            <KeyboardArrowRight />
+                                        )}
+                                    </Button>
+                                }
+                                backButton={
+                                    <Button
+                                        size="large"
+                                        onClick={() => {
+                                            setActiveStep((prevActiveStep) => prevActiveStep - 1);
                                         }}
-                                        variant="dots"
-                                        steps={maxSteps}
-                                        position="static"
-                                        activeStep={activeStep}
-                                        nextButton={
-                                            <Button
-                                                size="large"
-                                                onClick={() => {
-                                                    setActiveStep((prevActiveStep) => prevActiveStep + 1)
-                                                }}
-                                                disabled={activeStep === maxSteps - 1}
-                                            >
-                                                {theme.direction === 'rtl' ? (
-                                                    <KeyboardArrowLeft />
-                                                ) : (
-                                                    <KeyboardArrowRight />
-                                                )}
-                                            </Button>
-                                        }
-                                        backButton={
-                                            <Button
-                                                size="large"
-                                                onClick={() => {
-                                                    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-                                                }}
-                                                disabled={activeStep === 0}
-                                            >
-                                                {theme.direction === 'rtl' ? (
-                                                    <KeyboardArrowRight />
-                                                ) : (
-                                                    <KeyboardArrowLeft />
-                                                )}
-                                            </Button>
-                                        }
-                                    />
-                                </Box>
-                            </Grid2>
+                                        disabled={activeStep === 0}
+                                    >
+                                        {theme.direction === 'rtl' ? (
+                                            <KeyboardArrowRight />
+                                        ) : (
+                                            <KeyboardArrowLeft />
+                                        )}
+                                    </Button>
+                                }
+                            />
                             {!isSmallScreen ? (
                                 <>
                                     <Grid container md={12} sx={{ justifyContent: "center" }}>
@@ -289,8 +289,7 @@ const Projects = () => {
                                                 sx={{
                                                     marginBottom: '1vh',
                                                     marginTop: '1vh',
-                                                    fontFamily: "inherit",
-                                                    marginLeft: "2vw"
+                                                    fontFamily: "inherit"
                                                 }}
                                             >
                                                 <strong>Konum:</strong> <a >İstanbul - Şile - Ağva</a>
@@ -399,11 +398,6 @@ const Projects = () => {
                                     </Grid2>
                                 </>
                             )}
-
-                            {/* </Grid> */}
-
-
-                            {/* Sağ taraf (Detaylar) */}
                         </Grid2>
                     </Box>
                 </Modal>
