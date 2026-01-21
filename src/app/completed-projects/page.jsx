@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import ProjectGallery from "../components/ProjectGallery";
 
-const Projects = () => {
+const CompletedProjects = () => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const Projects = () => {
         const data = await response.json();
         if (isMounted) {
           const allProjects = Array.isArray(data.projects) ? data.projects : [];
-          setProjects(allProjects.filter((item) => !item.isCompleted));
+          setProjects(allProjects.filter((item) => item.isCompleted));
         }
       } catch (error) {
         if (isMounted) {
@@ -31,7 +31,7 @@ const Projects = () => {
     };
   }, []);
 
-  return <ProjectGallery projects={projects} />;
+  return <ProjectGallery title="Tamamlanmış Projeler" projects={projects} />;
 };
 
-export default Projects;
+export default CompletedProjects;

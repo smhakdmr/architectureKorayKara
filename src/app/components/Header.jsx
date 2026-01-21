@@ -114,7 +114,7 @@ export default function DrawerAppBar() {
                                             </ListItem>
                                             <Divider />
                                             <ListItem onClick={() => setDrawerOpen(false)}>
-                                                <Link href="/projects" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Hakkımızda</Link>
+                                                <Link href="/about" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Hakkımızda</Link>
                                             </ListItem>
                                             <Divider />
                                             <ListItem onClick={() => setDrawerOpen(false)}>
@@ -122,7 +122,7 @@ export default function DrawerAppBar() {
                                             </ListItem>
                                             <Divider />
                                             <ListItem onClick={() => setDrawerOpen(false)}>
-                                                <Link href="/contactus" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Bitmiş Projeler</Link>
+                                                <Link href="/completed-projects" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Bitmiş Projeler</Link>
                                             </ListItem>
                                             <Divider />
                                             <ListItem onClick={() => setDrawerOpen(false)}>
@@ -136,11 +136,11 @@ export default function DrawerAppBar() {
                                 <Box sx={{ display: 'flex', gap: 4 }}>
                                     <Link href="/" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Ana Sayfa</Link>
                                     <DividerLine />
-                                    <Link href="/projects" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Hakkımızda</Link>
+                                    <Link href="/about" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Hakkımızda</Link>
                                     <DividerLine />
                                     <Link href="/projects" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Projeler</Link>
                                     <DividerLine />
-                                    <Link href="/projects" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Tamamlanmış Projeler</Link>
+                                    <Link href="/completed-projects" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Tamamlanmış Projeler</Link>
                                     <DividerLine />
                                     <Link href="/contactus" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>İletişim</Link>
                                 </Box>
@@ -259,7 +259,7 @@ export default function DrawerAppBar() {
                                     </ListItem>
                                     <Divider />
                                     <ListItem onClick={() => setDrawerOpen(false)}>
-                                        <Link href="/projects" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Hakkımızda</Link>
+                                    <Link href="/about" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Hakkımızda</Link>
                                     </ListItem>
                                     <Divider />
                                     <ListItem onClick={() => setDrawerOpen(false)}>
@@ -267,7 +267,7 @@ export default function DrawerAppBar() {
                                     </ListItem>
                                     <Divider />
                                     <ListItem onClick={() => setDrawerOpen(false)}>
-                                        <Link href="/contactus" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Bitmiş Projeler</Link>
+                                    <Link href="/completed-projects" style={{ color: 'black', fontFamily: 'inherit', margin: 5 }}>Bitmiş Projeler</Link>
                                     </ListItem>
                                     <Divider />
                                     <ListItem onClick={() => setDrawerOpen(false)}>

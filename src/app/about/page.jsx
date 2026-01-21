@@ -1,0 +1,74 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { Box, Container, Typography, useMediaQuery } from "@mui/material";
+
+const AboutPage = () => {
+  const isSmallScreen = useMediaQuery("(max-width:600px)");
+  const [about, setAbout] = useState({
+    title: "Hakkımızda",
+    description: "",
+    image: "",
+  });
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadAbout = async () => {
+      try {
+        const response = await fetch("/api/content");
+        const data = await response.json();
+        if (isMounted && data?.about) {
+          setAbout((prev) => ({ ...prev, ...data.about }));
+        }
+      } catch (error) {
+        if (isMounted) {
+          setAbout((prev) => prev);
+        }
+      }
+    };
+
+    loadAbout();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  return (
+    <Container maxWidth="lg" sx={{ paddingY: 6 }}>
+      <Box sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
+        <Typography
+          variant={isSmallScreen ? "h4" : "h3"}
+          sx={{ fontFamily: "inherit" }}
+        >
+          {about.title || "Hakkımızda"}
+        </Typography>
+        {about.image ? (
+          <Box
+            component="img"
+            src={about.image}
+            alt={about.title || "Hakkımızda"}
+            sx={{
+              width: "100%",
+              maxHeight: isSmallScreen ? 240 : 420,
+              objectFit: "cover",
+              borderRadius: 2,
+            }}
+          />
+        ) : null}
+        <Typography
+          sx={{
+            fontFamily: "inherit",
+            fontSize: isSmallScreen ? "1rem" : "1.1rem",
+            color: "#444",
+          }}
+        >
+          {about.description}
+        </Typography>
+      </Box>
+    </Container>
+  );
+};
+
+export default AboutPage;

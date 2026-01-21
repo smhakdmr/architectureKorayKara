@@ -12,6 +12,11 @@ const WelcomeBox = () => {
 
     const isSmallScreen = useMediaQuery('(max-width:600px)');
     const [scrolled, setScrolled] = useState(false);
+    const [homeContent, setHomeContent] = useState({
+        heroImage: "/mimarlik4.png",
+        title: "Tasarım Mimarlık",
+        description: "Tasarım Mimarlık, kentsel tasarım kollarında yenilikçi ve ilerici bir düşünce ve zihniyet anlayışını işbirlikçi tasarım uygulamalarıyla yakalama arayışı içinde 2013 yılında kurulmuştur."
+    });
 
     useEffect(() => {
         const handleScroll = () => {
@@ -26,13 +31,40 @@ const WelcomeBox = () => {
         };
     }, []);
 
+    useEffect(() => {
+        let isMounted = true;
+
+        const loadHomeContent = async () => {
+            try {
+                const response = await fetch("/api/content");
+                const data = await response.json();
+                if (isMounted && data?.home) {
+                    setHomeContent((prev) => ({
+                        ...prev,
+                        ...data.home
+                    }));
+                }
+            } catch (error) {
+                if (isMounted) {
+                    setHomeContent((prev) => prev);
+                }
+            }
+        };
+
+        loadHomeContent();
+
+        return () => {
+            isMounted = false;
+        };
+    }, []);
+
     return (
         <Container maxWidth="lg" sx={{ margin: 'auto' }}>
             <Box sx={{ padding: { xs: 2, sm: 4 } }}>
                 <Box
                     sx={{
                         position: "relative",
-                        background: `url('/mimarlik4.png')`,
+                        background: `url('${homeContent.heroImage}')`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         width: '80vw',
@@ -54,11 +86,10 @@ const WelcomeBox = () => {
                         }}
                     >
                         <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '10px', fontFamily: "inherit" }}>
-                            Tasarım Mimarlık
+                            {homeContent.title}
                         </Typography>
                         <Typography variant={isSmallScreen ? "body2" : "body3"} sx={{ fontFamily: "inherit" }}>
-                            Tasarım Mimarlık, kentsel tasarım kollarında yenilikçi ve ilerici bir düşünce ve zihniyet anlayışını işbirlikçi
-                            tasarım uygulamalarıyla yakalama arayışı içinde 2013 yılında kurulmuştur.
+                            {homeContent.description}
                         </Typography>
                     </Box>
                 </Box>

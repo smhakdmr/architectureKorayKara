@@ -1,0 +1,137 @@
+{
+  "home": {
+    "heroImage": "/mimarlik4.png",
+    "title": "Tasarım Mimarlık",
+    "description": "Tasarım Mimarlık, kentsel tasarım kollarında yenilikçi ve ilerici bir düşünce ve zihniyet anlayışını işbirlikçi tasarım uygulamalarıyla yakalama arayışı içinde 2013 yılında kurulmuştur."
+  },
+  "about": {
+    "title": "Hakkımızda",
+    "description": "Tasarım Mimarlık, kentsel tasarım kollarında yenilikçi ve ilerici bir düşünce ve zihniyet anlayışını işbirlikçi tasarım uygulamalarıyla yakalama arayışı içinde 2013 yılında kurulmuştur.",
+    "image": "/mimarlik4.png"
+  },
+  "projects": [
+    {
+      "id": "project-1",
+      "title": "Açık Garajlı Villa",
+      "location": "İstanbul - Şile - Ağva",
+      "year": "2020",
+      "type": "Apartman",
+      "parcelArea": "501.33 m²",
+      "buildingArea": "226.84 m²",
+      "images": [
+        "/images/villa1.png",
+        "/uploads/upload-1769025837158-87b67931ca276.jpg",
+        "/uploads/upload-1769025841363-5b7de580906f.jpg"
+      ],
+      "isCompleted": true
+    },
+    {
+      "id": "project-2",
+      "title": "Ahşap Duvarlı Ledli Villa",
+      "location": "İstanbul - Şile - Ağva",
+      "year": "2021",
+      "type": "Apartman",
+      "parcelArea": "501.33 m²",
+      "buildingArea": "226.84 m²",
+      "images": [
+        "/images/villa2.png"
+      ],
+      "isCompleted": false
+    },
+    {
+      "id": "project-3",
+      "title": "Doğa İçinde Açık Tonlar Villa",
+      "location": "İstanbul - Şile - Ağva",
+      "year": "2021",
+      "type": "Apartman",
+      "parcelArea": "501.33 m²",
+      "buildingArea": "226.84 m²",
+      "images": [
+        "/images/villa3.png"
+      ],
+      "isCompleted": false
+    },
+    {
+      "id": "project-4",
+      "title": "Ağaç Ev Görünümlü Villa",
+      "location": "İstanbul - Şile - Ağva",
+      "year": "2021",
+      "type": "Apartman",
+      "parcelArea": "501.33 m²",
+      "buildingArea": "226.84 m²",
+      "images": [
+        "/images/villa4.png"
+      ],
+      "isCompleted": false
+    },
+    {
+      "id": "project-5",
+      "title": "Lüks Malikane",
+      "location": "İstanbul - Şile - Ağva",
+      "year": "2021",
+      "type": "Apartman",
+      "parcelArea": "501.33 m²",
+      "buildingArea": "226.84 m²",
+      "images": [
+        "/images/villa5.png"
+      ],
+      "isCompleted": true
+    },
+    {
+      "id": "project-6",
+      "title": "Asma Balkonlu Altı Garaj Villa",
+      "location": "İstanbul - Şile - Ağva",
+      "year": "2021",
+      "type": "Apartman",
+      "parcelArea": "501.33 m²",
+      "buildingArea": "226.84 m²",
+      "images": [
+        "/images/villa6.png"
+      ],
+      "isCompleted": false
+    },
+    {
+      "id": "project-7",
+      "title": "Basketball",
+      "location": "İstanbul - Şile - Ağva",
+      "year": "2021",
+      "type": "Apartman",
+      "parcelArea": "501.33 m²",
+      "buildingArea": "226.84 m²",
+      "images": [
+        "/images/villa7.png"
+      ],
+      "isCompleted": false
+    },
+    {
+      "id": "project-8",
+      "title": "Fern",
+      "location": "İstanbul - Şile - Ağva",
+      "year": "2021",
+      "type": "Apartman",
+      "parcelArea": "501.33 m²",
+      "buildingArea": "226.84 m²",
+      "images": [
+        "/images/villa8.png"
+      ],
+      "isCompleted": false
+    },
+    {
+      "id": "project-9",
+      "title": "Mushrooms",
+      "location": "İstanbul - Şile - Ağva",
+      "year": "2021",
+      "type": "Apartman",
+      "parcelArea": "501.33 m²",
+      "buildingArea": "226.84 m²",
+      "images": [
+        "/images/villa9.png",
+        "/uploads/upload-1769027105666-f5b8dbb7594e.jpg",
+        "/uploads/upload-1769027105780-22784e8bd2f28.jpg",
+        "/uploads/upload-1769027105858-08177cc5f912e.jpg",
+        "/uploads/upload-1769027105950-2b913b449a807.jpg"
+      ],
+      "isCompleted": false
+    }
+  ]
+}
