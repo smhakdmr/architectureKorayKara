@@ -206,43 +206,35 @@ export default function DrawerAppBar() {
                     </>
                 ) : (
                     <AppBar
-                        position="fixed"
+                        position="sticky"
                         sx={{
                             backgroundColor: 'white',
                             boxShadow: scrolled ? '0px 4px 10px rgba(0, 0, 0, 0.1)' : 'none',
                             transition: 'all 0.3s ease',
-                            padding: '10px 0px'
+                            top: 0
                         }}>
-                        <Toolbar sx={{ flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <Toolbar
+                            variant="dense"
+                            sx={{
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                justifyContent: 'space-between',
+                                minHeight: 56
+                            }}
+                        >
                             {/* Logo ve Başlık */}
-                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                                <Image src="/logo.png" alt='Tasarım Mimarlık' width={50} height={30} />
-                                <Box>
-                                    <Typography
-                                        variant="h5"
-                                        sx={{
-                                            color: "black",
-                                            fontWeight: 500,
-                                            fontFamily: "inherit",
-                                        }}
-                                    >
-                                        TASARIM MİMARLIK
-                                    </Typography>
-                                    <Typography
-                                        // variant="h7"
-                                        sx={{
-                                            color: "black",
-                                            fontWeight: 400,
-                                            fontFamily: "inherit",
-                                            marginTop: '-4px',
-                                            fontSize: 13
-
-                                        }}
-                                    >
-                                        PLAN - PROJE - İNŞAAT - TAAHHÜT - TADİLAT
-                                    </Typography>
-                                
-                                </Box>
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                <Image src="/logo.png" alt='Tasarım Mimarlık' width={42} height={24} />
+                                <Typography
+                                    variant="h6"
+                                    sx={{
+                                        color: "black",
+                                        fontWeight: 500,
+                                        fontFamily: "inherit",
+                                    }}
+                                >
+                                    TASARIM MİMARLIK
+                                </Typography>
                             </Box>
                             {/* Menü */}
                             <IconButton onClick={handleDrawerToggle} sx={{ color: 'black' }}>

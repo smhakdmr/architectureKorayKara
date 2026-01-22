@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Header from "../app/components/Header"
-import Footer from "../app/components/Footer"
+import AppShell from "../app/components/AppShell";
 import { Old_Standard_TT } from 'next/font/google';
 import { Oswald } from "next/font/google";
 import { Roboto } from "next/font/google";
@@ -54,9 +53,7 @@ export default function RootLayout({
       <body
         className={roboto.className}
       >
-        <Header />
-        {children}
-        <Footer />
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );
