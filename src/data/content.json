@@ -19,9 +19,7 @@
       "parcelArea": "501.33 m²",
       "buildingArea": "226.84 m²",
       "images": [
-        "/images/villa1.png",
-        "/uploads/upload-1769025837158-87b67931ca276.jpg",
-        "/uploads/upload-1769025841363-5b7de580906f.jpg"
+        "/images/villa1.png"
       ],
       "isCompleted": true
     },
@@ -34,7 +32,8 @@
       "parcelArea": "501.33 m²",
       "buildingArea": "226.84 m²",
       "images": [
-        "/images/villa2.png"
+        "/images/villa2.png",
+        "/uploads/upload-1769265732119-c5f1f1a208865.jpg"
       ],
       "isCompleted": false
     },
