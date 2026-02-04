@@ -19,7 +19,9 @@
       "parcelArea": "501.33 m²",
       "buildingArea": "226.84 m²",
       "images": [
-        "/images/villa1.png"
+        "/images/villa1.png",
+        "https://res.cloudinary.com/daxlf81re/image/upload/v1770235792/architecture-koray/y1ulcasai2gmebvup6bu.webp",
+        "https://res.cloudinary.com/daxlf81re/image/upload/v1770235849/architecture-koray/yptepwmzs8xk6sipkll0.webp"
       ],
       "isCompleted": true
     },
