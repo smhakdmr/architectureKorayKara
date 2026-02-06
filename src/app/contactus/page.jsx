@@ -4,15 +4,17 @@ import React, { useState, useEffect } from 'react';
 import { TextField, Button, Box, Typography, Container, Alert, AlertTitle, useMediaQuery, Grid } from '@mui/material';
 import ScrollReveal from '../components/ScrollReveal';
 import { motion, AnimatePresence } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 import EmailIcon from '@mui/icons-material/Email';
 import PersonIcon from '@mui/icons-material/Person';
 import InputAdornment from '@mui/material/InputAdornment';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-import MessageIcon from '@mui/icons-material/Message';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import SendIcon from '@mui/icons-material/Send';
 
-const ContactUs = ({ showTitle = true }) => {
+const ContactUs = () => {
+    const pathname = usePathname();
+    const isHomePage = pathname === "/";
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -106,7 +108,7 @@ const ContactUs = ({ showTitle = true }) => {
         <>
                 <Container maxWidth="lg" sx={{ margin: 'auto', paddingTop: { xs: 3, sm: 4 }, paddingBottom: { xs: 5, sm: 8 } }}>
                     <Box sx={{ padding: { xs: 2, sm: 4 } }}>
-                        {showTitle && (
+                        {!isHomePage && (
                         <ScrollReveal direction="up">
                         <Typography
                             variant={isSmallScreen ? "h4" : "h3"}

@@ -1,9 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import ProjectGallery from "../components/ProjectGallery";
 
-const Projects = ({ showTitle = true }) => {
+const Projects = () => {
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
@@ -31,7 +34,7 @@ const Projects = ({ showTitle = true }) => {
     };
   }, []);
 
-  return <ProjectGallery title={showTitle ? "Projeler" : null} projects={projects} />;
+  return <ProjectGallery title={isHomePage ? null : "Projeler"} projects={projects} />;
 };
 
 export default Projects;

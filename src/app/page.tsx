@@ -17,7 +17,7 @@ export default function Home() {
       </Box>
 
       <ScrollReveal direction="up" delay={0.1}>
-        <Projects showTitle={false} />
+        <Projects />
       </ScrollReveal>
 
       <Box sx={{ display: 'flex', justifyContent: 'center', py: { xs: 5, sm: 6 } }}>
@@ -25,7 +25,7 @@ export default function Home() {
       </Box>
 
       <ScrollReveal direction="up" delay={0.15}>
-        <ContactUs showTitle={false} />
+        <ContactUs />
       </ScrollReveal>
     </main>
   );
