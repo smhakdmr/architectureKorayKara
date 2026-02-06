@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import ProjectGallery from "../components/ProjectGallery";
 
-const Projects = () => {
+const Projects = ({ showTitle = true }) => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const Projects = () => {
     };
   }, []);
 
-  return <ProjectGallery projects={projects} />;
+  return <ProjectGallery title={showTitle ? "Projeler" : null} projects={projects} />;
 };
 
 export default Projects;

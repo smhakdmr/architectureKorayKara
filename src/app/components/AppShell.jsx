@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Box, CircularProgress } from "@mui/material";
 import Header from "./Header";
 import Footer from "./Footer";
+import FontProvider from "./FontProvider";
 
 const waitForImages = (timeoutMs = 5000) =>
   new Promise((resolve) => {
@@ -72,6 +73,7 @@ const AppShell = ({ children }) => {
 
   return (
     <>
+      <FontProvider />
       {!isLoaded ? (
         <Box
           sx={{

@@ -1,4 +1,7 @@
 {
+  "settings": {
+    "headingFont": "roboto"
+  },
   "home": {
     "heroImage": "/uploads/upload-1769113068975-72c46982b339a.webp",
     "title": "Tasarım Mimarlık",

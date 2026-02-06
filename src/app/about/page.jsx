@@ -37,8 +37,8 @@ const AboutPage = () => {
   }, []);
 
   return (
-    <Container maxWidth="lg" sx={{ paddingY: 6 }}>
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
+    <Container maxWidth="lg" sx={{ paddingTop: { xs: 3, sm: 4 }, paddingBottom: { xs: 5, sm: 8 } }}>
+      <Box sx={{ display: "flex", flexDirection: "column", gap: { xs: 3, sm: 5 }, padding: { xs: 2, sm: 4 } }}>
         <ScrollReveal direction="up">
           <Typography
             variant={isSmallScreen ? "h4" : "h3"}

@@ -52,19 +52,17 @@ const ProjectGallery = ({ projects = [], title = "" }) => {
 
   return (
     <>
-      <Container maxWidth="lg" sx={{ margin: "auto" }}>
+      <Container maxWidth="lg" sx={{ margin: "auto", paddingTop: { xs: 3, sm: 4 }, paddingBottom: { xs: 5, sm: 8 } }}>
         <Box
           sx={{
-            marginTop: "5vh",
-            marginBottom: "5vh",
             padding: { xs: 2, sm: 4 },
           }}
         >
           {title ? (
             <ScrollReveal direction="up">
               <Typography
-                variant={isSmallScreen ? "h5" : "h4"}
-                sx={{ fontFamily: "inherit", marginBottom: "3vh", color: 'var(--color-dark)', letterSpacing: '0.03em' }}
+                variant={isSmallScreen ? "h4" : "h3"}
+                sx={{ fontFamily: "inherit", marginBottom: { xs: 3, sm: 4 }, color: 'var(--color-dark)', letterSpacing: '0.03em' }}
               >
                 {title}
               </Typography>
@@ -92,18 +90,15 @@ const ProjectGallery = ({ projects = [], title = "" }) => {
                     sx={{
                       position: "relative",
                       overflow: "hidden",
+                      cursor: "pointer",
                       "&:hover img": {
-                        transform: "scale(1.1)",
-                        opacity: 0.5,
+                        transform: "scale(1.05)",
                       },
                       "&:hover .title-overlay": {
                         opacity: 1,
                       },
-                      "&:hover .item-bar": {
-                        opacity: 0,
-                        visibility: "hidden",
-                      },
                     }}
+                    onClick={() => handleOpenProject(project)}
                   >
                     <ScrollReveal direction="up" delay={index * 0.1}>
                     <img
@@ -112,33 +107,50 @@ const ProjectGallery = ({ projects = [], title = "" }) => {
                       alt={project.title}
                       loading="lazy"
                       style={{
-                        transition: "transform 0.3s ease, opacity 0.3s ease",
+                        transition: "transform 0.5s ease",
+                        display: "block",
                       }}
-                      onClick={() => handleOpenProject(project)}
                     />
                     <Box
                       className="title-overlay"
                       sx={{
                         position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        color: "white",
-                        background: "rgb(0 0 0 / 17%)",
-                        padding: "5% 10%",
-                        alignContent: "center",
-                        height: "100%",
-                        width: "100%",
-                        borderRadius: 0,
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        background: "linear-gradient(to top, rgba(26,26,26,0.85) 0%, rgba(26,26,26,0.4) 60%, transparent 100%)",
+                        padding: isSmallScreen ? "20px 16px 14px" : "32px 24px 18px",
                         opacity: 0,
-                        transition: "opacity 0.3s ease",
-                        fontSize: isSmallScreen ? "x-large" : "xx-large",
-                        textAlign: "center",
-                        fontFamily: "inherit",
+                        transition: "opacity 0.4s ease",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "flex-end",
                       }}
-                      onClick={() => handleOpenProject(project)}
                     >
-                      {/* {project.title} */}
+                      <Typography
+                        sx={{
+                          color: "var(--color-white)",
+                          fontFamily: "inherit",
+                          fontWeight: 500,
+                          fontSize: isSmallScreen ? "0.95rem" : "1.1rem",
+                          letterSpacing: "0.03em",
+                        }}
+                      >
+                        {project.title}
+                      </Typography>
+                      {project.location && (
+                        <Typography
+                          sx={{
+                            color: "var(--color-primary-light)",
+                            fontFamily: "inherit",
+                            fontSize: "0.78rem",
+                            mt: 0.5,
+                            opacity: 0.85,
+                          }}
+                        >
+                          {project.location}
+                        </Typography>
+                      )}
                     </Box>
                     </ScrollReveal>
                   </ImageListItem>

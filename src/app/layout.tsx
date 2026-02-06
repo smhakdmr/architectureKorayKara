@@ -1,41 +1,46 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import AppShell from "../app/components/AppShell";
-import { Old_Standard_TT } from 'next/font/google';
-import { Oswald } from "next/font/google";
-import { Roboto } from "next/font/google";
-
-const oldStandart = Old_Standard_TT({
-    subsets: ['latin'], // Desteklenen karakter kümesi
-    weight: ['400', '700'], // Kullanılacak font ağırlıkları
-    style: ['normal', 'italic'], // Normal veya italik stiller
-    display: 'swap', // Daha iyi yükleme için "swap" kullanılır
-});
-
-const oswald = Oswald({
-  subsets: ['latin'], // Desteklenen karakter kümesi
-  weight: ['400', '700'], // Kullanılacak font ağırlıkları
-  style: ['normal'], // Normal veya italik stiller
-  display: 'swap', // Daha iyi yükleme için "swap" kullanılır
-})
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import { Roboto, Playfair_Display, Cormorant_Garamond, Lora, Merriweather } from 'next/font/google';
 
 const roboto = Roboto({
-  subsets: ['latin'], // Desteklenen karakter kümesi
-  weight: ['100', '400', '500', '700'], // Kullanılacak font ağırlıkları
-  style: ['normal'], // Normal veya italik stiller
-  display: 'swap', // Daha iyi yükleme için "swap" kullanılır
+  subsets: ['latin'],
+  weight: ['100', '400', '500', '700'],
+  style: ['normal'],
+  display: 'swap',
+  variable: '--font-body',
+})
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--font-playfair',
+})
+
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--font-cormorant',
+})
+
+const lora = Lora({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--font-lora',
+})
+
+const merriweather = Merriweather({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--font-merriweather',
 })
 
 export const metadata: Metadata = {
@@ -51,7 +56,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={roboto.className}
+        className={`${roboto.variable} ${playfair.variable} ${cormorant.variable} ${lora.variable} ${merriweather.variable} ${roboto.className}`}
       >
         <AppShell>{children}</AppShell>
       </body>

@@ -7,14 +7,6 @@ import Image from 'next/image';
 import { useMediaQuery } from '@mui/material';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Roboto } from 'next/font/google';
-
-const roboto = Roboto({
-    subsets: ['latin'], // Desteklenen karakter kümesi
-    weight: ['100', '400', '500', '700'], // Kullanılacak font ağırlıkları
-    style: ['normal'], // Normal veya italik stiller
-    display: 'swap', // Daha iyi yükleme için "swap" kullanılır
-})
 
 export default function DrawerAppBar() {
 
@@ -101,7 +93,7 @@ export default function DrawerAppBar() {
     }, []);
 
     return (
-        <div className={roboto.className}>
+        <div>
             {!scrolled ? (
                 <>
                     <AppBar
@@ -130,9 +122,8 @@ export default function DrawerAppBar() {
                                 variant={"h4"}
                                 sx={{
                                     color: "var(--color-dark)",
-                                    fontWeight: 500,
-                                    fontFamily: "inherit",
-                                    letterSpacing: '0.08em',
+                                    fontWeight: 600,
+                                    letterSpacing: '0.1em',
                                     textAlign: 'center',
                                     width: '100%'
                                 }}
@@ -232,19 +223,17 @@ export default function DrawerAppBar() {
                                             variant="h4"
                                             sx={{
                                                 color: "var(--color-dark)",
-                                                fontWeight: 500,
-                                                fontFamily: "inherit",
-                                                letterSpacing: '0.08em'
+                                                fontWeight: 600,
+                                                letterSpacing: '0.1em'
                                             }}
                                         >
                                             TASARIM MİMARLIK
                                         </Typography>
                                         <Typography
-                                            variant="h7"
+                                            variant="body2"
                                             sx={{
                                                 color: "var(--color-text-secondary)",
                                                 fontWeight: 400,
-                                                fontFamily: "inherit",
                                                 marginBottom: 3,
                                                 marginTop: '-4px',
                                                 letterSpacing: '0.15em',
@@ -293,9 +282,8 @@ export default function DrawerAppBar() {
                                     variant="h6"
                                     sx={{
                                         color: "var(--color-dark)",
-                                        fontWeight: 500,
-                                        fontFamily: "inherit",
-                                        letterSpacing: '0.05em'
+                                        fontWeight: 600,
+                                        letterSpacing: '0.08em'
                                     }}
                                 >
                                     TASARIM MİMARLIK

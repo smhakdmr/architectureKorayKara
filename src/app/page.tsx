@@ -2,29 +2,30 @@
 
 import Projects from './projects/page'
 import ContactUs from './contactus/page'
-import { Roboto } from 'next/font/google';
+import { Box } from '@mui/material';
 import WelcomeBox from "../app/components/WelcomeBox";
 import ScrollReveal from "../app/components/ScrollReveal";
-
-const roboto = Roboto({
-  subsets: ['latin'],
-  weight: ['100', '400', '500', '700'],
-  style: ['normal'],
-  display: 'swap',
-})
 
 export default function Home() {
 
   return (
-    <main className={roboto.className}>
+    <main>
       <WelcomeBox />
 
+      <Box sx={{ display: 'flex', justifyContent: 'center', py: { xs: 5, sm: 6 } }}>
+        <div className="section-divider" />
+      </Box>
+
       <ScrollReveal direction="up" delay={0.1}>
-        <Projects />
+        <Projects showTitle={false} />
       </ScrollReveal>
 
+      <Box sx={{ display: 'flex', justifyContent: 'center', py: { xs: 5, sm: 6 } }}>
+        <div className="section-divider" />
+      </Box>
+
       <ScrollReveal direction="up" delay={0.15}>
-        <ContactUs />
+        <ContactUs showTitle={false} />
       </ScrollReveal>
     </main>
   );
