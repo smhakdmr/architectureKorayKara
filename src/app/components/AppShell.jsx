@@ -80,11 +80,11 @@ const AppShell = ({ children }) => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: "#ffffff",
+            backgroundColor: "var(--color-white)",
             zIndex: 2000,
           }}
         >
-          <CircularProgress />
+          <CircularProgress sx={{ color: 'var(--color-primary)' }} />
         </Box>
       ) : null}
       <Box sx={{ opacity: isLoaded ? 1 : 0, transition: "opacity 0.2s ease" }}>

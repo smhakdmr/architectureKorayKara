@@ -3,14 +3,29 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Renk Paleti - Mimarlık Teması */
+  --color-primary: #CFBBB0;          /* Ana accent - sıcak bej */
+  --color-primary-dark: #B8A295;     /* Koyu accent */
+  --color-primary-light: #E8DDD7;    /* Açık accent */
+  --color-dark: #1a1a1a;             /* Ana koyu arka plan */
+  --color-dark-soft: #2d2d2d;        /* Yumuşak koyu */
+  --color-light: #f8f5f2;            /* Sıcak açık arka plan */
+  --color-light-alt: #f0ebe6;        /* Alternatif açık arka plan */
+  --color-white: #ffffff;
+  --color-text: #2d2d2d;             /* Ana metin */
+  --color-text-secondary: #6b6360;   /* İkincil metin */
+  --color-text-muted: #9a9390;       /* Soluk metin */
+  --color-border: #e0d6cf;           /* Sıcak kenarlık */
+  --color-border-light: #ece6e0;     /* Açık kenarlık */
+  --color-input-bg: rgba(207, 187, 176, 0.08); /* Input arka plan */
+  --color-shadow: rgba(26, 26, 26, 0.08);      /* Gölge */
+
   color-scheme: light;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: var(--color-text);
+  background: var(--color-white);
   font-family: Arial, Helvetica, sans-serif;
   min-height: 100vh;
   display: flex;
@@ -19,4 +34,19 @@ body {
 
 .site-main {
   flex: 1;
+}
+
+/* Link hover efektleri */
+a {
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-primary-dark) !important;
+}
+
+/* Seçim rengi */
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-white);
 }

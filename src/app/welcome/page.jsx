@@ -16,7 +16,7 @@ const Welcome = () => {
             <Box
                 sx={{
                     background: `
-            linear-gradient(to bottom, rgb(0, 0, 0, 0) 0%, #181818 100%),
+            linear-gradient(to bottom, rgb(0, 0, 0, 0) 0%, var(--color-dark) 100%),
             url('/mainPage3.png')
           `,
                     backgroundSize: 'cover',

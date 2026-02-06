@@ -3,6 +3,7 @@
 import React from "react";
 import { Box, Grid, Typography, useMediaQuery } from "@mui/material";
 import Image from 'next/image';
+import ScrollReveal from "../components/ScrollReveal";
 
 
 const Services = () => {
@@ -13,26 +14,28 @@ const Services = () => {
         <Box sx={{
             color: "white",
             paddingTop: '5vh',
-            backgroundColor: "#181818",
+            backgroundColor: "var(--color-dark)",
         }}>
-            <Typography
-                variant="h1"
-                align="center"
-                gutterBottom
-                sx={{
-                    fontFamily: "inherit",
-                    fontSize: isSmallScreen ? "1.7rem" : "3rem",
-                    color: "white",
-                    textAlign: "center",
-                    marginTop: isSmallScreen ? 20 : 10,
-                    marginLeft: isSmallScreen ? 2 : 20,
-                    marginRight: isSmallScreen ? 2 : 20,
-                    marginBottom: isSmallScreen ? 15 : 15
-                }}
-            >
-                <span style={{ color: "#CFBBB0" }}>Tasarım Mimarlık</span>  olarak hem Türkiye'de hem de dünyanın diğer
-                ülkelerinde mimari ve iç mimari çalışmalara hayat veriyoruz.
-            </Typography>
+            <ScrollReveal direction="up">
+                <Typography
+                    variant="h1"
+                    align="center"
+                    gutterBottom
+                    sx={{
+                        fontFamily: "inherit",
+                        fontSize: isSmallScreen ? "1.7rem" : "3rem",
+                        color: "white",
+                        textAlign: "center",
+                        marginTop: isSmallScreen ? 20 : 10,
+                        marginLeft: isSmallScreen ? 2 : 20,
+                        marginRight: isSmallScreen ? 2 : 20,
+                        marginBottom: isSmallScreen ? 15 : 15
+                    }}
+                >
+                    <span style={{ color: "var(--color-primary)" }}>Tasarım Mimarlık</span>  olarak hem Türkiye'de hem de dünyanın diğer
+                    ülkelerinde mimari ve iç mimari çalışmalara hayat veriyoruz.
+                </Typography>
+            </ScrollReveal>
             {/* "Neler Yapıyoruz?" Başlığı */}
             {/* <Typography
                 variant="h1"
@@ -75,6 +78,7 @@ const Services = () => {
                     }
                 ].map((item, index) => (
                     <Grid item xs={12} sm={3} md={3} key={index}>
+                        <ScrollReveal direction="up" delay={index * 0.15}>
                         <Box
                             sx={{
                                 position: "relative",
@@ -82,7 +86,7 @@ const Services = () => {
                                 width: isSmallScreen ? '70vw' : '21vw',
                                 height: '30vh',
                                 "&:hover img": {
-                                    transform: "scale(1.05)", // Görsel biraz büyüyor
+                                    transform: "scale(1.05)",
                                     transition: "transform 0.3s ease",
                                 },
                             }}
@@ -102,13 +106,14 @@ const Services = () => {
                                     position: "absolute",
                                     bottom: 0,
                                     left: 70,
-                                    backgroundColor: "#ffffffba",
-                                    color: "black",
+                                    backgroundColor: "rgba(248, 245, 242, 0.92)",
+                                    color: "var(--color-dark)",
                                     borderRadius: 0,
                                     py: 1,
                                     px: 1,
                                     boxShadow: 3,
                                     width: "80%",
+                                    borderTop: '2px solid var(--color-primary)',
                                 }}
                             >
                                 <Typography sx={{
@@ -119,6 +124,7 @@ const Services = () => {
                                 </Typography>
                             </Box>
                         </Box>
+                        </ScrollReveal>
                     </Grid>
                 ))}
             </Grid>

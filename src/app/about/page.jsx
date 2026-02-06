@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Box, Container, Typography, useMediaQuery } from "@mui/material";
+import ScrollReveal from "../components/ScrollReveal";
 
 const AboutPage = () => {
   const isSmallScreen = useMediaQuery("(max-width:600px)");
@@ -38,34 +39,41 @@ const AboutPage = () => {
   return (
     <Container maxWidth="lg" sx={{ paddingY: 6 }}>
       <Box sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
-        <Typography
-          variant={isSmallScreen ? "h4" : "h3"}
-          sx={{ fontFamily: "inherit" }}
-        >
-          {about.title || "Hakkımızda"}
-        </Typography>
+        <ScrollReveal direction="up">
+          <Typography
+            variant={isSmallScreen ? "h4" : "h3"}
+            sx={{ fontFamily: "inherit", color: 'var(--color-dark)', letterSpacing: '0.03em' }}
+          >
+            {about.title || "Hakkımızda"}
+          </Typography>
+        </ScrollReveal>
         {about.image ? (
-          <Box
-            component="img"
-            src={about.image}
-            alt={about.title || "Hakkımızda"}
-            sx={{
-              width: "100%",
-              maxHeight: isSmallScreen ? 240 : 420,
-              objectFit: "cover",
-              borderRadius: 2,
-            }}
-          />
+          <ScrollReveal direction="up" delay={0.15}>
+            <Box
+              component="img"
+              src={about.image}
+              alt={about.title || "Hakkımızda"}
+              sx={{
+                width: "100%",
+                maxHeight: isSmallScreen ? 240 : 420,
+                objectFit: "cover",
+                borderRadius: 2,
+              }}
+            />
+          </ScrollReveal>
         ) : null}
-        <Typography
-          sx={{
-            fontFamily: "inherit",
-            fontSize: isSmallScreen ? "1rem" : "1.1rem",
-            color: "#444",
-          }}
-        >
-          {about.description}
-        </Typography>
+        <ScrollReveal direction="up" delay={0.25}>
+          <Typography
+            sx={{
+              fontFamily: "inherit",
+              fontSize: isSmallScreen ? "1rem" : "1.1rem",
+              color: "var(--color-text-secondary)",
+              lineHeight: 1.8,
+            }}
+          >
+            {about.description}
+          </Typography>
+        </ScrollReveal>
       </Box>
     </Container>
   );

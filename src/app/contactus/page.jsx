@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { TextField, Button, Box, Typography, Container, Alert, AlertTitle, useMediaQuery, Snackbar, Grid } from '@mui/material';
+import ScrollReveal from '../components/ScrollReveal';
 import EmailIcon from '@mui/icons-material/Email';
 import PersonIcon from '@mui/icons-material/Person';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -59,11 +60,11 @@ const ContactUs = () => {
     };
 
     const textFieldStyles = {
-        '& label': { color: 'black' },
+        '& label': { color: 'var(--color-text-secondary)' },
         '& .MuiOutlinedInput-root': {
-            '& fieldset': { borderColor: 'black' },
-            '&:hover fieldset': { borderColor: 'black' },
-            '&.Mui-focused fieldset': { borderColor: 'black' },
+            '& fieldset': { borderColor: 'var(--color-border)' },
+            '&:hover fieldset': { borderColor: 'var(--color-primary-dark)' },
+            '&.Mui-focused fieldset': { borderColor: 'var(--color-primary-dark)' },
         }
     };
 
@@ -72,7 +73,7 @@ const ContactUs = () => {
             sx={{
                 width: '1px',
                 height: '100px',
-                backgroundColor: '#ccc',
+                backgroundColor: 'var(--color-border)',
                 marginTop: '5px'
             }}
         />
@@ -82,6 +83,7 @@ const ContactUs = () => {
         <>
                 <Container maxWidth="lg" sx={{ margin: 'auto' }}>
                     <Box sx={{ padding: { xs: 2, sm: 4 } }}>
+                        <ScrollReveal direction="up">
                         <Grid
                             container
                             spacing={2}
@@ -93,36 +95,36 @@ const ContactUs = () => {
                             }}
                         >
                             <Grid item xs={12} md={3}>
-                                <Typography variant="h6" fontWeight="bold" sx={{ fontFamily: 'inherit' }}>
+                                <Typography variant="h6" fontWeight="bold" sx={{ fontFamily: 'inherit', color: 'var(--color-dark)', letterSpacing: '0.1em' }}>
                                     E-MAİL
                                 </Typography>
                                 <Box mt={1}>
-                                    <Typography color="text.secondary" sx={{ fontFamily: 'inherit' }}>
+                                    <Typography sx={{ fontFamily: 'inherit', color: 'var(--color-text-secondary)' }}>
                                         info@tasarimmimarlik.com
                                     </Typography>
                                 </Box>
                             </Grid>
                             {!isSmallScreen && <DividerLine />}
                             <Grid item xs={12} md={3}>
-                                <Typography variant="h6" fontWeight="bold" gutterBottom sx={{ fontFamily: 'inherit' }}>
+                                <Typography variant="h6" fontWeight="bold" gutterBottom sx={{ fontFamily: 'inherit', color: 'var(--color-dark)', letterSpacing: '0.1em' }}>
                                     TELEFON
                                 </Typography>
                                 <Box mt={1}>
-                                    <Typography fontWeight="bold" sx={{ fontFamily: 'inherit' }}>
+                                    <Typography fontWeight="bold" sx={{ fontFamily: 'inherit', color: 'var(--color-dark)' }}>
                                         Koray Kara
                                     </Typography>
-                                    <Typography color="text.secondary" sx={{ fontFamily: 'inherit' }}>
+                                    <Typography sx={{ fontFamily: 'inherit', color: 'var(--color-text-secondary)' }}>
                                         +90 (555) 555 5555
                                     </Typography>
                                 </Box>
                             </Grid>
                             {!isSmallScreen && <DividerLine />}
                             <Grid item xs={12} md={3}>
-                                <Typography variant="h6" fontWeight="bold" gutterBottom sx={{ fontFamily: 'inherit' }}>
+                                <Typography variant="h6" fontWeight="bold" gutterBottom sx={{ fontFamily: 'inherit', color: 'var(--color-dark)', letterSpacing: '0.1em' }}>
                                     ADRES
                                 </Typography>
                                 <Box mt={1}>
-                                    <Typography color="text.secondary" sx={{ fontFamily: 'inherit' }}>
+                                    <Typography sx={{ fontFamily: 'inherit', color: 'var(--color-text-secondary)' }}>
                                         Kavacık Mah. Yeni Sokak Vip Plaza
                                         <br />
                                         No:5 D:6 Kavacık-Beykoz / İstanbul
@@ -130,6 +132,8 @@ const ContactUs = () => {
                                 </Box>
                             </Grid>
                         </Grid>
+                        </ScrollReveal>
+                        <ScrollReveal direction="up" delay={0.1}>
                         <Typography
                             variant="h1"
                             align="center"
@@ -138,7 +142,7 @@ const ContactUs = () => {
                                 fontFamily: "inherit",
                                 fontWeight: 500,
                                 fontSize: isSmallScreen ? "2rem" : "3rem",
-                                color: "black",
+                                color: "var(--color-dark)",
                                 marginTop: isSmallScreen ? 5 : 5,
                             }}
                         >
@@ -149,13 +153,15 @@ const ContactUs = () => {
                             align="center"
                             gutterBottom
                             sx={{
-                                color: "black",
+                                color: "var(--color-text-secondary)",
                                 marginBottom: isSmallScreen ? 4 : 5,
                                 fontFamily: 'inherit'
                             }}
                         >
                             Projelerinizde Tasarım Mimarlık farkıyla yaratıcılık, inovasyon ve işlevsel tasarımlar görmek için bize ulaşın!
                         </Typography>
+                        </ScrollReveal>
+                        <ScrollReveal direction="up" delay={0.2}>
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                                 <TextField
@@ -169,13 +175,13 @@ const ContactUs = () => {
                                         input: {
                                             startAdornment: (
                                                 <InputAdornment position="start">
-                                                    <PersonIcon sx={{ color: 'black' }} />
+                                                    <PersonIcon sx={{ color: 'var(--color-primary-dark)' }} />
                                                 </InputAdornment>
                                             ),
-                                            style: { color: 'black', backgroundColor: 'rgb(0 0 0 / 10%)', height: '5vh' }
+                                            style: { color: 'var(--color-dark)', backgroundColor: 'var(--color-input-bg)', height: '5vh' }
                                         },
                                         inputLabel: {
-                                            style: { color: 'black' },
+                                            style: { color: 'var(--color-text-secondary)' },
                                         }
                                     }}
                                     sx={textFieldStyles}
@@ -191,13 +197,13 @@ const ContactUs = () => {
                                         input: {
                                             startAdornment: (
                                                 <InputAdornment position="start">
-                                                    <EmailIcon sx={{ color: 'black' }} />
+                                                    <EmailIcon sx={{ color: 'var(--color-primary-dark)' }} />
                                                 </InputAdornment>
                                             ),
-                                            style: { color: 'black', backgroundColor: 'rgb(0 0 0 / 10%)', height: '5vh' }
+                                            style: { color: 'var(--color-dark)', backgroundColor: 'var(--color-input-bg)', height: '5vh' }
                                         },
                                         inputLabel: {
-                                            style: { color: 'black' },
+                                            style: { color: 'var(--color-text-secondary)' },
                                         }
                                     }}
                                     sx={textFieldStyles}
@@ -213,13 +219,13 @@ const ContactUs = () => {
                                         input: {
                                             startAdornment: (
                                                 <InputAdornment position="start">
-                                                    <LocalPhoneIcon sx={{ color: 'black' }} />
+                                                    <LocalPhoneIcon sx={{ color: 'var(--color-primary-dark)' }} />
                                                 </InputAdornment>
                                             ),
-                                            style: { color: 'black', backgroundColor: 'rgb(0 0 0 / 10%)', height: '5vh' }
+                                            style: { color: 'var(--color-dark)', backgroundColor: 'var(--color-input-bg)', height: '5vh' }
                                         },
                                         inputLabel: {
-                                            style: { color: 'black' },
+                                            style: { color: 'var(--color-text-secondary)' },
                                         }
                                     }}
                                     sx={textFieldStyles}
@@ -236,13 +242,13 @@ const ContactUs = () => {
                                         input: {
                                             startAdornment: (
                                                 <InputAdornment position="start">
-                                                    <MessageIcon sx={{ color: 'black' }} />
+                                                    <MessageIcon sx={{ color: 'var(--color-primary-dark)' }} />
                                                 </InputAdornment>
                                             ),
-                                            style: { color: 'black', backgroundColor: 'rgb(0 0 0 / 10%)' }
+                                            style: { color: 'var(--color-dark)', backgroundColor: 'var(--color-input-bg)' }
                                         },
                                         inputLabel: {
-                                            style: { color: 'black' },
+                                            style: { color: 'var(--color-text-secondary)' },
                                         }
                                     }}
                                     sx={textFieldStyles}
@@ -256,12 +262,19 @@ const ContactUs = () => {
                                 endIcon={<SendIcon />}
                                 disabled={isSubmitting}
                                 sx={{
-                                    backgroundColor: 'silver'
+                                    backgroundColor: 'var(--color-dark)',
+                                    color: 'var(--color-primary-light)',
+                                    letterSpacing: '0.1em',
+                                    py: 1.5,
+                                    '&:hover': {
+                                        backgroundColor: 'var(--color-dark-soft)',
+                                    }
                                 }}
                             >
                                 {isSubmitting ? "Gönderiliyor..." : "Gönder"}
                             </Button>
                         </form>
+                        </ScrollReveal>
 
                         <Snackbar
                             open={submitSuccess}
