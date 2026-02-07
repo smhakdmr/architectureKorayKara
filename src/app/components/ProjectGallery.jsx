@@ -91,6 +91,12 @@ const ProjectGallery = ({ projects = [], title = "" }) => {
                       position: "relative",
                       overflow: "hidden",
                       cursor: "pointer",
+                      animation: "fadeInUp 0.6s ease both",
+                      animationDelay: `${index * 0.1}s`,
+                      "@keyframes fadeInUp": {
+                        "0%": { opacity: 0, transform: "translateY(30px)" },
+                        "100%": { opacity: 1, transform: "translateY(0)" },
+                      },
                       "&:hover img": {
                         transform: "scale(1.05)",
                       },
@@ -100,15 +106,14 @@ const ProjectGallery = ({ projects = [], title = "" }) => {
                     }}
                     onClick={() => handleOpenProject(project)}
                   >
-                    <ScrollReveal direction="up" delay={index * 0.1}>
                     <img
-                      srcSet={`${coverImage}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                      src={`${coverImage}?w=248&fit=crop&auto=format`}
+                      src={coverImage}
                       alt={project.title}
                       loading="lazy"
                       style={{
                         transition: "transform 0.5s ease",
                         display: "block",
+                        width: "100%",
                       }}
                     />
                     <Box
@@ -152,7 +157,6 @@ const ProjectGallery = ({ projects = [], title = "" }) => {
                         </Typography>
                       )}
                     </Box>
-                    </ScrollReveal>
                   </ImageListItem>
                 );
               })}
