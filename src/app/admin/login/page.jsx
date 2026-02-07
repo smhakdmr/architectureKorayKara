@@ -6,38 +6,61 @@ import {
   Alert,
   Box,
   Button,
+  CircularProgress,
   Container,
   TextField,
   Typography,
 } from "@mui/material";
 
-const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "admin";
-
 const AdminLoginPage = () => {
   const router = useRouter();
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const isAuthed = typeof window !== "undefined"
-      ? window.localStorage.getItem("admin_authed") === "true"
-      : false;
-    if (isAuthed) {
-      router.replace("/admin");
-    }
+    // Mevcut token gecerli mi kontrol et
+    const token = window.localStorage.getItem("admin_token");
+    if (!token) return;
+
+    fetch("/api/auth", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => {
+        if (res.ok) router.replace("/admin");
+      })
+      .catch(() => {
+        // Token gecersiz, kalsin
+      });
   }, [router]);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setErrorMessage("");
+    setIsLoading(true);
 
-    if (password === ADMIN_PASSWORD) {
-      window.localStorage.setItem("admin_authed", "true");
+    try {
+      const response = await fetch("/api/auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setErrorMessage(data.error || "Giriş başarısız.");
+        setIsLoading(false);
+        return;
+      }
+
+      // Token'i sakla ve yonlendir
+      window.localStorage.setItem("admin_token", data.token);
       router.replace("/admin");
-      return;
+    } catch {
+      setErrorMessage("Sunucuya bağlanılamadı.");
+      setIsLoading(false);
     }
-
-    setErrorMessage("Şifre hatalı.");
   };
 
   return (
@@ -49,7 +72,7 @@ const AdminLoginPage = () => {
         Yönetim paneline erişmek için şifrenizi girin.
       </Typography>
 
-      {errorMessage ? <Alert severity="error">{errorMessage}</Alert> : null}
+      {errorMessage ? <Alert severity="error" sx={{ mb: 2 }}>{errorMessage}</Alert> : null}
 
       <Box
         component="form"
@@ -62,10 +85,17 @@ const AdminLoginPage = () => {
           type="password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
+          disabled={isLoading}
           sx={{ marginBottom: 2 }}
         />
-        <Button variant="contained" type="submit" fullWidth>
-          Giriş Yap
+        <Button
+          variant="contained"
+          type="submit"
+          fullWidth
+          disabled={isLoading}
+          startIcon={isLoading ? <CircularProgress size={18} sx={{ color: "#fff" }} /> : null}
+        >
+          {isLoading ? "Giriş yapılıyor..." : "Giriş Yap"}
         </Button>
       </Box>
     </Container>

@@ -1,41 +1,44 @@
 import nodemailer from 'nodemailer';
 
 export async function POST(req) {
-  // Gelen isteğin gövdesini alıyoruz
   const { fullName, email, phone, message } = await req.json();
 
+  // Env degiskenleri kontrolu
+  if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+    console.error("SMTP_USER veya SMTP_PASS env degiskenleri tanimli degil.");
+    return new Response(
+      JSON.stringify({ error: "Sunucu yapilandirma hatasi." }),
+      { status: 500, headers: { "Content-Type": "application/json" } }
+    );
+  }
+
   try {
-    // Nodemailer ile bir transport oluşturuyoruz
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: "ilyassemihakdemir@gmail.com",
-        pass: "miso rlzd rour jhuk",
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
       },
     });
 
-
-    // Gönderilecek e-posta için ayarlar
     const mailOptions = {
-      from: "semihman@hotmail.com",
-      to: 'ilyassemihakdemir@gmail.com', // Alıcının e-posta adresi
+      from: process.env.SMTP_FROM || process.env.SMTP_USER,
+      to: process.env.SMTP_TO || process.env.SMTP_USER,
       subject: `Yeni İletişim Formu Mesajı: ${fullName}`,
-      text: `Gönderen: ${fullName} \n (${email}) \n Telefon No: ${phone} \n Mesaj:\n${message}`,
+      text: `Gönderen: ${fullName}\nE-posta: ${email}\nTelefon: ${phone}\n\nMesaj:\n${message}`,
     };
 
-    // Mail gönderme işlemi
     await transporter.sendMail(mailOptions);
 
-    // Başarılı yanıt döndürme
-    return new Response(JSON.stringify({ message: 'Mail başarıyla gönderildi.' }), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return new Response(
+      JSON.stringify({ message: 'Mail başarıyla gönderildi.' }),
+      { status: 200, headers: { 'Content-Type': 'application/json' } }
+    );
   } catch (error) {
     console.error('Mail gönderim hatası:', error);
-    return new Response(JSON.stringify({ error: 'Mail gönderilirken bir hata oluştu.' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return new Response(
+      JSON.stringify({ error: 'Mail gönderilirken bir hata oluştu.' }),
+      { status: 500, headers: { 'Content-Type': 'application/json' } }
+    );
   }
 }

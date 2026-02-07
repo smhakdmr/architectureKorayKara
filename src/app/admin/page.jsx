@@ -121,17 +121,29 @@ const AdminPage = () => {
   const [deleteTarget, setDeleteTarget] = useState(null);
   const [snackbar, setSnackbar] = useState({ open: false, message: "", severity: "success" });
 
-  // --- Auth ---
+  // --- Auth: Token dogrulama ---
   useEffect(() => {
-    const isAuthed =
-      typeof window !== "undefined"
-        ? window.localStorage.getItem("admin_authed") === "true"
-        : false;
-    if (!isAuthed) {
+    const token = window.localStorage.getItem("admin_token");
+    if (!token) {
       router.replace("/admin/login");
       return;
     }
-    setIsAuthorized(true);
+
+    fetch("/api/auth", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => {
+        if (res.ok) {
+          setIsAuthorized(true);
+        } else {
+          window.localStorage.removeItem("admin_token");
+          router.replace("/admin/login");
+        }
+      })
+      .catch(() => {
+        window.localStorage.removeItem("admin_token");
+        router.replace("/admin/login");
+      });
   }, [router]);
 
   // --- Icerik yukle ---
@@ -242,6 +254,15 @@ const AdminPage = () => {
     });
   };
 
+  // --- Yardimci: Auth header ---
+  const getAuthHeaders = () => {
+    const token = window.localStorage.getItem("admin_token");
+    return {
+      "Content-Type": "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    };
+  };
+
   // --- Kaydet ---
   const handleSave = async () => {
     if (!content) return;
@@ -250,9 +271,16 @@ const AdminPage = () => {
     try {
       const response = await fetch("/api/content", {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: getAuthHeaders(),
         body: JSON.stringify(content),
       });
+
+      if (response.status === 401) {
+        showSnackbar("Oturum süresi doldu. Tekrar giriş yapın.", "error");
+        window.localStorage.removeItem("admin_token");
+        router.replace("/admin/login");
+        return;
+      }
 
       if (!response.ok) throw new Error("Save failed");
       showSnackbar("Değişiklikler başarıyla kaydedildi.");
@@ -269,13 +297,22 @@ const AdminPage = () => {
     setIsUploading(true);
 
     try {
+      const token = window.localStorage.getItem("admin_token");
       const formData = new FormData();
       formData.append("file", file);
 
       const response = await fetch("/api/upload", {
         method: "POST",
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
         body: formData,
       });
+
+      if (response.status === 401) {
+        showSnackbar("Oturum süresi doldu. Tekrar giriş yapın.", "error");
+        window.localStorage.removeItem("admin_token");
+        router.replace("/admin/login");
+        return null;
+      }
 
       if (!response.ok) throw new Error("Upload failed");
       const data = await response.json();
@@ -951,7 +988,7 @@ const AdminPage = () => {
                 size="small"
                 startIcon={<LogoutIcon />}
                 onClick={() => {
-                  window.localStorage.removeItem("admin_authed");
+                  window.localStorage.removeItem("admin_token");
                   router.replace("/admin/login");
                 }}
                 sx={{

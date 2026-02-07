@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import sharp from "sharp";
 import { v2 as cloudinary } from "cloudinary";
+import { verifyRequest } from "@/lib/auth";
 
 const MAX_SIZE_BYTES = 400 * 1024;
 
@@ -67,6 +68,14 @@ const uploadToCloudinary = (buffer) =>
   });
 
 export async function POST(request) {
+  // Yetkilendirme kontrolu
+  if (!verifyRequest(request)) {
+    return NextResponse.json(
+      { error: "Yetkisiz erişim." },
+      { status: 401 }
+    );
+  }
+
   try {
     const formData = await request.formData();
     const file = formData.get("file");

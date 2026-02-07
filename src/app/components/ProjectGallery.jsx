@@ -1,20 +1,15 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Box,
-  Button,
   IconButton,
   ImageList,
   ImageListItem,
-  MobileStepper,
   Typography,
   Container,
   useMediaQuery,
 } from "@mui/material";
-import Grid from "@mui/material/Grid";
-import Grid2 from "@mui/material/Grid2";
-import { useTheme } from "@mui/material/styles";
 import CloseIcon from "@mui/icons-material/Close";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
@@ -22,27 +17,29 @@ import { motion, AnimatePresence } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
 
 const ProjectGallery = ({ projects = [], title = "" }) => {
-  const DividerLine = () => (
-    <Box
-      sx={{
-        width: "1px",
-        height: "20px",
-        backgroundColor: "var(--color-border)",
-        marginTop: "10px",
-        marginLeft: "1vw",
-        marginRight: "1vw",
-      }}
-    />
-  );
-
-  const theme = useTheme();
   const isSmallScreen = useMediaQuery("(max-width:600px)");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
   const [activeStep, setActiveStep] = useState(0);
+  const [slideDirection, setSlideDirection] = useState(0); // -1: sola, 1: saga
 
   const selectedImages = selectedProject?.images || [];
   const maxSteps = selectedImages.length;
+
+  const imageSlideVariants = {
+    enter: (direction) => ({
+      x: direction > 0 ? "60%" : "-60%",
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction) => ({
+      x: direction > 0 ? "-60%" : "60%",
+      opacity: 0,
+    }),
+  };
 
   const handleOpenProject = (project) => {
     setSelectedProject(project);
@@ -166,7 +163,7 @@ const ProjectGallery = ({ projects = [], title = "" }) => {
       </Container>
 
       <AnimatePresence>
-        {isModalOpen && (
+        {isModalOpen && selectedProject && (
           <Box
             sx={{
               position: "fixed",
@@ -182,12 +179,14 @@ const ProjectGallery = ({ projects = [], title = "" }) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
+              transition={{ duration: 0.3 }}
               onClick={() => { setIsModalOpen(false); setActiveStep(0); }}
               style={{
                 position: "absolute",
                 inset: 0,
-                backgroundColor: "rgba(0, 0, 0, 0.5)",
+                backgroundColor: "rgba(0, 0, 0, 0.7)",
+                backdropFilter: "blur(4px)",
+                WebkitBackdropFilter: "blur(4px)",
               }}
             />
             {/* Modal Content */}
@@ -196,250 +195,206 @@ const ProjectGallery = ({ projects = [], title = "" }) => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 30 }}
               transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-              style={{ position: "relative", zIndex: 1 }}
+              style={{
+                position: "relative",
+                zIndex: 1,
+                width: isSmallScreen ? "94vw" : "70vw",
+                maxWidth: 960,
+                maxHeight: "92vh",
+              }}
             >
               <Box
                 sx={{
-                  width: isSmallScreen ? "90vw" : "65vw",
-                  height: isSmallScreen ? "75vh" : "85vh",
-                  maxHeight: "90vh",
                   overflowY: "auto",
-                  bgcolor: "background.paper",
-                  boxShadow: 20,
-                  p: isSmallScreen ? 2 : 4,
+                  maxHeight: "92vh",
+                  backgroundColor: "var(--color-white)",
+                  borderRadius: isSmallScreen ? "8px" : "12px",
+                  boxShadow: "0 25px 60px rgba(0,0,0,0.3)",
                   position: "relative",
                 }}
               >
+                {/* Kapatma butonu */}
                 <IconButton
-                  onClick={() => {
-                    setIsModalOpen(false);
-                    setActiveStep(0);
-                  }}
+                  onClick={() => { setIsModalOpen(false); setActiveStep(0); }}
                   sx={{
                     position: "absolute",
-                    top: 8,
-                    right: 8,
-                    color: "gray",
-                    zIndex: 2,
+                    top: 12,
+                    right: 12,
+                    zIndex: 10,
+                    backgroundColor: "rgba(0,0,0,0.5)",
+                    color: "#fff",
+                    width: 36,
+                    height: 36,
+                    "&:hover": { backgroundColor: "rgba(0,0,0,0.7)" },
                   }}
                 >
-                  <CloseIcon />
+                  <CloseIcon sx={{ fontSize: 20 }} />
                 </IconButton>
-                {selectedProject ? (
-                  <Grid2>
-                    <Box
-                      sx={{
-                        height: isSmallScreen ? "37vh" : "60vh",
-                        maxWidth: isSmallScreen ? "100vw" : "60vw",
+
+                {/* Gorsel Alani */}
+                <Box sx={{ position: "relative", backgroundColor: "#111", overflow: "hidden" }}>
+                  <AnimatePresence initial={false} mode="popLayout" custom={slideDirection}>
+                    <motion.img
+                      key={activeStep}
+                      src={selectedImages[activeStep]}
+                      alt={selectedProject.title}
+                      custom={slideDirection}
+                      variants={imageSlideVariants}
+                      initial="enter"
+                      animate="center"
+                      exit="exit"
+                      transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                      style={{
                         width: "100%",
-                        justifySelf: "center",
+                        height: isSmallScreen ? "45vh" : "65vh",
+                        objectFit: "cover",
+                        display: "block",
+                      }}
+                    />
+                  </AnimatePresence>
+
+                  {/* Gorsel uzerinde oklar */}
+                  {maxSteps > 1 && (
+                    <>
+                      <IconButton
+                        onClick={() => { setSlideDirection(-1); setActiveStep((prev) => prev - 1); }}
+                        disabled={activeStep === 0}
+                        sx={{
+                          position: "absolute",
+                          left: 12,
+                          top: "50%",
+                          transform: "translateY(-50%)",
+                          backgroundColor: "rgba(255,255,255,0.85)",
+                          color: "var(--color-dark)",
+                          width: isSmallScreen ? 36 : 44,
+                          height: isSmallScreen ? 36 : 44,
+                          "&:hover": { backgroundColor: "#fff" },
+                          "&.Mui-disabled": { backgroundColor: "rgba(255,255,255,0.4)", color: "rgba(0,0,0,0.25)" },
+                        }}
+                      >
+                        <KeyboardArrowLeft />
+                      </IconButton>
+                      <IconButton
+                        onClick={() => { setSlideDirection(1); setActiveStep((prev) => prev + 1); }}
+                        disabled={activeStep === maxSteps - 1}
+                        sx={{
+                          position: "absolute",
+                          right: 12,
+                          top: "50%",
+                          transform: "translateY(-50%)",
+                          backgroundColor: "rgba(255,255,255,0.85)",
+                          color: "var(--color-dark)",
+                          width: isSmallScreen ? 36 : 44,
+                          height: isSmallScreen ? 36 : 44,
+                          "&:hover": { backgroundColor: "#fff" },
+                          "&.Mui-disabled": { backgroundColor: "rgba(255,255,255,0.4)", color: "rgba(0,0,0,0.25)" },
+                        }}
+                      >
+                        <KeyboardArrowRight />
+                      </IconButton>
+
+                      {/* Gorsel sayaci */}
+                      <Box
+                        sx={{
+                          position: "absolute",
+                          bottom: 12,
+                          right: 16,
+                          backgroundColor: "rgba(0,0,0,0.55)",
+                          color: "#fff",
+                          px: 1.5,
+                          py: 0.4,
+                          borderRadius: "4px",
+                          fontSize: "0.8rem",
+                          fontWeight: 500,
+                          letterSpacing: "0.05em",
+                        }}
+                      >
+                        {activeStep + 1} / {maxSteps}
+                      </Box>
+                    </>
+                  )}
+                </Box>
+
+                {/* Icerik Alani */}
+                <Box sx={{ p: isSmallScreen ? 2.5 : 4 }}>
+                  {/* Baslik */}
+                  <Typography
+                    variant={isSmallScreen ? "h5" : "h4"}
+                    sx={{
+                      color: "var(--color-dark)",
+                      fontWeight: 600,
+                      letterSpacing: "0.02em",
+                      mb: 0.5,
+                    }}
+                  >
+                    {selectedProject.title}
+                  </Typography>
+
+                  {selectedProject.location && (
+                    <Typography
+                      sx={{
+                        color: "var(--color-text-secondary)",
+                        fontSize: "0.9rem",
+                        mb: 2.5,
                       }}
                     >
-                      {selectedImages[activeStep] ? (
-                        <img
-                          src={selectedImages[activeStep]}
-                          alt={selectedProject.title}
-                          style={{ width: "100%", height: "100%" }}
-                        />
-                      ) : null}
-                      {maxSteps > 1 ? (
-                        <MobileStepper
-                          variant="dots"
-                          steps={maxSteps}
-                          position="static"
-                          activeStep={activeStep}
+                      {selectedProject.location}
+                    </Typography>
+                  )}
+
+                  {/* Ayrac */}
+                  <Box sx={{ width: 50, height: 2, backgroundColor: "var(--color-primary)", mb: 2.5 }} />
+
+                  {/* Detay kartlari */}
+                  <Box
+                    sx={{
+                      display: "grid",
+                      gridTemplateColumns: isSmallScreen ? "1fr 1fr" : "repeat(4, 1fr)",
+                      gap: isSmallScreen ? 1.5 : 2,
+                    }}
+                  >
+                    {[
+                      { label: "Tarih", value: selectedProject.year },
+                      { label: "Yapı Türü", value: selectedProject.type },
+                      { label: "Parsel Alanı", value: selectedProject.parcelArea },
+                      { label: "Yapı Alanı", value: selectedProject.buildingArea },
+                    ]
+                      .filter((item) => item.value)
+                      .map((item, idx) => (
+                        <Box
+                          key={idx}
                           sx={{
-                            maxWidth: "50vw",
-                            justifySelf: "center",
+                            backgroundColor: "var(--color-light)",
+                            borderRadius: "6px",
+                            p: isSmallScreen ? 1.5 : 2,
+                            borderLeft: "3px solid var(--color-primary)",
                           }}
-                          nextButton={
-                            <Button
-                              size="large"
-                              onClick={() => {
-                                setActiveStep(
-                                  (prevActiveStep) => prevActiveStep + 1
-                                );
-                              }}
-                              disabled={activeStep === maxSteps - 1}
-                            >
-                              {theme.direction === "rtl" ? (
-                                <KeyboardArrowLeft />
-                              ) : (
-                                <KeyboardArrowRight />
-                              )}
-                            </Button>
-                          }
-                          backButton={
-                            <Button
-                              size="large"
-                              onClick={() => {
-                                setActiveStep(
-                                  (prevActiveStep) => prevActiveStep - 1
-                                );
-                              }}
-                              disabled={activeStep === 0}
-                            >
-                              {theme.direction === "rtl" ? (
-                                <KeyboardArrowRight />
-                              ) : (
-                                <KeyboardArrowLeft />
-                              )}
-                            </Button>
-                          }
-                        />
-                      ) : null}
-                    </Box>
-                    {!isSmallScreen ? (
-                      <Grid
-                        container
-                        md={12}
-                        sx={{ justifyContent: "center", marginTop: "5vh" }}
-                      >
-                        <Grid item>
+                        >
                           <Typography
-                            variant={isSmallScreen ? "body2" : "body1"}
                             sx={{
-                              marginBottom: "1vh",
-                              marginTop: "1vh",
-                              fontFamily: "inherit",
+                              fontSize: "0.7rem",
+                              color: "var(--color-text-muted)",
+                              textTransform: "uppercase",
+                              letterSpacing: "0.08em",
+                              fontWeight: 600,
+                              mb: 0.3,
                             }}
                           >
-                            <strong>Konum:</strong>{" "}
-                            <a>{selectedProject.location || "-"}</a>
+                            {item.label}
                           </Typography>
-                        </Grid>
-                        <DividerLine />
-                        <Grid item>
                           <Typography
-                            variant={isSmallScreen ? "body2" : "body1"}
                             sx={{
-                              marginBottom: "1vh",
-                              marginTop: "1vh",
-                              fontFamily: "inherit",
+                              fontSize: isSmallScreen ? "0.85rem" : "0.95rem",
+                              color: "var(--color-dark)",
+                              fontWeight: 500,
                             }}
                           >
-                            <strong>Tarih:</strong>{" "}
-                            <a>{selectedProject.year || "-"}</a>
+                            {item.value}
                           </Typography>
-                        </Grid>
-                        <DividerLine />
-                        <Grid item>
-                          <Typography
-                            variant={isSmallScreen ? "body2" : "body1"}
-                            sx={{
-                              marginBottom: "1vh",
-                              marginTop: "1vh",
-                              fontFamily: "inherit",
-                            }}
-                          >
-                            <strong>Yapı Türü:</strong>{" "}
-                            <a>{selectedProject.type || "-"}</a>
-                          </Typography>
-                        </Grid>
-                        <DividerLine />
-                        <Grid item>
-                          <Typography
-                            variant={isSmallScreen ? "body2" : "body1"}
-                            sx={{
-                              marginBottom: "1vh",
-                              marginTop: "1vh",
-                              fontFamily: "inherit",
-                            }}
-                          >
-                            <strong>Parsel Alanı:</strong>{" "}
-                            <a>{selectedProject.parcelArea || "-"}</a>
-                          </Typography>
-                        </Grid>
-                        <DividerLine />
-                        <Grid item>
-                          <Typography
-                            variant={isSmallScreen ? "body2" : "body1"}
-                            sx={{
-                              marginBottom: "1vh",
-                              marginTop: "1vh",
-                              fontFamily: "inherit",
-                            }}
-                          >
-                            <strong>Yapı Alanı:</strong>{" "}
-                            <a>{selectedProject.buildingArea || "-"}</a>
-                          </Typography>
-                        </Grid>
-                      </Grid>
-                    ) : (
-                      <Grid2
-                        container
-                        md={12}
-                        sx={{ justifyContent: "center", marginTop: "6vh" }}
-                      >
-                        <Grid2 size={12}>
-                          <Typography
-                            variant={isSmallScreen ? "body2" : "body1"}
-                            sx={{
-                              marginBottom: "1vh",
-                              marginTop: "1vh",
-                              fontFamily: "inherit",
-                            }}
-                          >
-                            <strong>Konum:</strong>{" "}
-                            <a>{selectedProject.location || "-"}</a>
-                          </Typography>
-                        </Grid2>
-                        <Grid2 size={12}>
-                          <Typography
-                            variant={isSmallScreen ? "body2" : "body1"}
-                            sx={{
-                              marginBottom: "1vh",
-                              marginTop: "1vh",
-                              fontFamily: "inherit",
-                            }}
-                          >
-                            <strong>Tarih:</strong>{" "}
-                            <a>{selectedProject.year || "-"}</a>
-                          </Typography>
-                        </Grid2>
-                        <Grid2 size={12}>
-                          <Typography
-                            variant={isSmallScreen ? "body2" : "body1"}
-                            sx={{
-                              marginBottom: "1vh",
-                              marginTop: "1vh",
-                              fontFamily: "inherit",
-                            }}
-                          >
-                            <strong>Yapı Türü:</strong>{" "}
-                            <a>{selectedProject.type || "-"}</a>
-                          </Typography>
-                        </Grid2>
-                        <Grid2 size={12}>
-                          <Typography
-                            variant={isSmallScreen ? "body2" : "body1"}
-                            sx={{
-                              marginBottom: "1vh",
-                              marginTop: "1vh",
-                              fontFamily: "inherit",
-                            }}
-                          >
-                            <strong>Parsel Alanı:</strong>{" "}
-                            <a>{selectedProject.parcelArea || "-"}</a>
-                          </Typography>
-                        </Grid2>
-                        <Grid2 size={12}>
-                          <Typography
-                            variant={isSmallScreen ? "body2" : "body1"}
-                            sx={{
-                              marginBottom: "1vh",
-                              marginTop: "1vh",
-                              fontFamily: "inherit",
-                            }}
-                          >
-                            <strong>Yapı Alanı:</strong>{" "}
-                            <a>{selectedProject.buildingArea || "-"}</a>
-                          </Typography>
-                        </Grid2>
-                      </Grid2>
-                    )}
-                  </Grid2>
-                ) : null}
+                        </Box>
+                      ))}
+                  </Box>
+                </Box>
               </Box>
             </motion.div>
           </Box>

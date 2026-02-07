@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { promises as fs } from "fs";
 import path from "path";
 import { kv } from "@vercel/kv";
+import { verifyRequest } from "@/lib/auth";
 
 const dataPath = path.join(process.cwd(), "src", "data", "content.json");
 const KV_KEY = "content";
@@ -42,6 +43,14 @@ export async function GET() {
 }
 
 export async function PUT(request) {
+  // Yetkilendirme kontrolu
+  if (!verifyRequest(request)) {
+    return NextResponse.json(
+      { error: "Yetkisiz erişim." },
+      { status: 401 }
+    );
+  }
+
   try {
     const content = await request.json();
     if (isKvEnabled) {
