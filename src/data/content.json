@@ -129,10 +129,10 @@
       "parcelArea": "501.33 m²",
       "buildingArea": "226.84 m²",
       "images": [
-        "/images/villa9.png",
-        "/uploads/upload-1769027105666-f5b8dbb7594e.jpg",
         "/uploads/upload-1769027105780-22784e8bd2f28.jpg",
         "/uploads/upload-1769027105858-08177cc5f912e.jpg",
+        "/images/villa9.png",
+        "/uploads/upload-1769027105666-f5b8dbb7594e.jpg",
         "/uploads/upload-1769027105950-2b913b449a807.jpg"
       ],
       "isCompleted": false

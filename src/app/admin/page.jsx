@@ -42,6 +42,9 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import SearchIcon from "@mui/icons-material/Search";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ImageIcon from "@mui/icons-material/Image";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import StarIcon from "@mui/icons-material/Star";
 
 // --- Yardimci fonksiyonlar ---
 
@@ -252,6 +255,25 @@ const AdminPage = () => {
       projects[projectIndex] = { ...projects[projectIndex], images };
       return { ...prev, projects };
     });
+  };
+
+  // Gorsel sirasini degistir (sola/saga tasi)
+  const moveProjectImage = (projectIndex, fromIdx, toIdx) => {
+    setContent((prev) => {
+      const projects = [...prev.projects];
+      const images = [...projects[projectIndex].images];
+      if (toIdx < 0 || toIdx >= images.length) return prev;
+      const [moved] = images.splice(fromIdx, 1);
+      images.splice(toIdx, 0, moved);
+      projects[projectIndex] = { ...projects[projectIndex], images };
+      return { ...prev, projects };
+    });
+  };
+
+  // Gorseli kapak fotografi yap (ilk siraya tasi)
+  const setCoverImage = (projectIndex, imageIndex) => {
+    if (imageIndex === 0) return; // zaten kapak
+    moveProjectImage(projectIndex, imageIndex, 0);
   };
 
   // --- Yardimci: Auth header ---
@@ -826,56 +848,173 @@ const AdminPage = () => {
 
                   {project.images.length > 0 ? (
                     <Box sx={{ display: "flex", gap: 1.5, flexWrap: "wrap" }}>
-                      {project.images.map((image, imgIdx) => (
-                        <Box
-                          key={`${project.id}-img-${imgIdx}`}
-                          sx={{
-                            position: "relative",
-                            width: 140,
-                            height: 105,
-                            borderRadius: 1.5,
-                            overflow: "hidden",
-                            border: "1px solid #eee",
-                            "&:hover .delete-overlay": { opacity: 1 },
-                          }}
-                        >
+                      {project.images.map((image, imgIdx) => {
+                        const isCover = imgIdx === 0;
+                        const isFirst = imgIdx === 0;
+                        const isLast = imgIdx === project.images.length - 1;
+
+                        return (
                           <Box
-                            component="img"
-                            src={image}
-                            alt={`${project.title || "Proje"} görsel ${imgIdx + 1}`}
+                            key={`${project.id}-img-${imgIdx}`}
                             sx={{
-                              width: "100%",
-                              height: "100%",
-                              objectFit: "cover",
-                            }}
-                          />
-                          <Box
-                            className="delete-overlay"
-                            sx={{
-                              position: "absolute",
-                              inset: 0,
-                              backgroundColor: "rgba(0,0,0,0.4)",
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                              opacity: 0,
-                              transition: "opacity 0.2s ease",
+                              position: "relative",
+                              width: 140,
+                              borderRadius: 1.5,
+                              overflow: "hidden",
+                              border: isCover ? "2px solid var(--color-primary-dark)" : "1px solid #eee",
+                              "&:hover .img-overlay": { opacity: 1 },
                             }}
                           >
-                            <IconButton
-                              size="small"
-                              onClick={() => setDeleteTarget({ type: "image", projectIndex: realIndex, imageIndex: imgIdx })}
+                            {/* Kapak rozeti */}
+                            {isCover && (
+                              <Box
+                                sx={{
+                                  position: "absolute",
+                                  top: 0,
+                                  left: 0,
+                                  zIndex: 3,
+                                  backgroundColor: "var(--color-primary-dark)",
+                                  color: "#fff",
+                                  px: 0.8,
+                                  py: 0.2,
+                                  borderBottomRightRadius: 6,
+                                  display: "flex",
+                                  alignItems: "center",
+                                  gap: 0.3,
+                                }}
+                              >
+                                <StarIcon sx={{ fontSize: 12 }} />
+                                <Typography sx={{ fontSize: "0.65rem", fontWeight: 600, lineHeight: 1 }}>KAPAK</Typography>
+                              </Box>
+                            )}
+
+                            {/* Gorsel */}
+                            <Box
+                              component="img"
+                              src={image}
+                              alt={`${project.title || "Proje"} görsel ${imgIdx + 1}`}
                               sx={{
-                                backgroundColor: "rgba(255,255,255,0.9)",
-                                color: "#d32f2f",
-                                "&:hover": { backgroundColor: "#fff" },
+                                width: "100%",
+                                height: 105,
+                                objectFit: "cover",
+                                display: "block",
+                              }}
+                            />
+
+                            {/* Hover overlay - aksiyonlar */}
+                            <Box
+                              className="img-overlay"
+                              sx={{
+                                position: "absolute",
+                                inset: 0,
+                                background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.3) 100%)",
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "space-between",
+                                alignItems: "center",
+                                opacity: 0,
+                                transition: "opacity 0.2s ease",
+                                py: 0.5,
                               }}
                             >
-                              <CloseIcon fontSize="small" />
-                            </IconButton>
+                              {/* Ust: Sil butonu */}
+                              <Box sx={{ alignSelf: "flex-end", pr: 0.5 }}>
+                                <IconButton
+                                  size="small"
+                                  onClick={() => setDeleteTarget({ type: "image", projectIndex: realIndex, imageIndex: imgIdx })}
+                                  sx={{
+                                    backgroundColor: "rgba(255,255,255,0.9)",
+                                    color: "#d32f2f",
+                                    width: 26,
+                                    height: 26,
+                                    "&:hover": { backgroundColor: "#fff" },
+                                  }}
+                                >
+                                  <CloseIcon sx={{ fontSize: 14 }} />
+                                </IconButton>
+                              </Box>
+
+                              {/* Orta: Kapak yap butonu (kapak degilse) */}
+                              {!isCover && (
+                                <Button
+                                  size="small"
+                                  onClick={() => setCoverImage(realIndex, imgIdx)}
+                                  startIcon={<StarIcon sx={{ fontSize: 14 }} />}
+                                  sx={{
+                                    color: "#fff",
+                                    backgroundColor: "rgba(0,0,0,0.45)",
+                                    fontSize: "0.65rem",
+                                    textTransform: "none",
+                                    px: 1,
+                                    py: 0.2,
+                                    minHeight: 0,
+                                    borderRadius: 1,
+                                    "&:hover": { backgroundColor: "rgba(0,0,0,0.65)" },
+                                  }}
+                                >
+                                  Kapak Yap
+                                </Button>
+                              )}
+
+                              {/* Alt: Sola/saga tasi */}
+                              <Box sx={{ display: "flex", gap: 0.5 }}>
+                                <IconButton
+                                  size="small"
+                                  disabled={isFirst}
+                                  onClick={() => moveProjectImage(realIndex, imgIdx, imgIdx - 1)}
+                                  sx={{
+                                    backgroundColor: "rgba(255,255,255,0.85)",
+                                    color: "#333",
+                                    width: 26,
+                                    height: 26,
+                                    "&:hover": { backgroundColor: "#fff" },
+                                    "&.Mui-disabled": { backgroundColor: "rgba(255,255,255,0.3)", color: "rgba(0,0,0,0.2)" },
+                                  }}
+                                >
+                                  <ArrowBackIcon sx={{ fontSize: 14 }} />
+                                </IconButton>
+                                <IconButton
+                                  size="small"
+                                  disabled={isLast}
+                                  onClick={() => moveProjectImage(realIndex, imgIdx, imgIdx + 1)}
+                                  sx={{
+                                    backgroundColor: "rgba(255,255,255,0.85)",
+                                    color: "#333",
+                                    width: 26,
+                                    height: 26,
+                                    "&:hover": { backgroundColor: "#fff" },
+                                    "&.Mui-disabled": { backgroundColor: "rgba(255,255,255,0.3)", color: "rgba(0,0,0,0.2)" },
+                                  }}
+                                >
+                                  <ArrowForwardIcon sx={{ fontSize: 14 }} />
+                                </IconButton>
+                              </Box>
+                            </Box>
+
+                            {/* Sira numarasi */}
+                            <Box
+                              sx={{
+                                position: "absolute",
+                                bottom: 4,
+                                right: 4,
+                                backgroundColor: "rgba(0,0,0,0.5)",
+                                color: "#fff",
+                                fontSize: "0.65rem",
+                                fontWeight: 600,
+                                width: 20,
+                                height: 20,
+                                borderRadius: "50%",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                zIndex: 1,
+                              }}
+                            >
+                              {imgIdx + 1}
+                            </Box>
                           </Box>
-                        </Box>
-                      ))}
+                        );
+                      })}
                     </Box>
                   ) : (
                     <Box sx={{ textAlign: "center", py: 3, color: "#ccc", border: "2px dashed #eee", borderRadius: 2 }}>
