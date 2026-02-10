@@ -212,81 +212,94 @@ const ContactUs = () => {
                                 border: '1px solid var(--color-border-light)',
                             }}
                         >
-                            <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
-                                <TextField
-                                    label="İsim Soyisim"
-                                    type='text'
-                                    name='fullName'
-                                    value={formData.fullName}
-                                    onChange={handleChange}
-                                    required={true}
-                                    slotProps={{
-                                        input: {
-                                            startAdornment: (
-                                                <InputAdornment position="start">
-                                                    <PersonIcon sx={{ color: 'var(--color-primary-dark)', fontSize: 20 }} />
-                                                </InputAdornment>
-                                            ),
-                                            style: { color: 'var(--color-dark)', backgroundColor: 'var(--color-white)', height: '48px' }
-                                        },
-                                    }}
-                                    sx={textFieldStyles}
-                                />
-                                <TextField
-                                    label="E-posta"
-                                    name="email"
-                                    type="email"
-                                    required={true}
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    slotProps={{
-                                        input: {
-                                            startAdornment: (
-                                                <InputAdornment position="start">
-                                                    <EmailIcon sx={{ color: 'var(--color-primary-dark)', fontSize: 20 }} />
-                                                </InputAdornment>
-                                            ),
-                                            style: { color: 'var(--color-dark)', backgroundColor: 'var(--color-white)', height: '48px' }
-                                        },
-                                    }}
-                                    sx={textFieldStyles}
-                                />
-                                <TextField
-                                    label="Telefon"
-                                    name="phone"
-                                    type='text'
-                                    placeholder='0 (5XX) XXX XX XX'
-                                    required={true}
-                                    value={formData.phone}
-                                    onChange={handlePhoneChange}
-                                    slotProps={{
-                                        input: {
-                                            startAdornment: (
-                                                <InputAdornment position="start">
-                                                    <LocalPhoneIcon sx={{ color: 'var(--color-primary-dark)', fontSize: 20 }} />
-                                                </InputAdornment>
-                                            ),
-                                            inputMode: 'tel',
-                                            style: { color: 'var(--color-dark)', backgroundColor: 'var(--color-white)', height: '48px' }
-                                        },
-                                    }}
-                                    sx={textFieldStyles}
-                                />
-                                <TextField
-                                    label="Mesaj"
-                                    name="message"
-                                    required={true}
-                                    value={formData.message}
-                                    onChange={handleChange}
-                                    multiline
-                                    rows={4}
-                                    slotProps={{
-                                        input: {
-                                            style: { color: 'var(--color-dark)', backgroundColor: 'var(--color-white)' }
-                                        },
-                                    }}
-                                    sx={textFieldStyles}
-                                />
+                            <div className="flex flex-col sm:flex-row gap-6 sm:gap-8">
+                                <div className="flex flex-col gap-6 sm:w-1/2">
+                                    <TextField
+                                        label="İsim Soyisim"
+                                        type='text'
+                                        name='fullName'
+                                        value={formData.fullName}
+                                        onChange={handleChange}
+                                        required={true}
+                                        slotProps={{
+                                            input: {
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                        <PersonIcon sx={{ color: 'var(--color-primary-dark)', fontSize: 20 }} />
+                                                    </InputAdornment>
+                                                ),
+                                                style: { color: 'var(--color-dark)', backgroundColor: 'var(--color-white)', height: '48px' }
+                                            },
+                                        }}
+                                        sx={textFieldStyles}
+                                    />
+                                    <TextField
+                                        label="E-posta"
+                                        name="email"
+                                        type="email"
+                                        required={true}
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        slotProps={{
+                                            input: {
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                        <EmailIcon sx={{ color: 'var(--color-primary-dark)', fontSize: 20 }} />
+                                                    </InputAdornment>
+                                                ),
+                                                style: { color: 'var(--color-dark)', backgroundColor: 'var(--color-white)', height: '48px' }
+                                            },
+                                        }}
+                                        sx={textFieldStyles}
+                                    />
+                                    <TextField
+                                        label="Telefon"
+                                        name="phone"
+                                        type='text'
+                                        placeholder='0 (5XX) XXX XX XX'
+                                        required={true}
+                                        value={formData.phone}
+                                        onChange={handlePhoneChange}
+                                        slotProps={{
+                                            input: {
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                        <LocalPhoneIcon sx={{ color: 'var(--color-primary-dark)', fontSize: 20 }} />
+                                                    </InputAdornment>
+                                                ),
+                                                inputMode: 'tel',
+                                                style: { color: 'var(--color-dark)', backgroundColor: 'var(--color-white)', height: '48px' }
+                                            },
+                                        }}
+                                        sx={textFieldStyles}
+                                    />
+                                </div>
+                                <div className="sm:w-1/2 flex">
+                                    <TextField
+                                        label="Mesaj"
+                                        name="message"
+                                        required={true}
+                                        value={formData.message}
+                                        onChange={handleChange}
+                                        multiline
+                                        slotProps={{
+                                            input: {
+                                                style: { color: 'var(--color-dark)', backgroundColor: 'var(--color-white)', height: '100%', alignItems: 'flex-start' }
+                                            },
+                                        }}
+                                        sx={{
+                                            ...textFieldStyles,
+                                            width: '100%',
+                                            '& .MuiOutlinedInput-root': {
+                                                ...textFieldStyles['& .MuiOutlinedInput-root'],
+                                                height: '100%',
+                                            },
+                                            '& .MuiInputBase-root': {
+                                                height: '100%',
+                                            },
+                                        }}
+                                    />
+                                </div>
                             </div>
 
                             <Button
